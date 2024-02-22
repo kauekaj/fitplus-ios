@@ -1,0 +1,593 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		9645B0022B88098F00EEEB85 /* FitPlusApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9645B0012B88098F00EEEB85 /* FitPlusApp.swift */; };
+		9645B0042B88098F00EEEB85 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9645B0032B88098F00EEEB85 /* ContentView.swift */; };
+		9645B0062B88099300EEEB85 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9645B0052B88099300EEEB85 /* Assets.xcassets */; };
+		9645B0092B88099300EEEB85 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9645B0082B88099300EEEB85 /* Preview Assets.xcassets */; };
+		9645B0132B88099300EEEB85 /* FitPlusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9645B0122B88099300EEEB85 /* FitPlusTests.swift */; };
+		9645B01D2B88099300EEEB85 /* FitPlusUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9645B01C2B88099300EEEB85 /* FitPlusUITests.swift */; };
+		9645B01F2B88099300EEEB85 /* FitPlusUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9645B01E2B88099300EEEB85 /* FitPlusUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		9645B00F2B88099300EEEB85 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9645AFF62B88098F00EEEB85 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9645AFFD2B88098F00EEEB85;
+			remoteInfo = FitPlus;
+		};
+		9645B0192B88099300EEEB85 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9645AFF62B88098F00EEEB85 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9645AFFD2B88098F00EEEB85;
+			remoteInfo = FitPlus;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		9645AFFE2B88098F00EEEB85 /* FitPlus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FitPlus.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9645B0012B88098F00EEEB85 /* FitPlusApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitPlusApp.swift; sourceTree = "<group>"; };
+		9645B0032B88098F00EEEB85 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		9645B0052B88099300EEEB85 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9645B0082B88099300EEEB85 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		9645B00E2B88099300EEEB85 /* FitPlusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FitPlusTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9645B0122B88099300EEEB85 /* FitPlusTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitPlusTests.swift; sourceTree = "<group>"; };
+		9645B0182B88099300EEEB85 /* FitPlusUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FitPlusUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9645B01C2B88099300EEEB85 /* FitPlusUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitPlusUITests.swift; sourceTree = "<group>"; };
+		9645B01E2B88099300EEEB85 /* FitPlusUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitPlusUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9645AFFB2B88098F00EEEB85 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9645B00B2B88099300EEEB85 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9645B0152B88099300EEEB85 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		9645AFF52B88098F00EEEB85 = {
+			isa = PBXGroup;
+			children = (
+				9645B0002B88098F00EEEB85 /* FitPlus */,
+				9645B0112B88099300EEEB85 /* FitPlusTests */,
+				9645B01B2B88099300EEEB85 /* FitPlusUITests */,
+				9645AFFF2B88098F00EEEB85 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		9645AFFF2B88098F00EEEB85 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9645AFFE2B88098F00EEEB85 /* FitPlus.app */,
+				9645B00E2B88099300EEEB85 /* FitPlusTests.xctest */,
+				9645B0182B88099300EEEB85 /* FitPlusUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9645B0002B88098F00EEEB85 /* FitPlus */ = {
+			isa = PBXGroup;
+			children = (
+				9645B0012B88098F00EEEB85 /* FitPlusApp.swift */,
+				9645B0032B88098F00EEEB85 /* ContentView.swift */,
+				9645B0052B88099300EEEB85 /* Assets.xcassets */,
+				9645B0072B88099300EEEB85 /* Preview Content */,
+			);
+			path = FitPlus;
+			sourceTree = "<group>";
+		};
+		9645B0072B88099300EEEB85 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				9645B0082B88099300EEEB85 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		9645B0112B88099300EEEB85 /* FitPlusTests */ = {
+			isa = PBXGroup;
+			children = (
+				9645B0122B88099300EEEB85 /* FitPlusTests.swift */,
+			);
+			path = FitPlusTests;
+			sourceTree = "<group>";
+		};
+		9645B01B2B88099300EEEB85 /* FitPlusUITests */ = {
+			isa = PBXGroup;
+			children = (
+				9645B01C2B88099300EEEB85 /* FitPlusUITests.swift */,
+				9645B01E2B88099300EEEB85 /* FitPlusUITestsLaunchTests.swift */,
+			);
+			path = FitPlusUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9645AFFD2B88098F00EEEB85 /* FitPlus */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9645B0222B88099300EEEB85 /* Build configuration list for PBXNativeTarget "FitPlus" */;
+			buildPhases = (
+				9645AFFA2B88098F00EEEB85 /* Sources */,
+				9645AFFB2B88098F00EEEB85 /* Frameworks */,
+				9645AFFC2B88098F00EEEB85 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FitPlus;
+			productName = FitPlus;
+			productReference = 9645AFFE2B88098F00EEEB85 /* FitPlus.app */;
+			productType = "com.apple.product-type.application";
+		};
+		9645B00D2B88099300EEEB85 /* FitPlusTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9645B0252B88099300EEEB85 /* Build configuration list for PBXNativeTarget "FitPlusTests" */;
+			buildPhases = (
+				9645B00A2B88099300EEEB85 /* Sources */,
+				9645B00B2B88099300EEEB85 /* Frameworks */,
+				9645B00C2B88099300EEEB85 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9645B0102B88099300EEEB85 /* PBXTargetDependency */,
+			);
+			name = FitPlusTests;
+			productName = FitPlusTests;
+			productReference = 9645B00E2B88099300EEEB85 /* FitPlusTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		9645B0172B88099300EEEB85 /* FitPlusUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9645B0282B88099300EEEB85 /* Build configuration list for PBXNativeTarget "FitPlusUITests" */;
+			buildPhases = (
+				9645B0142B88099300EEEB85 /* Sources */,
+				9645B0152B88099300EEEB85 /* Frameworks */,
+				9645B0162B88099300EEEB85 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9645B01A2B88099300EEEB85 /* PBXTargetDependency */,
+			);
+			name = FitPlusUITests;
+			productName = FitPlusUITests;
+			productReference = 9645B0182B88099300EEEB85 /* FitPlusUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9645AFF62B88098F00EEEB85 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					9645AFFD2B88098F00EEEB85 = {
+						CreatedOnToolsVersion = 15.0.1;
+					};
+					9645B00D2B88099300EEEB85 = {
+						CreatedOnToolsVersion = 15.0.1;
+						TestTargetID = 9645AFFD2B88098F00EEEB85;
+					};
+					9645B0172B88099300EEEB85 = {
+						CreatedOnToolsVersion = 15.0.1;
+						TestTargetID = 9645AFFD2B88098F00EEEB85;
+					};
+				};
+			};
+			buildConfigurationList = 9645AFF92B88098F00EEEB85 /* Build configuration list for PBXProject "FitPlus" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 9645AFF52B88098F00EEEB85;
+			productRefGroup = 9645AFFF2B88098F00EEEB85 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9645AFFD2B88098F00EEEB85 /* FitPlus */,
+				9645B00D2B88099300EEEB85 /* FitPlusTests */,
+				9645B0172B88099300EEEB85 /* FitPlusUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9645AFFC2B88098F00EEEB85 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9645B0092B88099300EEEB85 /* Preview Assets.xcassets in Resources */,
+				9645B0062B88099300EEEB85 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9645B00C2B88099300EEEB85 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9645B0162B88099300EEEB85 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9645AFFA2B88098F00EEEB85 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9645B0042B88098F00EEEB85 /* ContentView.swift in Sources */,
+				9645B0022B88098F00EEEB85 /* FitPlusApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9645B00A2B88099300EEEB85 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9645B0132B88099300EEEB85 /* FitPlusTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9645B0142B88099300EEEB85 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9645B01F2B88099300EEEB85 /* FitPlusUITestsLaunchTests.swift in Sources */,
+				9645B01D2B88099300EEEB85 /* FitPlusUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9645B0102B88099300EEEB85 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9645AFFD2B88098F00EEEB85 /* FitPlus */;
+			targetProxy = 9645B00F2B88099300EEEB85 /* PBXContainerItemProxy */;
+		};
+		9645B01A2B88099300EEEB85 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9645AFFD2B88098F00EEEB85 /* FitPlus */;
+			targetProxy = 9645B0192B88099300EEEB85 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		9645B0202B88099300EEEB85 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		9645B0212B88099300EEEB85 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		9645B0232B88099300EEEB85 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"FitPlus/Preview Content\"";
+				DEVELOPMENT_TEAM = N7W6HJZX49;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kauekajtech.FitPlus;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		9645B0242B88099300EEEB85 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"FitPlus/Preview Content\"";
+				DEVELOPMENT_TEAM = N7W6HJZX49;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kauekajtech.FitPlus;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		9645B0262B88099300EEEB85 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = N7W6HJZX49;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kauekajtech.FitPlusTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FitPlus.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/FitPlus";
+			};
+			name = Debug;
+		};
+		9645B0272B88099300EEEB85 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = N7W6HJZX49;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kauekajtech.FitPlusTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FitPlus.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/FitPlus";
+			};
+			name = Release;
+		};
+		9645B0292B88099300EEEB85 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = N7W6HJZX49;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kauekajtech.FitPlusUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = FitPlus;
+			};
+			name = Debug;
+		};
+		9645B02A2B88099300EEEB85 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = N7W6HJZX49;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kauekajtech.FitPlusUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = FitPlus;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9645AFF92B88098F00EEEB85 /* Build configuration list for PBXProject "FitPlus" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9645B0202B88099300EEEB85 /* Debug */,
+				9645B0212B88099300EEEB85 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9645B0222B88099300EEEB85 /* Build configuration list for PBXNativeTarget "FitPlus" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9645B0232B88099300EEEB85 /* Debug */,
+				9645B0242B88099300EEEB85 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9645B0252B88099300EEEB85 /* Build configuration list for PBXNativeTarget "FitPlusTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9645B0262B88099300EEEB85 /* Debug */,
+				9645B0272B88099300EEEB85 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9645B0282B88099300EEEB85 /* Build configuration list for PBXNativeTarget "FitPlusUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9645B0292B88099300EEEB85 /* Debug */,
+				9645B02A2B88099300EEEB85 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9645AFF62B88098F00EEEB85 /* Project object */;
+}
