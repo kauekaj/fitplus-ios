@@ -49,11 +49,12 @@ struct LoginView: View {
                     .background(Color(.systemGray5))
                     .cornerRadius(10)
                 
-                TextField("Password", text: $emailText)
+                SecureField("Password", text: $passwordText)
                     .padding(.horizontal)
                     .frame(height: 55)
                     .background(Color(.systemGray5))
                     .cornerRadius(10)
+            
                 
                 Text("Esqueceu a senha?")
                     .padding(.bottom, 10)
