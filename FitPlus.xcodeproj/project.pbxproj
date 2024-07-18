@@ -14,6 +14,7 @@
 		9645B0132B88099300EEEB85 /* FitPlusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9645B0122B88099300EEEB85 /* FitPlusTests.swift */; };
 		9645B01D2B88099300EEEB85 /* FitPlusUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9645B01C2B88099300EEEB85 /* FitPlusUITests.swift */; };
 		9645B01F2B88099300EEEB85 /* FitPlusUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9645B01E2B88099300EEEB85 /* FitPlusUITestsLaunchTests.swift */; };
+		9645B02E2B880B3C00EEEB85 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9645B02D2B880B3C00EEEB85 /* LoginView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		9645B0182B88099300EEEB85 /* FitPlusUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FitPlusUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9645B01C2B88099300EEEB85 /* FitPlusUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitPlusUITests.swift; sourceTree = "<group>"; };
 		9645B01E2B88099300EEEB85 /* FitPlusUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitPlusUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		9645B02D2B880B3C00EEEB85 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,8 @@
 			children = (
 				9645B0012B88098F00EEEB85 /* FitPlusApp.swift */,
 				9645B0032B88098F00EEEB85 /* ContentView.swift */,
+				96C751B92C482CEB009C0DF1 /* AIM */,
+				96C751C62C487C21009C0DF1 /* DSM */,
 				9645B0052B88099300EEEB85 /* Assets.xcassets */,
 				9645B0072B88099300EEEB85 /* Preview Content */,
 			);
@@ -125,6 +129,37 @@
 				9645B01E2B88099300EEEB85 /* FitPlusUITestsLaunchTests.swift */,
 			);
 			path = FitPlusUITests;
+			sourceTree = "<group>";
+		};
+		9645B02B2B880B1500EEEB85 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				9645B02D2B880B3C00EEEB85 /* LoginView.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		9645B02C2B880B2200EEEB85 /* Register */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Register;
+			sourceTree = "<group>";
+		};
+		96C751B92C482CEB009C0DF1 /* AIM */ = {
+			isa = PBXGroup;
+			children = (
+				9645B02B2B880B1500EEEB85 /* Login */,
+				9645B02C2B880B2200EEEB85 /* Register */,
+			);
+			path = AIM;
+			sourceTree = "<group>";
+		};
+		96C751C62C487C21009C0DF1 /* DSM */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = DSM;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,6 +292,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9645B02E2B880B3C00EEEB85 /* LoginView.swift in Sources */,
 				9645B0042B88098F00EEEB85 /* ContentView.swift in Sources */,
 				9645B0022B88098F00EEEB85 /* FitPlusApp.swift in Sources */,
 			);
