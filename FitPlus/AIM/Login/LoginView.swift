@@ -15,12 +15,11 @@ struct LoginView: View {
     var body: some View {
         NavigationStack {
             ZStack(alignment: .bottom) {
-                
                 Color.accentColor
                 
                 VStack {
                     Spacer()
-                    
+
                     Image(systemName: "heart.fill")
                         .foregroundColor(.white)
                     
@@ -28,12 +27,10 @@ struct LoginView: View {
                     
                     content
                 }
-                
             }
             .ignoresSafeArea()
         }
     }
-    
 }
 
 extension LoginView {
@@ -48,7 +45,7 @@ extension LoginView {
             VStack {
                 
                 TextField("E-mail", text: $emailText)
-                    .textInputAutocapitalization(.never)
+                    .textInputAutocapitalization(.none)
                     .modifier(TextFieldModifier())
                 
                 SecureField("Password", text: $passwordText)
@@ -69,43 +66,34 @@ extension LoginView {
                     
                 } label: {
                     Text("Login")
-                        .foregroundColor(.white)
-                        .font(.headline)
-                        .frame(height: 55)
-                        .frame(maxWidth: .infinity)
-                        .background(Color.accentColor)
-                        .cornerRadius(10)
-                        .padding(.vertical)
+                        .modifier(ButtonLabelModifier())
                 }
+                .padding(.bottom)
                 
                 Divider()
                 
                 alternativeLoginIcons
-                    .padding(.vertical)
+                    .padding(.vertical, 30)
                 
                 NavigationLink {
-                    TabbarView()
+                    RegisterView()
                         .navigationBarBackButtonHidden()
                 } label:  {
                     HStack {
                         Text("Don't have an account?")
                             .foregroundStyle(.black)
                         
-                        Text("Register")
+                        Text("Sign Up")
                             .fontWeight(.semibold)
                             .foregroundStyle(Color.accentColor)
                     }
-//                    .padding(.vertical, 20)
                 }
-
             }
             .frame(maxWidth: .infinity)
             .padding()
         }
-        
     }
 
-    
     private var alternativeLoginIcons: some View {
         HStack(spacing: 40) {
             Button {
@@ -127,8 +115,6 @@ extension LoginView {
             }
         }
     }
-    
-    
 }
 
 #Preview {
