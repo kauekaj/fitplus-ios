@@ -11,7 +11,6 @@ struct LoginView: View {
     
     @State private var emailText = ""
     @State private var passwordText = ""
-    @State private var showingDetail = false
     
     var body: some View {
         NavigationStack {
@@ -50,16 +49,10 @@ extension LoginView {
                 
                 TextField("E-mail", text: $emailText)
                     .textInputAutocapitalization(.never)
-                    .padding(.horizontal)
-                    .frame(height: 55)
-                    .background(Color(.systemGray5))
-                    .cornerRadius(10)
+                    .modifier(TextFieldModifier())
                 
                 SecureField("Password", text: $passwordText)
-                    .padding(.horizontal)
-                    .frame(height: 55)
-                    .background(Color(.systemGray5))
-                    .cornerRadius(10)
+                    .modifier(TextFieldModifier())
                 
                 HStack {
                     Spacer()
@@ -73,7 +66,7 @@ extension LoginView {
                 }
                 
                 Button {
-                    showingDetail.toggle()
+                    
                 } label: {
                     Text("Login")
                         .foregroundColor(.white)
