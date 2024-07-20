@@ -54,15 +54,15 @@ extension LoginView {
                 SecureField("Password", text: $passwordText)
                     .modifier(TextFieldModifier())
                 
-                HStack {
-                    Spacer()
-                    Button {
-                        
-                    } label: {
+                NavigationLink {
+                    TabbarView()
+                        .navigationBarBackButtonHidden()
+                } label:  {
                         Text("Forgot password?")
-                            .padding(.bottom, 10)
-                    }
-                    
+                            .fontWeight(.semibold)
+                            .foregroundStyle(Color.accentColor)
+                            .frame(maxWidth: .infinity, alignment: .trailing)
+                            .padding(.vertical,4)
                 }
                 
                 Button {
