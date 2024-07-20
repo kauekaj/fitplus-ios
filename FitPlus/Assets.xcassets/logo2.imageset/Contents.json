@@ -1,0 +1,21 @@
+{
+  "images" : [
+    {
+      "filename" : "a_minimalist_logo_for_a_mobile_app_with_name_F (22) 2 (1).png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

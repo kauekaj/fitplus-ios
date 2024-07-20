@@ -8,13 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		9645B0022B88098F00EEEB85 /* FitPlusApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9645B0012B88098F00EEEB85 /* FitPlusApp.swift */; };
-		9645B0042B88098F00EEEB85 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9645B0032B88098F00EEEB85 /* ContentView.swift */; };
 		9645B0062B88099300EEEB85 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9645B0052B88099300EEEB85 /* Assets.xcassets */; };
 		9645B0092B88099300EEEB85 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9645B0082B88099300EEEB85 /* Preview Assets.xcassets */; };
 		9645B0132B88099300EEEB85 /* FitPlusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9645B0122B88099300EEEB85 /* FitPlusTests.swift */; };
 		9645B01D2B88099300EEEB85 /* FitPlusUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9645B01C2B88099300EEEB85 /* FitPlusUITests.swift */; };
 		9645B01F2B88099300EEEB85 /* FitPlusUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9645B01E2B88099300EEEB85 /* FitPlusUITestsLaunchTests.swift */; };
 		9645B02E2B880B3C00EEEB85 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9645B02D2B880B3C00EEEB85 /* LoginView.swift */; };
+		96C751CC2C497ED1009C0DF1 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C751CB2C497ED1009C0DF1 /* HomeView.swift */; };
+		96C751CF2C4980A7009C0DF1 /* TabbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C751CE2C4980A7009C0DF1 /* TabbarView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +38,6 @@
 /* Begin PBXFileReference section */
 		9645AFFE2B88098F00EEEB85 /* FitPlus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FitPlus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9645B0012B88098F00EEEB85 /* FitPlusApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitPlusApp.swift; sourceTree = "<group>"; };
-		9645B0032B88098F00EEEB85 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		9645B0052B88099300EEEB85 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9645B0082B88099300EEEB85 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		9645B00E2B88099300EEEB85 /* FitPlusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FitPlusTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -46,6 +46,8 @@
 		9645B01C2B88099300EEEB85 /* FitPlusUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitPlusUITests.swift; sourceTree = "<group>"; };
 		9645B01E2B88099300EEEB85 /* FitPlusUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitPlusUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		9645B02D2B880B3C00EEEB85 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		96C751CB2C497ED1009C0DF1 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		96C751CE2C4980A7009C0DF1 /* TabbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,8 +98,9 @@
 		9645B0002B88098F00EEEB85 /* FitPlus */ = {
 			isa = PBXGroup;
 			children = (
+				96C751D02C4981B7009C0DF1 /* Core */,
 				9645B0012B88098F00EEEB85 /* FitPlusApp.swift */,
-				9645B0032B88098F00EEEB85 /* ContentView.swift */,
+				96C751CB2C497ED1009C0DF1 /* HomeView.swift */,
 				96C751B92C482CEB009C0DF1 /* AIM */,
 				96C751C62C487C21009C0DF1 /* DSM */,
 				9645B0052B88099300EEEB85 /* Assets.xcassets */,
@@ -160,6 +163,22 @@
 			children = (
 			);
 			path = DSM;
+			sourceTree = "<group>";
+		};
+		96C751CD2C498094009C0DF1 /* Tabbar */ = {
+			isa = PBXGroup;
+			children = (
+				96C751CE2C4980A7009C0DF1 /* TabbarView.swift */,
+			);
+			path = Tabbar;
+			sourceTree = "<group>";
+		};
+		96C751D02C4981B7009C0DF1 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				96C751CD2C498094009C0DF1 /* Tabbar */,
+			);
+			path = Core;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -293,7 +312,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				9645B02E2B880B3C00EEEB85 /* LoginView.swift in Sources */,
-				9645B0042B88098F00EEEB85 /* ContentView.swift in Sources */,
+				96C751CC2C497ED1009C0DF1 /* HomeView.swift in Sources */,
+				96C751CF2C4980A7009C0DF1 /* TabbarView.swift in Sources */,
 				9645B0022B88098F00EEEB85 /* FitPlusApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

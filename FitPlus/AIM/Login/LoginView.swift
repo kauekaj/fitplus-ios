@@ -8,42 +8,48 @@
 import SwiftUI
 
 struct LoginView: View {
-
+    
     @State private var emailText = ""
     @State private var passwordText = ""
-
+    @State private var showingDetail = false
+    
     var body: some View {
-        ZStack(alignment: .bottom) {
-      
-            Color.blue
-                .ignoresSafeArea()
-            
-            
-            VStack {
-//                Image(systemName: "heart.fill")
+        NavigationStack {
+            ZStack(alignment: .bottom) {
                 
-//                content
-//                    .ignoresSafeArea()
+                Color.accentColor
+                
+                VStack {
+                    Spacer()
+                    
+                    Image(systemName: "heart.fill")
+                        .foregroundColor(.white)
+                    
+                    Spacer()
+                    
+                    content
+                }
+                
             }
-            content
-//            RoundedRectangle(cornerRadius: 30)
-//                .frame(height: UIScreen.main.bounds.height * 0.5)
-//                .foregroundStyle(.white)
-//            
-            
+            .ignoresSafeArea()
         }
-        .ignoresSafeArea()
     }
     
+}
+
+extension LoginView {
+    
     private var content: some View {
+        
         ZStack {
             RoundedRectangle(cornerRadius: 30)
-                .frame(height: UIScreen.main.bounds.height * 0.5)
+                .frame(height: UIScreen.main.bounds.height * 0.55)
                 .foregroundStyle(.white)
             
             VStack {
                 
                 TextField("E-mail", text: $emailText)
+                    .textInputAutocapitalization(.never)
                     .padding(.horizontal)
                     .frame(height: 55)
                     .background(Color(.systemGray5))
@@ -54,14 +60,20 @@ struct LoginView: View {
                     .frame(height: 55)
                     .background(Color(.systemGray5))
                     .cornerRadius(10)
-            
                 
-                Text("Esqueceu a senha?")
-                    .padding(.bottom, 10)
-                    .frame(alignment: .centerLastTextBaseline)
+                HStack {
+                    Spacer()
+                    Button {
+                        
+                    } label: {
+                        Text("Forgot password?")
+                            .padding(.bottom, 10)
+                    }
+                    
+                }
                 
                 Button {
-    //                saveButtonPressed()
+                    showingDetail.toggle()
                 } label: {
                     Text("Login")
                         .foregroundColor(.white)
@@ -73,22 +85,32 @@ struct LoginView: View {
                         .padding(.vertical)
                 }
                 
-                
-                
-                HStack {
-    //                Divider()
-                    Text("or")
-    //                Divider()
-                }
+                Divider()
                 
                 alternativeLoginIcons
+                    .padding(.vertical)
                 
+                NavigationLink {
+                    TabbarView()
+                        .navigationBarBackButtonHidden()
+                } label:  {
+                    HStack {
+                        Text("Don't have an account?")
+                            .foregroundStyle(.black)
+                        
+                        Text("Register")
+                            .fontWeight(.semibold)
+                            .foregroundStyle(Color.accentColor)
+                    }
+//                    .padding(.vertical, 20)
+                }
+
             }
             .frame(maxWidth: .infinity)
             .padding()
-//            .background(Color.yellow)
         }
-        }
+        
+    }
 
     
     private var alternativeLoginIcons: some View {
