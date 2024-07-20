@@ -9,42 +9,41 @@ import SwiftUI
 
 struct TabbarView: View {
     
+    @State private var selectedTab = 0
+    
     var body: some View {
-        TabView {
+        TabView(selection: $selectedTab) {
+            HomeView()
+                .tabItem {
+                    Image(systemName: "house.fill")
+//                    Image(systemName: selectedTab == 0 ? "house.fill" : "house")
+//                        .environment(\.symbolVariants, selectedTab == 0 ? .fill : .none)
+                }
+                .tag(0)
+                .onAppear { selectedTab = 0 }
             
-            NavigationStack {
-                HomeView()
-            }
-            .tabItem {
-                Image(systemName: "house")
-                Text("home")
-            }
-            
-            NavigationStack {
+            Text("List")
+                .tabItem {
+                    Image(systemName: "cart")
+                }
+                .tag(1)
+                .onAppear { selectedTab = 1 }
 
-            }
-            .tabItem {
-                Image(systemName: "cart")
-                Text("List")
-            }
+            Text("Favorite View")
+                .tabItem {
+                    Image(systemName: "star")
+                }
+                .tag(2)
+                .onAppear { selectedTab = 2 }
             
-            NavigationStack {
-//                FavoriteView()
-            }
-            .tabItem {
-                Image(systemName: "star.fill")
-                Text("Favorites")
-            }
-            
-            NavigationStack {
-//                ProfileView()
-            }
-            .tabItem {
-                Image(systemName: "person")
-                Text("Profile")
-            }
+            Text("Profile View")
+                .tabItem {
+                    Image(systemName: "person")
+                }
+                .tag(3)
+                .onAppear { selectedTab = 3 }
         }
-        
+        .tint(.accentColor)
     }
 }
 

@@ -104,8 +104,8 @@
 		9645B0002B88098F00EEEB85 /* FitPlus */ = {
 			isa = PBXGroup;
 			children = (
+				96C751E22C4C15DC009C0DF1 /* App */,
 				96C751E12C4C064E009C0DF1 /* Helpers */,
-				9645B0012B88098F00EEEB85 /* FitPlusApp.swift */,
 				96C751D82C4BFB48009C0DF1 /* Utils */,
 				96C751D02C4981B7009C0DF1 /* Core */,
 				96C751B92C482CEB009C0DF1 /* AIM */,
@@ -220,6 +220,14 @@
 			children = (
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		96C751E22C4C15DC009C0DF1 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				9645B0012B88098F00EEEB85 /* FitPlusApp.swift */,
+			);
+			path = App;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
