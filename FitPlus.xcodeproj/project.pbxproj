@@ -19,6 +19,7 @@
 		96C751DB2C4BFB62009C0DF1 /* TextFieldModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C751DA2C4BFB62009C0DF1 /* TextFieldModifier.swift */; };
 		96C751DE2C4BFC4C009C0DF1 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C751DD2C4BFC4C009C0DF1 /* RegisterView.swift */; };
 		96C751E02C4C052D009C0DF1 /* ButtonLabelModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C751DF2C4C052D009C0DF1 /* ButtonLabelModifier.swift */; };
+		96C751E52C4C17ED009C0DF1 /* GrocerShopListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C751E42C4C17ED009C0DF1 /* GrocerShopListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,7 @@
 		96C751DA2C4BFB62009C0DF1 /* TextFieldModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldModifier.swift; sourceTree = "<group>"; };
 		96C751DD2C4BFC4C009C0DF1 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		96C751DF2C4C052D009C0DF1 /* ButtonLabelModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonLabelModifier.swift; sourceTree = "<group>"; };
+		96C751E42C4C17ED009C0DF1 /* GrocerShopListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrocerShopListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,7 +110,7 @@
 				96C751E12C4C064E009C0DF1 /* Helpers */,
 				96C751D82C4BFB48009C0DF1 /* Utils */,
 				96C751D02C4981B7009C0DF1 /* Core */,
-				96C751B92C482CEB009C0DF1 /* AIM */,
+				96C751B92C482CEB009C0DF1 /* Authentication */,
 				96C751C62C487C21009C0DF1 /* DSM */,
 				9645B0052B88099300EEEB85 /* Assets.xcassets */,
 				9645B0072B88099300EEEB85 /* Preview Content */,
@@ -157,13 +159,13 @@
 			path = Register;
 			sourceTree = "<group>";
 		};
-		96C751B92C482CEB009C0DF1 /* AIM */ = {
+		96C751B92C482CEB009C0DF1 /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
 				9645B02B2B880B1500EEEB85 /* Login */,
 				9645B02C2B880B2200EEEB85 /* Register */,
 			);
-			path = AIM;
+			path = Authentication;
 			sourceTree = "<group>";
 		};
 		96C751C62C487C21009C0DF1 /* DSM */ = {
@@ -184,6 +186,7 @@
 		96C751D02C4981B7009C0DF1 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				96C751E32C4C17D2009C0DF1 /* GrocerShopList */,
 				96C751DC2C4BFC26009C0DF1 /* Home */,
 				96C751CD2C498094009C0DF1 /* Tabbar */,
 			);
@@ -228,6 +231,14 @@
 				9645B0012B88098F00EEEB85 /* FitPlusApp.swift */,
 			);
 			path = App;
+			sourceTree = "<group>";
+		};
+		96C751E32C4C17D2009C0DF1 /* GrocerShopList */ = {
+			isa = PBXGroup;
+			children = (
+				96C751E42C4C17ED009C0DF1 /* GrocerShopListView.swift */,
+			);
+			path = GrocerShopList;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -366,6 +377,7 @@
 				96C751E02C4C052D009C0DF1 /* ButtonLabelModifier.swift in Sources */,
 				96C751DE2C4BFC4C009C0DF1 /* RegisterView.swift in Sources */,
 				96C751CF2C4980A7009C0DF1 /* TabbarView.swift in Sources */,
+				96C751E52C4C17ED009C0DF1 /* GrocerShopListView.swift in Sources */,
 				9645B0022B88098F00EEEB85 /* FitPlusApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

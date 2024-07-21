@@ -22,7 +22,7 @@ struct TabbarView: View {
                 .tag(0)
                 .onAppear { selectedTab = 0 }
             
-            Text("List")
+            GrocerShopListView()
                 .tabItem {
                     Image(systemName: "cart")
                 }
