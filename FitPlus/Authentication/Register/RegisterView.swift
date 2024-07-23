@@ -24,8 +24,11 @@ struct RegisterView: View {
                 VStack {
                     Spacer()
                     
-                    Image(systemName: "heart.fill")
+                    Text("Fit +")
                         .foregroundColor(.white)
+                        .font(.system(size: 60))
+                        .fontWeight(.bold)
+                        .fontDesign(.rounded)
                     
                     Spacer()
                     

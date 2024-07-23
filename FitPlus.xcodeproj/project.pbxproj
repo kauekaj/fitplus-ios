@@ -20,6 +20,10 @@
 		96C751DE2C4BFC4C009C0DF1 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C751DD2C4BFC4C009C0DF1 /* RegisterView.swift */; };
 		96C751E02C4C052D009C0DF1 /* ButtonLabelModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C751DF2C4C052D009C0DF1 /* ButtonLabelModifier.swift */; };
 		96C751E52C4C17ED009C0DF1 /* GrocerShopListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C751E42C4C17ED009C0DF1 /* GrocerShopListView.swift */; };
+		96C751E72C4D5A04009C0DF1 /* ItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C751E62C4D5A04009C0DF1 /* ItemModel.swift */; };
+		96C751E92C4D5F9D009C0DF1 /* ListRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C751E82C4D5F9D009C0DF1 /* ListRowView.swift */; };
+		96C751EB2C4D601C009C0DF1 /* AddListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C751EA2C4D601C009C0DF1 /* AddListItemView.swift */; };
+		96C751ED2C4D7A52009C0DF1 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C751EC2C4D7A52009C0DF1 /* ListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +60,10 @@
 		96C751DD2C4BFC4C009C0DF1 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		96C751DF2C4C052D009C0DF1 /* ButtonLabelModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonLabelModifier.swift; sourceTree = "<group>"; };
 		96C751E42C4C17ED009C0DF1 /* GrocerShopListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrocerShopListView.swift; sourceTree = "<group>"; };
+		96C751E62C4D5A04009C0DF1 /* ItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemModel.swift; sourceTree = "<group>"; };
+		96C751E82C4D5F9D009C0DF1 /* ListRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListRowView.swift; sourceTree = "<group>"; };
+		96C751EA2C4D601C009C0DF1 /* AddListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddListItemView.swift; sourceTree = "<group>"; };
+		96C751EC2C4D7A52009C0DF1 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,7 +194,7 @@
 		96C751D02C4981B7009C0DF1 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				96C751E32C4C17D2009C0DF1 /* GrocerShopList */,
+				96C751EE2C4D7A5B009C0DF1 /* Lists */,
 				96C751DC2C4BFC26009C0DF1 /* Home */,
 				96C751CD2C498094009C0DF1 /* Tabbar */,
 			);
@@ -237,8 +245,20 @@
 			isa = PBXGroup;
 			children = (
 				96C751E42C4C17ED009C0DF1 /* GrocerShopListView.swift */,
+				96C751E62C4D5A04009C0DF1 /* ItemModel.swift */,
+				96C751E82C4D5F9D009C0DF1 /* ListRowView.swift */,
+				96C751EA2C4D601C009C0DF1 /* AddListItemView.swift */,
 			);
 			path = GrocerShopList;
+			sourceTree = "<group>";
+		};
+		96C751EE2C4D7A5B009C0DF1 /* Lists */ = {
+			isa = PBXGroup;
+			children = (
+				96C751EC2C4D7A52009C0DF1 /* ListView.swift */,
+				96C751E32C4C17D2009C0DF1 /* GrocerShopList */,
+			);
+			path = Lists;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -374,11 +394,15 @@
 				9645B02E2B880B3C00EEEB85 /* LoginView.swift in Sources */,
 				96C751DB2C4BFB62009C0DF1 /* TextFieldModifier.swift in Sources */,
 				96C751CC2C497ED1009C0DF1 /* HomeView.swift in Sources */,
+				96C751E72C4D5A04009C0DF1 /* ItemModel.swift in Sources */,
 				96C751E02C4C052D009C0DF1 /* ButtonLabelModifier.swift in Sources */,
 				96C751DE2C4BFC4C009C0DF1 /* RegisterView.swift in Sources */,
 				96C751CF2C4980A7009C0DF1 /* TabbarView.swift in Sources */,
+				96C751E92C4D5F9D009C0DF1 /* ListRowView.swift in Sources */,
+				96C751ED2C4D7A52009C0DF1 /* ListView.swift in Sources */,
 				96C751E52C4C17ED009C0DF1 /* GrocerShopListView.swift in Sources */,
 				9645B0022B88098F00EEEB85 /* FitPlusApp.swift in Sources */,
+				96C751EB2C4D601C009C0DF1 /* AddListItemView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
