@@ -9,12 +9,12 @@ import SwiftUI
 
 final class GrocerShopListViewModel: ObservableObject {
         
-//        @Published var items: [ItemModel] = [
-//            ItemModel(title: "First item", isCompleted: false),
-//            ItemModel(title: "Second item", isCompleted: true),
-//            ItemModel(title: "Third item", isCompleted: true)
-//        ]
-
+    @Published var mockItems: [ItemModel] = [
+        ItemModel(title: "First item", isCompleted: false),
+        ItemModel(title: "Second item", isCompleted: true),
+        ItemModel(title: "Third item", isCompleted: false)
+    ]
+    
         @Published var items: [ItemModel] = [] {
             didSet {
                 saveItems()
@@ -72,21 +72,31 @@ struct GrocerShopListView: View {
     var body: some View {
         ZStack {
             if listViewModel.items.isEmpty {
-                Text("Sua lista está vazia")
+                makeEmptyView()
             } else {
-                List {
-                    ForEach(listViewModel.items) { item in
-                        ListRowView(item: item)
-                            .onTapGesture {
-                                withAnimation(.linear) {
-                                    listViewModel.updateItem(item: item)
-                                }
-                            }
+                VStack {
+                    HStack {
+                        Text("ordenar")
+                        Text("add")
+                        
                     }
-                    .onDelete(perform: listViewModel.deleteItem)
-                    .onMove(perform: listViewModel.moveItem)
+                    .padding()
+                    
+                    List {
+                        ForEach(listViewModel.items) { item in
+                            ListRowView(item: item)
+                                .onTapGesture {
+                                    withAnimation(.linear) {
+                                        listViewModel.updateItem(item: item)
+                                    }
+                                }
+                        }
+                        .onDelete(perform: listViewModel.deleteItem)
+                        .onMove(perform: listViewModel.moveItem)
+                    }
+                    .listStyle(PlainListStyle())
                 }
-                .listStyle(PlainListStyle())
+                
             }
         }
         .navigationTitle("Lista de Compras 📝")
@@ -98,6 +108,18 @@ struct GrocerShopListView: View {
                         .font(.title2)
                 }
         )
+    }
+    
+    func makeEmptyView() -> some View {
+        VStack {
+            Text("Sua lista está vazia")
+                .font(.title2)
+            NavigationLink(destination: AddView()) {
+                Image(systemName: "cart.fill.badge.plus")
+                    .font(.largeTitle)
+            }
+            .padding()
+        }
     }
     
 }
