@@ -8,9 +8,11 @@
 import SwiftUI
 
 struct LoginView: View {
+        
+    @State private var email = ""
+    @State private var password = ""
     
-    @State private var emailText = ""
-    @State private var passwordText = ""
+    @StateObject private var viewModel = LoginViewModel()
     
     var body: some View {
         NavigationStack {
@@ -39,7 +41,7 @@ struct LoginView: View {
 extension LoginView {
     
     private var content: some View {
-        
+                
         ZStack {
             RoundedRectangle(cornerRadius: 30)
                 .frame(height: UIScreen.main.bounds.height * 0.55)
@@ -47,11 +49,11 @@ extension LoginView {
             
             VStack {
                 
-                TextField("E-mail", text: $emailText)
-                    .textInputAutocapitalization(.none)
+                TextField("E-mail", text: $email)
+                    .textInputAutocapitalization(.never)
                     .modifier(TextFieldModifier())
                 
-                SecureField("Password", text: $passwordText)
+                SecureField("Password", text: $password)
                     .modifier(TextFieldModifier())
                 
                 NavigationLink {
@@ -66,7 +68,9 @@ extension LoginView {
                 }
                 
                 Button {
-                    
+                    Task {
+                        try await viewModel.signIn(email: email, password: password)
+                    }
                 } label: {
                     Text("Login")
                         .modifier(ButtonLabelModifier())

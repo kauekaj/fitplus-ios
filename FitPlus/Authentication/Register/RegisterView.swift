@@ -9,12 +9,13 @@ import SwiftUI
 
 struct RegisterView: View {
     
-    @State private var emailText = ""
-    @State private var passwordText = ""
-    @State private var fullNameText = ""
-    @State private var userNameText = ""
+    @State private var email = ""
+    @State private var password = ""
+    @State private var confirmedPassword = ""
+    @State private var fullName = ""
+    @StateObject private var viewModel = RegisterViewModel()
     @Environment(\.dismiss) var dismiss
-
+    
     var body: some View {
         NavigationStack {
             ZStack(alignment: .bottom) {
@@ -43,7 +44,7 @@ struct RegisterView: View {
 }
 
 extension RegisterView {
-    
+        
     private var content: some View {
         
         ZStack {
@@ -53,21 +54,32 @@ extension RegisterView {
             
             VStack {
                 
-                TextField("Enter your e-mail", text: $emailText)
+                TextField("Enter your full name ", text: $fullName)
+                    .textInputAutocapitalization(.words)
+                    .modifier(TextFieldModifier())
+                
+                TextField("Enter your e-mail", text: $email)
                     .textInputAutocapitalization(.never)
                     .modifier(TextFieldModifier())
                 
-                TextField("Enter your password", text: $passwordText)
+                SecureField("Enter your password", text: $password)
                     .modifier(TextFieldModifier())
                 
-                TextField("Enter your full name", text: $fullNameText)
-                    .modifier(TextFieldModifier())
-                
-                TextField("Enter your username", text: $userNameText)
+                SecureField("Confirm yor password", text: $confirmedPassword)
                     .modifier(TextFieldModifier())
                 
                 Button {
-                    
+                    Task {
+                        guard !email.isEmpty, !password.isEmpty else {
+                            print("No email or password found")
+                            return
+                        }
+                        try await viewModel.signUp(
+                            email: email,
+                            password: password,
+                            confirmedPassword: confirmedPassword
+                        )
+                    }
                 } label: {
                     Text("Sign Up")
                         .modifier(ButtonLabelModifier())

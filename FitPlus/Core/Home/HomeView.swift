@@ -11,7 +11,17 @@ struct HomeView: View {
     var body: some View {
         ZStack {
             
-            Text("Home!")
+            Button {
+                do {
+                    try AuthenticationManager.shared.signOut()
+                } catch {
+                    print("Failed to sign out")
+                }
+            } label: {
+                Image(systemName: "playstation.logo")
+                Text("Sign out")
+            }
+
         }
     }
 }
