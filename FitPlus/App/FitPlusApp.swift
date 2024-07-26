@@ -16,7 +16,7 @@ struct FitPlusApp: App {
 
     var body: some Scene {
         WindowGroup {
-            LoginView()
+            ContentView()
         }
     }
 }
