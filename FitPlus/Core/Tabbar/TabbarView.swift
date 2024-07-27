@@ -36,7 +36,7 @@ struct TabbarView: View {
                 .tag(2)
                 .onAppear { selectedTab = 2 }
             
-            Text("Profile View")
+            ProfileView()
                 .tabItem {
                     Image(systemName: "person")
                 }

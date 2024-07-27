@@ -36,6 +36,7 @@
 		96C752102C540F13009C0DF1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C7520F2C540F13009C0DF1 /* ContentView.swift */; };
 		96C752122C545AC2009C0DF1 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C752112C545AC2009C0DF1 /* RegisterViewModel.swift */; };
 		96C752142C545AFD009C0DF1 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C752132C545AFD009C0DF1 /* LoginViewModel.swift */; };
+		96C752172C556887009C0DF1 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C752162C556887009C0DF1 /* ProfileView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +85,7 @@
 		96C7520F2C540F13009C0DF1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		96C752112C545AC2009C0DF1 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		96C752132C545AFD009C0DF1 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		96C752162C556887009C0DF1 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -228,6 +230,7 @@
 			isa = PBXGroup;
 			children = (
 				96C751EE2C4D7A5B009C0DF1 /* Lists */,
+				96C752152C556874009C0DF1 /* Profile */,
 				96C751DC2C4BFC26009C0DF1 /* Home */,
 				96C751CD2C498094009C0DF1 /* Tabbar */,
 			);
@@ -332,6 +335,14 @@
 				96C7520D2C540CDB009C0DF1 /* ContentViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		96C752152C556874009C0DF1 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				96C752162C556887009C0DF1 /* ProfileView.swift */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -491,6 +502,7 @@
 				96C751ED2C4D7A52009C0DF1 /* ListView.swift in Sources */,
 				96C751E52C4C17ED009C0DF1 /* GrocerShopListView.swift in Sources */,
 				9645B0022B88098F00EEEB85 /* FitPlusApp.swift in Sources */,
+				96C752172C556887009C0DF1 /* ProfileView.swift in Sources */,
 				96C751EB2C4D601C009C0DF1 /* AddListItemView.swift in Sources */,
 				96C7520E2C540CDB009C0DF1 /* ContentViewModel.swift in Sources */,
 			);
