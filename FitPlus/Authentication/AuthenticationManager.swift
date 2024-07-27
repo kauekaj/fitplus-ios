@@ -10,15 +10,15 @@ import Foundation
 
 struct AuthDataResultModel {
     let uid: String
+    let fullName: String?
     let email: String?
-    let photoUrl: String?
-    let isAnonymous: Bool
+    let userName: String?
     
     init(user: User) {
         self.uid = user.uid
+        self.fullName = user.displayName // Trocar
         self.email = user.email
-        self.photoUrl = user.photoURL?.absoluteString
-        self.isAnonymous = user.isAnonymous
+        self.userName = user.email // trocar
     }
 }
 
@@ -82,15 +82,19 @@ final class AuthenticationManager {
 
 extension AuthenticationManager {
     @discardableResult
-    func createUser(email: String, password: String) async throws {
-        do {
-            let dataResult = try await Auth.auth().createUser(withEmail: email, password: password)
-            self.userSession = dataResult.user
-            print("DEBUG: Created user \(dataResult.user.uid)")
+    func createUser(email: String, password: String) async throws -> AuthDataResultModel {
+        let dataResult = try await Auth.auth().createUser(withEmail: email, password: password)
+        self.userSession = dataResult.user
+        print("DEBUG: Created user \(dataResult.user.uid)")
+        return AuthDataResultModel(user: dataResult.user)
+//        do {
+//            let dataResult = try await Auth.auth().createUser(withEmail: email, password: password)
+//            self.userSession = dataResult.user
+//            print("DEBUG: Created user \(dataResult.user.uid)")
 //            return AuthDataResultModel(user: dataResult.user)
-        } catch {
-            print("DEBUG: Failed to create user with error \(error.localizedDescription)")
-        }
+//        } catch {
+//            print("DEBUG: Failed to create user with error \(error.localizedDescription)")
+//        }
     }
     
     func signInUser(email: String, password: String) async throws -> AuthDataResultModel {

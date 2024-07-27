@@ -18,8 +18,8 @@ final class RegisterViewModel: ObservableObject {
         
         let authDataresult = try await AuthenticationManager.shared.createUser(email: email, password: password)
         print(authDataresult)
-//        let user = DBUser(auth: authDataresult)
-//        try await UserManager.shared.createNewUser(user: user)
+        let user = FitPlusUser(auth: authDataresult)
+        try await UserManager.shared.createNewUser(user: user)
     }
     
     func checkPassword(password: String, confirmedPassword: String) -> Bool {
