@@ -11,7 +11,7 @@ import Firebase
 import FirebaseAuth
 import Foundation
 
-
+@MainActor
 final class ContentViewModel: ObservableObject {
     
     @Published var userSession: FirebaseAuth.User?

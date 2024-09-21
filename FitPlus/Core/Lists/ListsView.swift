@@ -49,14 +49,10 @@ final class ListsViewModel: ObservableObject {
 
 struct ListsView: View {
     @StateObject var viewModel = ListsViewModel()
-    
-    let coordinator =  ListsCoordinator(rootViewController: UINavigationController())
-    
+        
     @State private var goToList: Bool = false
-    
     @State private var path = NavigationPath()
 
-    
     var body: some View {
         NavigationStack(path: $path) {
             ScrollView {

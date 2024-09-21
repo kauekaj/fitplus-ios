@@ -14,7 +14,7 @@
 		9645B01D2B88099300EEEB85 /* FitPlusUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9645B01C2B88099300EEEB85 /* FitPlusUITests.swift */; };
 		9645B01F2B88099300EEEB85 /* FitPlusUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9645B01E2B88099300EEEB85 /* FitPlusUITestsLaunchTests.swift */; };
 		9645B02E2B880B3C00EEEB85 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9645B02D2B880B3C00EEEB85 /* LoginView.swift */; };
-		9688D3DE2C9CC7CE003FF22F /* ListsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9688D3DD2C9CC7CE003FF22F /* ListsCoordinator.swift */; };
+		9688D3E02C9F332D003FF22F /* ListsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9688D3DF2C9F332D003FF22F /* ListsManager.swift */; };
 		96C751CC2C497ED1009C0DF1 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C751CB2C497ED1009C0DF1 /* HomeView.swift */; };
 		96C751CF2C4980A7009C0DF1 /* TabbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C751CE2C4980A7009C0DF1 /* TabbarView.swift */; };
 		96C751DB2C4BFB62009C0DF1 /* TextFieldModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C751DA2C4BFB62009C0DF1 /* TextFieldModifier.swift */; };
@@ -68,7 +68,7 @@
 		9645B01C2B88099300EEEB85 /* FitPlusUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitPlusUITests.swift; sourceTree = "<group>"; };
 		9645B01E2B88099300EEEB85 /* FitPlusUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitPlusUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		9645B02D2B880B3C00EEEB85 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
-		9688D3DD2C9CC7CE003FF22F /* ListsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsCoordinator.swift; sourceTree = "<group>"; };
+		9688D3DF2C9F332D003FF22F /* ListsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsManager.swift; sourceTree = "<group>"; };
 		96C751CB2C497ED1009C0DF1 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		96C751CE2C4980A7009C0DF1 /* TabbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarView.swift; sourceTree = "<group>"; };
 		96C751DA2C4BFB62009C0DF1 /* TextFieldModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldModifier.swift; sourceTree = "<group>"; };
@@ -284,7 +284,6 @@
 			children = (
 				96C751EC2C4D7A52009C0DF1 /* ListsView.swift */,
 				96C751E32C4C17D2009C0DF1 /* GrocerShopList */,
-				9688D3DD2C9CC7CE003FF22F /* ListsCoordinator.swift */,
 			);
 			path = Lists;
 			sourceTree = "<group>";
@@ -300,6 +299,7 @@
 			isa = PBXGroup;
 			children = (
 				96C752042C51D4B3009C0DF1 /* UserManager.swift */,
+				9688D3DF2C9F332D003FF22F /* ListsManager.swift */,
 			);
 			path = Firestore;
 			sourceTree = "<group>";
@@ -482,7 +482,6 @@
 				96C751DB2C4BFB62009C0DF1 /* TextFieldModifier.swift in Sources */,
 				96C752102C540F13009C0DF1 /* ContentView.swift in Sources */,
 				96C752052C51D4B3009C0DF1 /* UserManager.swift in Sources */,
-				9688D3DE2C9CC7CE003FF22F /* ListsCoordinator.swift in Sources */,
 				96C751CC2C497ED1009C0DF1 /* HomeView.swift in Sources */,
 				96C751E72C4D5A04009C0DF1 /* ItemModel.swift in Sources */,
 				96C751E02C4C052D009C0DF1 /* ButtonLabelModifier.swift in Sources */,
@@ -490,6 +489,7 @@
 				96C752142C545AFD009C0DF1 /* LoginViewModel.swift in Sources */,
 				96C751CF2C4980A7009C0DF1 /* TabbarView.swift in Sources */,
 				96C752122C545AC2009C0DF1 /* RegisterViewModel.swift in Sources */,
+				9688D3E02C9F332D003FF22F /* ListsManager.swift in Sources */,
 				96C752022C509321009C0DF1 /* AuthenticationManager.swift in Sources */,
 				96C751E92C4D5F9D009C0DF1 /* ListRowView.swift in Sources */,
 				96C751ED2C4D7A52009C0DF1 /* ListsView.swift in Sources */,
