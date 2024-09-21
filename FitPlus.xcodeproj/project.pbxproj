@@ -14,6 +14,7 @@
 		9645B01D2B88099300EEEB85 /* FitPlusUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9645B01C2B88099300EEEB85 /* FitPlusUITests.swift */; };
 		9645B01F2B88099300EEEB85 /* FitPlusUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9645B01E2B88099300EEEB85 /* FitPlusUITestsLaunchTests.swift */; };
 		9645B02E2B880B3C00EEEB85 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9645B02D2B880B3C00EEEB85 /* LoginView.swift */; };
+		9688D3DE2C9CC7CE003FF22F /* ListsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9688D3DD2C9CC7CE003FF22F /* ListsCoordinator.swift */; };
 		96C751CC2C497ED1009C0DF1 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C751CB2C497ED1009C0DF1 /* HomeView.swift */; };
 		96C751CF2C4980A7009C0DF1 /* TabbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C751CE2C4980A7009C0DF1 /* TabbarView.swift */; };
 		96C751DB2C4BFB62009C0DF1 /* TextFieldModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C751DA2C4BFB62009C0DF1 /* TextFieldModifier.swift */; };
@@ -23,7 +24,7 @@
 		96C751E72C4D5A04009C0DF1 /* ItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C751E62C4D5A04009C0DF1 /* ItemModel.swift */; };
 		96C751E92C4D5F9D009C0DF1 /* ListRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C751E82C4D5F9D009C0DF1 /* ListRowView.swift */; };
 		96C751EB2C4D601C009C0DF1 /* AddListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C751EA2C4D601C009C0DF1 /* AddListItemView.swift */; };
-		96C751ED2C4D7A52009C0DF1 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C751EC2C4D7A52009C0DF1 /* ListView.swift */; };
+		96C751ED2C4D7A52009C0DF1 /* ListsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C751EC2C4D7A52009C0DF1 /* ListsView.swift */; };
 		96C751F62C5088E0009C0DF1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 96C751F52C5088E0009C0DF1 /* GoogleService-Info.plist */; };
 		96C751FA2C508F6D009C0DF1 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 96C751F92C508F6D009C0DF1 /* FirebaseAnalytics */; };
 		96C751FC2C508F90009C0DF1 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 96C751FB2C508F90009C0DF1 /* FirebaseAnalyticsSwift */; };
@@ -57,16 +58,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		9645AFFE2B88098F00EEEB85 /* FitPlus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FitPlus.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9645AFFE2B88098F00EEEB85 /* FitPlus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = FitPlus.app; path = "/Users/ioskaj/Desktop/Workspace/FitPlus/build/Debug-iphoneos/FitPlus.app"; sourceTree = "<absolute>"; };
 		9645B0012B88098F00EEEB85 /* FitPlusApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitPlusApp.swift; sourceTree = "<group>"; };
 		9645B0052B88099300EEEB85 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9645B0082B88099300EEEB85 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		9645B00E2B88099300EEEB85 /* FitPlusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FitPlusTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9645B00E2B88099300EEEB85 /* FitPlusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = FitPlusTests.xctest; path = "/Users/ioskaj/Desktop/Workspace/FitPlus/build/Debug-iphoneos/FitPlusTests.xctest"; sourceTree = "<absolute>"; };
 		9645B0122B88099300EEEB85 /* FitPlusTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitPlusTests.swift; sourceTree = "<group>"; };
-		9645B0182B88099300EEEB85 /* FitPlusUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FitPlusUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9645B0182B88099300EEEB85 /* FitPlusUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = FitPlusUITests.xctest; path = "/Users/ioskaj/Desktop/Workspace/FitPlus/build/Debug-iphoneos/FitPlusUITests.xctest"; sourceTree = "<absolute>"; };
 		9645B01C2B88099300EEEB85 /* FitPlusUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitPlusUITests.swift; sourceTree = "<group>"; };
 		9645B01E2B88099300EEEB85 /* FitPlusUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitPlusUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		9645B02D2B880B3C00EEEB85 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		9688D3DD2C9CC7CE003FF22F /* ListsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsCoordinator.swift; sourceTree = "<group>"; };
 		96C751CB2C497ED1009C0DF1 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		96C751CE2C4980A7009C0DF1 /* TabbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarView.swift; sourceTree = "<group>"; };
 		96C751DA2C4BFB62009C0DF1 /* TextFieldModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldModifier.swift; sourceTree = "<group>"; };
@@ -76,7 +78,7 @@
 		96C751E62C4D5A04009C0DF1 /* ItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemModel.swift; sourceTree = "<group>"; };
 		96C751E82C4D5F9D009C0DF1 /* ListRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListRowView.swift; sourceTree = "<group>"; };
 		96C751EA2C4D601C009C0DF1 /* AddListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddListItemView.swift; sourceTree = "<group>"; };
-		96C751EC2C4D7A52009C0DF1 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
+		96C751EC2C4D7A52009C0DF1 /* ListsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsView.swift; sourceTree = "<group>"; };
 		96C751F42C50880D009C0DF1 /* FitPlus.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FitPlus.entitlements; sourceTree = "<group>"; };
 		96C751F52C5088E0009C0DF1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		96C752012C509321009C0DF1 /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
@@ -124,19 +126,8 @@
 				9645B0002B88098F00EEEB85 /* FitPlus */,
 				9645B0112B88099300EEEB85 /* FitPlusTests */,
 				9645B01B2B88099300EEEB85 /* FitPlusUITests */,
-				9645AFFF2B88098F00EEEB85 /* Products */,
 				96C751F82C508F6D009C0DF1 /* Frameworks */,
 			);
-			sourceTree = "<group>";
-		};
-		9645AFFF2B88098F00EEEB85 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				9645AFFE2B88098F00EEEB85 /* FitPlus.app */,
-				9645B00E2B88099300EEEB85 /* FitPlusTests.xctest */,
-				9645B0182B88099300EEEB85 /* FitPlusUITests.xctest */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		9645B0002B88098F00EEEB85 /* FitPlus */ = {
@@ -291,8 +282,9 @@
 		96C751EE2C4D7A5B009C0DF1 /* Lists */ = {
 			isa = PBXGroup;
 			children = (
-				96C751EC2C4D7A52009C0DF1 /* ListView.swift */,
+				96C751EC2C4D7A52009C0DF1 /* ListsView.swift */,
 				96C751E32C4C17D2009C0DF1 /* GrocerShopList */,
+				9688D3DD2C9CC7CE003FF22F /* ListsCoordinator.swift */,
 			);
 			path = Lists;
 			sourceTree = "<group>";
@@ -443,7 +435,7 @@
 			packageReferences = (
 				96C751F72C508DFF009C0DF1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
-			productRefGroup = 9645AFFF2B88098F00EEEB85 /* Products */;
+			productRefGroup = 9645AFF52B88098F00EEEB85;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -490,6 +482,7 @@
 				96C751DB2C4BFB62009C0DF1 /* TextFieldModifier.swift in Sources */,
 				96C752102C540F13009C0DF1 /* ContentView.swift in Sources */,
 				96C752052C51D4B3009C0DF1 /* UserManager.swift in Sources */,
+				9688D3DE2C9CC7CE003FF22F /* ListsCoordinator.swift in Sources */,
 				96C751CC2C497ED1009C0DF1 /* HomeView.swift in Sources */,
 				96C751E72C4D5A04009C0DF1 /* ItemModel.swift in Sources */,
 				96C751E02C4C052D009C0DF1 /* ButtonLabelModifier.swift in Sources */,
@@ -499,7 +492,7 @@
 				96C752122C545AC2009C0DF1 /* RegisterViewModel.swift in Sources */,
 				96C752022C509321009C0DF1 /* AuthenticationManager.swift in Sources */,
 				96C751E92C4D5F9D009C0DF1 /* ListRowView.swift in Sources */,
-				96C751ED2C4D7A52009C0DF1 /* ListView.swift in Sources */,
+				96C751ED2C4D7A52009C0DF1 /* ListsView.swift in Sources */,
 				96C751E52C4C17ED009C0DF1 /* GrocerShopListView.swift in Sources */,
 				9645B0022B88098F00EEEB85 /* FitPlusApp.swift in Sources */,
 				96C752172C556887009C0DF1 /* ProfileView.swift in Sources */,

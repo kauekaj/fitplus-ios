@@ -8,70 +8,68 @@
 import SwiftUI
 
 final class GrocerShopListViewModel: ObservableObject {
-        
-    @Published var mockItems: [ItemModel] = [
-        ItemModel(title: "First item", isCompleted: false),
-        ItemModel(title: "Second item", isCompleted: true),
-        ItemModel(title: "Third item", isCompleted: false)
-    ]
     
-        @Published var items: [ItemModel] = [] {
-            didSet {
-                saveItems()
-            }
+    @Published var items: [ItemModel] = [] {
+        didSet {
+            saveItems()
         }
-        
-        let itemsKey: String = "items_list"
-        
-        init() {
-            getItems()
-        }
-        
-        func getItems() {
-            guard
-                let data = UserDefaults.standard.data(forKey: itemsKey),
-                let savedItems = try? JSONDecoder().decode([ItemModel].self, from: data)
-            else { return }
-          
-            self.items = savedItems
-        }
-        
-        // MARK: - Methods
-        
-        func deleteItem(indexSet: IndexSet) {
-            items.remove(atOffsets: indexSet)
-        }
-        
-        func moveItem(from: IndexSet, to: Int) {
-            items.move(fromOffsets: from, toOffset: to)
-        }
-        
-        func addItem(title: String) {
-            let newItem = ItemModel(title: title, isCompleted: false)
-            items.append(newItem)
-        }
-        
-        func updateItem(item: ItemModel) {
-            if let index = items.firstIndex(where: { $0.id == item.id }) {
-                items[index] = item.updateCompletion()
-            }
-        }
+    }
     
-        func saveItems() {
-            if let encodedData = try? JSONEncoder().encode(items) {
-                UserDefaults.standard.set(encodedData, forKey: itemsKey)
-            }
+    let itemsKey: String = "items_list"
+    
+    init() {
+        getItems()
+    }
+    
+    func getItems() {
+        guard
+            let data = UserDefaults.standard.data(forKey: itemsKey),
+            let savedItems = try? JSONDecoder().decode([ItemModel].self, from: data)
+        else { return }
+        
+        self.items = savedItems
+    }
+    
+    // MARK: - Methods
+    
+    func deleteItem(indexSet: IndexSet) {
+        items.remove(atOffsets: indexSet)
+    }
+    
+    func moveItem(from: IndexSet, to: Int) {
+        items.move(fromOffsets: from, toOffset: to)
+    }
+    
+    func addItem(title: String) {
+        let newItem = ItemModel(title: title, isCompleted: false)
+        items.append(newItem)
+    }
+    
+    func updateItem(item: ItemModel) {
+        if let index = items.firstIndex(where: { $0.id == item.id }) {
+            items[index] = item.updateCompletion()
         }
-
+    }
+    
+    func saveItems() {
+        if let encodedData = try? JSONEncoder().encode(items) {
+            UserDefaults.standard.set(encodedData, forKey: itemsKey)
+        }
+    }
+    
 }
 
 struct GrocerShopListView: View {
-
-    @StateObject var listViewModel = GrocerShopListViewModel()
-
+    
+    @ObservedObject var viewModel: GrocerShopListViewModel
+    
+    init(viewModel: GrocerShopListViewModel) {
+        self.viewModel = viewModel
+    }
+    
     var body: some View {
         ZStack {
-            if listViewModel.items.isEmpty {
+            if viewModel.items.isEmpty {
                 makeEmptyView()
             } else {
                 VStack {
@@ -83,16 +81,16 @@ struct GrocerShopListView: View {
                     .padding()
                     
                     List {
-                        ForEach(listViewModel.items) { item in
+                        ForEach(viewModel.items) { item in
                             ListRowView(item: item)
                                 .onTapGesture {
                                     withAnimation(.linear) {
-                                        listViewModel.updateItem(item: item)
+                                        viewModel.updateItem(item: item)
                                     }
                                 }
                         }
-                        .onDelete(perform: listViewModel.deleteItem)
-                        .onMove(perform: listViewModel.moveItem)
+                        .onDelete(perform: viewModel.deleteItem)
+                        .onMove(perform: viewModel.moveItem)
                     }
                     .listStyle(PlainListStyle())
                 }
@@ -126,6 +124,6 @@ struct GrocerShopListView: View {
 
 #Preview {
     NavigationStack {
-        GrocerShopListView()
+        GrocerShopListView(viewModel: GrocerShopListViewModel())
     }
 }

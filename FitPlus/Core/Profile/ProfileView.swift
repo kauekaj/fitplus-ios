@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-
 @MainActor
 final class ProfileViewModel: ObservableObject {
     
@@ -34,7 +33,7 @@ struct ProfileView: View {
             }
             .task {
                 try? await viewModel.loadCurrentUser()
-                print("kauekaj: \(viewModel.user)")
+                print("kauekaj: \(String(describing: viewModel.user))")
 
             }
         }
