@@ -7,42 +7,22 @@
 
 import SwiftUI
 
-enum ListStatus {
-    case notStarted
-    case inProgress
-    case completed
-    case canceled
-    case onHold
-}
-
-enum ListType {
-    case grocerShop
-    case toDo
-}
-
-struct ListModel: Identifiable, Hashable, Equatable {
-    let id: String
-    let name: String
-    let type: ListType
-    let status: ListStatus
-    let items: [ItemModel]
-    
-    init(id: String, name: String, type: ListType, status: ListStatus, items: [ItemModel]) {
-        self.id = id
-        self.name = name
-        self.type = type
-        self.status = status
-        self.items = items
-    }
-}
-
 final class ListsViewModel: ObservableObject {
     
+    @Published private(set) var lists: [ListModel] = []
+    
+    @MainActor
+    func getAllLists() async throws {
+        lists = try await ListsManager.shared.getAllUserLists()
+    }
+    
+    // Excluir
     @Published var listMockTest: [ListModel] = [
         ListModel(id: "99999", name: "test", type: .grocerShop, status: .notStarted, items: [ItemModel(title: "First item", isCompleted: false)]),
         ListModel(id: "99998", name: "test2", type: .grocerShop, status: .notStarted, items: [ItemModel(title: "First item", isCompleted: true)]),
         ListModel(id: "99997", name: "test3", type: .toDo, status: .notStarted,  items: [ItemModel(title: "First item", isCompleted: false)])
     ]
+    
 }
 
 
@@ -61,7 +41,7 @@ struct ListsView: View {
                     .padding(.vertical, 38)
                 
                 
-                ForEach(viewModel.listMockTest) { list in
+                ForEach(viewModel.lists) { list in
                     HStack {
                         Spacer()
                         Text(list.name)
@@ -86,61 +66,39 @@ struct ListsView: View {
                     .padding(.vertical, 16)
             }
         }
+        .task {
+            try? await viewModel.getAllLists()
+        }
     }
     
     func makeButton() -> some View {
         Button {
-            add()
+            Task {
+                try await add()
+            }
         } label: {
             Text("Criar Lista")
         }
     }
     
-    func add() {
-//        viewModel.mockItems.remove(at: 1)
-    }
-}
-
-import SwiftUI
-
-class ListViewModel: ObservableObject {
-    @Published var sharedItems: [ItemModel2] = [
-        ItemModel2(title: "Shared Item 1", isCompleted: false),
-        ItemModel2(title: "Shared Item 2", isCompleted: true)
-    ]
-    
-    @Published var nonSharedItems: [ItemModel2] = [
-        ItemModel2(title: "Non-Shared Item 1", isCompleted: false),
-        ItemModel2(title: "Non-Shared Item 2", isCompleted: true)
-    ]
-}
-
-struct ItemModel2: Identifiable {
-    let id = UUID()
-    let title: String
-    var isCompleted: Bool
-}
-
-import SwiftUI
-
-struct DetailView: View {
-    var item: ItemModel2
-    
-    var body: some View {
-        VStack {
-            Text(item.title)
-                .font(.largeTitle)
-                .padding()
-            
-            if item.isCompleted {
-                Text("This item is completed.")
-                    .foregroundColor(.green)
-            } else {
-                Text("This item is not completed.")
-                    .foregroundColor(.red)
-            }
+    func add() async throws {
+        do {
+            try await ListsManager.shared.uploadList(
+                list: ListModel(
+                    id: "Teste3",
+                    name: "listTest",
+                    type: .toDo,
+                    status: .inProgress,
+                    items: [ItemModel(
+                        id: "99",
+                        title: "test",
+                        isCompleted: false
+                    )]
+                )
+            )
+        } catch {
+            print("Erro saving List")
         }
-        .navigationTitle("Nome da lista")
     }
 }
 
