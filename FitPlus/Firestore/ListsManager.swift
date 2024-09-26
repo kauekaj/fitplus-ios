@@ -24,17 +24,28 @@ enum ListType: Codable {
 
 struct ListModel: Codable, Identifiable, Hashable, Equatable {
     let id: String
+    let authorId: String
     let name: String
     let type: ListType
     let status: ListStatus
     let items: [ItemModel]
     
-    init(id: String, name: String, type: ListType, status: ListStatus, items: [ItemModel]) {
+    init(id: String, authorId: String, name: String, type: ListType, status: ListStatus, items: [ItemModel]) {
         self.id = id
+        self.authorId = authorId
         self.name = name
         self.type = type
         self.status = status
         self.items = items
+    }
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case authorId = "author_id"
+        case name
+        case type
+        case status
+        case items
     }
 }
 
@@ -54,21 +65,17 @@ final class ListsManager {
         try listDocument(listId: list.id).setData(from: list, merge: false)
     }
     
+    func getList(listId: String) async throws -> ListModel {
+        try await listDocument(listId: listId).getDocument(as: ListModel.self)
+    }
+    
     func getAllUserLists() async throws -> [ListModel] {
-        
-        // Configurar a chamada para trazer apenas as listas que o usuário criou ou então foi compartilhada com ele.
-        
-//        let snapshot = try await listsCollection.getDocuments().query.whereField("id", arrayContains: "kajId")
-        let snapshot = try await listsCollection.getDocuments()
-        print("kaj snapshot \(snapshot)")
-        var lists: [ListModel] = []
-        
-        for document in snapshot.documents {
-            let list = try document.data(as: ListModel.self)
-            lists.append(list)
-            print(list)
-        }
-        
-        return lists
+        try await listsCollection.getDocuments(as: ListModel.self)
+    }
+    
+    func getUserLists(userId: String) async throws -> (lists: [ListModel], lastDocument: DocumentSnapshot?) {
+        return try await listsCollection
+            .whereField(ListModel.CodingKeys.authorId.rawValue, isEqualTo: userId)
+            .getDocumentsWithSnapshot(as: ListModel.self)
     }
 }

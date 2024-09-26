@@ -9,19 +9,23 @@ import SwiftUI
 
 final class GrocerShopListViewModel: ObservableObject {
     
+    let itemsKey: String = "items_list"
+
     @Published var items: [ItemModel] = [] {
         didSet {
             saveItems()
         }
     }
+        
+    init() { }
     
-    let itemsKey: String = "items_list"
-    
-    init() {
-        getItems()
+    @MainActor
+    // Criar a lista vazia e somente dentro dela, que vamos add os items criando uma collection nova dentro da lista
+    func getItems(listId: String) async throws {
+        items = try await ListsManager.shared.getList(listId: listId).items
     }
     
-    func getItems() {
+    func getItemsFromUserDefaults() {
         guard
             let data = UserDefaults.standard.data(forKey: itemsKey),
             let savedItems = try? JSONDecoder().decode([ItemModel].self, from: data)
@@ -62,8 +66,10 @@ final class GrocerShopListViewModel: ObservableObject {
 struct GrocerShopListView: View {
     
     @ObservedObject var viewModel: GrocerShopListViewModel
+    @State var listId: String = ""
     
-    init(viewModel: GrocerShopListViewModel) {
+    init(listId: String, viewModel: GrocerShopListViewModel) {
+        self.listId = listId
         self.viewModel = viewModel
     }
     
@@ -106,6 +112,9 @@ struct GrocerShopListView: View {
                         .font(.title2)
                 }
         )
+        .task {
+            try? await viewModel.getItems(listId: listId)
+        }
     }
     
     func makeEmptyView() -> some View {
@@ -124,6 +133,6 @@ struct GrocerShopListView: View {
 
 #Preview {
     NavigationStack {
-        GrocerShopListView(viewModel: GrocerShopListViewModel())
+        GrocerShopListView(listId: "123", viewModel: GrocerShopListViewModel())
     }
 }

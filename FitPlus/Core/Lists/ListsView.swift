@@ -12,25 +12,18 @@ final class ListsViewModel: ObservableObject {
     @Published private(set) var lists: [ListModel] = []
     
     @MainActor
-    func getAllLists() async throws {
-        lists = try await ListsManager.shared.getAllUserLists()
+    func getUserLists() async throws {
+        let userId = try AuthenticationManager.shared.getAuthenticatedUser().uid
+        lists = try await ListsManager.shared.getUserLists(userId: userId).lists
     }
-    
-    // Excluir
-    @Published var listMockTest: [ListModel] = [
-        ListModel(id: "99999", name: "test", type: .grocerShop, status: .notStarted, items: [ItemModel(title: "First item", isCompleted: false)]),
-        ListModel(id: "99998", name: "test2", type: .grocerShop, status: .notStarted, items: [ItemModel(title: "First item", isCompleted: true)]),
-        ListModel(id: "99997", name: "test3", type: .toDo, status: .notStarted,  items: [ItemModel(title: "First item", isCompleted: false)])
-    ]
     
 }
 
 
 
 struct ListsView: View {
+    
     @StateObject var viewModel = ListsViewModel()
-        
-    @State private var goToList: Bool = false
     @State private var path = NavigationPath()
 
     var body: some View {
@@ -57,7 +50,7 @@ struct ListsView: View {
                         path.append(list)
                     }
                     .navigationDestination(for: ListModel.self) { _ in
-                        GrocerShopListView(viewModel: GrocerShopListViewModel())
+                        GrocerShopListView(listId: list.id, viewModel: GrocerShopListViewModel())
                     }
                 }
                 
@@ -67,7 +60,7 @@ struct ListsView: View {
             }
         }
         .task {
-            try? await viewModel.getAllLists()
+            try? await viewModel.getUserLists()
         }
     }
     
@@ -83,17 +76,19 @@ struct ListsView: View {
     
     func add() async throws {
         do {
+            let userId = try AuthenticationManager.shared.getAuthenticatedUser().uid
+
             try await ListsManager.shared.uploadList(
                 list: ListModel(
-                    id: "Teste3",
-                    name: "listTest",
+                    id: "testIds22",
+                    authorId: userId,
+                    name: "listTes9922",
                     type: .toDo,
                     status: .inProgress,
-                    items: [ItemModel(
-                        id: "99",
-                        title: "test",
-                        isCompleted: false
-                    )]
+                    items: [
+                        ItemModel(id: "99", title: "test", isCompleted: false),
+                        ItemModel(id: "23", title: "teste2", isCompleted: true)
+                    ]
                 )
             )
         } catch {
