@@ -8,30 +8,39 @@
 import SwiftUI
 
 final class GrocerShopListViewModel: ObservableObject {
-    
+        
     let itemsKey: String = "items_list"
 
-    @Published var items: [ItemModel] = [] {
-        didSet {
-            saveItems()
-        }
-    }
-        
+//    @Published var items: [(userItems: ItemModel, item: ItemModel)] = []
+    @Published private(set) var items: [ItemModel] = []
+
     init() { }
     
-    @MainActor
+//    @MainActor
     // Criar a lista vazia e somente dentro dela, que vamos add os items criando uma collection nova dentro da lista
-    func getItems(listId: String) async throws {
-        items = try await ListsManager.shared.getList(listId: listId).items
-    }
+//    func getItems(listId: String) {
+//
+//        Task {
+//            let userItems = try await ListsManager.shared.getItems(listId: listId)
+//            
+//            var localArray: [(userItems: ItemModel, item: ItemModel)] = []
+//            for userItem in userItems {
+//                if let item = try? await ListsManager.shared.getItem(listId: listId, itemId: userItem.id) {
+//                    localArray.append((userItem, item))
+//                }
+//            }
+//                                      
+//            self.items = localArray
+//
+//        }
+//
+//    }
     
-    func getItemsFromUserDefaults() {
-        guard
-            let data = UserDefaults.standard.data(forKey: itemsKey),
-            let savedItems = try? JSONDecoder().decode([ItemModel].self, from: data)
-        else { return }
-        
-        self.items = savedItems
+    @MainActor
+    func getItems(listId: String) {
+        Task {
+            self.items = try await ListsManager.shared.getItems(listId: listId)
+        }
     }
     
     // MARK: - Methods
@@ -44,23 +53,50 @@ final class GrocerShopListViewModel: ObservableObject {
         items.move(fromOffsets: from, toOffset: to)
     }
     
-    func addItem(title: String) {
-        let newItem = ItemModel(title: title, isCompleted: false)
-        items.append(newItem)
-    }
+//    func getItemsFromUserDefaults() {
+//        guard
+//            let data = UserDefaults.standard.data(forKey: itemsKey),
+//            let savedItems = try? JSONDecoder().decode([ItemModel].self, from: data)
+//        else { return }
+//
+//        self.items = savedItems
+//    }
     
-    func updateItem(item: ItemModel) {
-        if let index = items.firstIndex(where: { $0.id == item.id }) {
-            items[index] = item.updateCompletion()
+//    func addItem(title: String) {
+//        let newItem = ItemModel(title: title, isCompleted: false)
+//        items.append(newItem)
+//    }
+    
+//    func updateItem(item: ItemModel) {
+//        if let index = items.firstIndex(where: { $0.id == item.id }) {
+//            items[index] = item.updateCompletion()
+//        }
+//    }
+    
+//    func saveItems() {
+//        if let encodedData = try? JSONEncoder().encode(items) {
+//            UserDefaults.standard.set(encodedData, forKey: itemsKey)
+//        }
+//    }
+    
+}
+
+struct ItemCellViewBuilder: View {
+    
+    let itemId: String
+    let listId: String
+    @State private var item: ItemModel? = nil
+    
+    var body: some View {
+        ZStack {
+            if let item {
+                ListRowView(item: item)
+            }
+        }
+        .task {
+            self.item = try? await ListsManager.shared.getItem(listId: listId, itemId: itemId)
         }
     }
-    
-    func saveItems() {
-        if let encodedData = try? JSONEncoder().encode(items) {
-            UserDefaults.standard.set(encodedData, forKey: itemsKey)
-        }
-    }
-    
 }
 
 struct GrocerShopListView: View {
@@ -88,10 +124,11 @@ struct GrocerShopListView: View {
                     
                     List {
                         ForEach(viewModel.items) { item in
-                            ListRowView(item: item)
+                            ItemCellViewBuilder(itemId: item.id, listId: listId)
+//                            ListRowView(item: item)
                                 .onTapGesture {
                                     withAnimation(.linear) {
-                                        viewModel.updateItem(item: item)
+//                                        viewModel.updateItem(item: item)
                                     }
                                 }
                         }
@@ -107,24 +144,37 @@ struct GrocerShopListView: View {
         .navigationBarTitleDisplayMode(.large)
         .navigationBarItems(
             trailing:
-                NavigationLink(destination: AddView()) {
+                NavigationLink(destination: AddView(listId: listId)) {
                     Image(systemName: "person.fill.badge.plus")
                         .font(.title2)
                 }
         )
-        .task {
-            try? await viewModel.getItems(listId: listId)
+//        .task {
+//            try? await viewModel.getItems(listId: listId)
+//        }
+        .onAppear {
+            viewModel.getItems(listId: listId)
         }
     }
+    
     
     func makeEmptyView() -> some View {
         VStack {
             Text("Sua lista está vazia")
                 .font(.title2)
-            NavigationLink(destination: AddView()) {
+            Button {
+                Task {
+                    try await ListsManager.shared.addItem(listId: listId)
+                }
+            } label: {
                 Image(systemName: "cart.fill.badge.plus")
                     .font(.largeTitle)
             }
+
+//            NavigationLink(destination: AddView(listId: listId)) {
+//                Image(systemName: "cart.fill.badge.plus")
+//                    .font(.largeTitle)
+//            }
             .padding()
         }
     }

@@ -28,15 +28,22 @@ struct ListModel: Codable, Identifiable, Hashable, Equatable {
     let name: String
     let type: ListType
     let status: ListStatus
-    let items: [ItemModel]
+//    let items: [ItemModel]
     
-    init(id: String, authorId: String, name: String, type: ListType, status: ListStatus, items: [ItemModel]) {
+    init(
+        id: String,
+        authorId: String,
+        name: String,
+        type: ListType,
+        status: ListStatus
+//        items: [ItemModel]
+    ) {
         self.id = id
         self.authorId = authorId
         self.name = name
         self.type = type
         self.status = status
-        self.items = items
+//        self.items = items
     }
     
     enum CodingKeys: String, CodingKey {
@@ -45,7 +52,7 @@ struct ListModel: Codable, Identifiable, Hashable, Equatable {
         case name
         case type
         case status
-        case items
+//        case items
     }
 }
 
@@ -55,7 +62,7 @@ final class ListsManager {
     static let shared = ListsManager()
     private init() { }
     
-    private let listsCollection = Firestore.firestore().collection("lists")
+    private let listsCollection: CollectionReference = Firestore.firestore().collection("lists")
 
     private func listDocument(listId: String) -> DocumentReference {
         listsCollection.document(listId)
@@ -77,5 +84,37 @@ final class ListsManager {
         return try await listsCollection
             .whereField(ListModel.CodingKeys.authorId.rawValue, isEqualTo: userId)
             .getDocumentsWithSnapshot(as: ListModel.self)
+    }
+    
+    func getItems(listId: String) async throws -> [ItemModel] {
+        try await itemsCollection(listId: listId).getDocuments(as: ItemModel.self)
+    }
+    
+    func getItem(listId: String, itemId: String) async throws -> ItemModel {
+        try await itemDocument(listId: listId, itemId: itemId).getDocument(as: ItemModel.self)
+    }
+    
+    private func itemsCollection(listId: String) -> CollectionReference {
+//        listsCollection.document(listId).collection("items")
+        listDocument(listId: listId).collection("items")
+    }
+    
+    private func itemDocument(listId: String, itemId: String) -> DocumentReference {
+        itemsCollection(listId: listId).document(itemId)
+    }
+    
+    func addItem(listId: String) async throws {
+        let document = itemsCollection(listId: listId).document()
+        let documentId = document.documentID
+        
+        let data: [String:Any] = [
+            "id" : documentId,
+            "list_id": listId,
+            "date" : Timestamp(),
+            "title": "teste",
+            "is_completed": false
+        ]
+        
+        try await document.setData(data, merge: false)
     }
 }

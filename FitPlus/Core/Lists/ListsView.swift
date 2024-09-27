@@ -19,8 +19,6 @@ final class ListsViewModel: ObservableObject {
     
 }
 
-
-
 struct ListsView: View {
     
     @StateObject var viewModel = ListsViewModel()
@@ -80,15 +78,11 @@ struct ListsView: View {
 
             try await ListsManager.shared.uploadList(
                 list: ListModel(
-                    id: "testIds22",
+                    id: "kaue111",
                     authorId: userId,
-                    name: "listTes9922",
+                    name: "kaj111",
                     type: .toDo,
-                    status: .inProgress,
-                    items: [
-                        ItemModel(id: "99", title: "test", isCompleted: false),
-                        ItemModel(id: "23", title: "teste2", isCompleted: true)
-                    ]
+                    status: .inProgress
                 )
             )
         } catch {

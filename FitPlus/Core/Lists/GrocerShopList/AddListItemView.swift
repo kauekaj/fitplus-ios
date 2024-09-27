@@ -15,6 +15,12 @@ struct AddView: View {
     
     @State var alertTitle: String = ""
     @State var showAlert: Bool = false
+    @State var listId: String = ""
+
+    init(listId: String) {
+        self.listId = listId
+        print("kauekaj \(listId)")
+    }
     
     var body: some View {
         ScrollView {
@@ -45,7 +51,11 @@ struct AddView: View {
     
     func saveButtonPressed() {
         if textIsAppropriate() {
-            listViewModel.addItem(title: textFieldText)
+//            listViewModel.addItem(title: textFieldText)
+            Task {
+                try await ListsManager.shared.addItem(listId: listId)
+                print("kauekaj additem with listId:\(listId)")
+            }
             presentationMode.wrappedValue.dismiss()
         }
     }
@@ -67,7 +77,7 @@ struct AddView: View {
 struct AddView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            AddView()
+            AddView(listId: "")
         }
 //        .environmentObject(GrocerShopListViewModel())
     }
