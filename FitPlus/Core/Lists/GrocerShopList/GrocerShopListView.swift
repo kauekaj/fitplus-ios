@@ -5,36 +5,16 @@
 //  Created by Kaue de Assis Jacyntho on 20/07/24.
 //
 
+import Combine
 import SwiftUI
 
 final class GrocerShopListViewModel: ObservableObject {
-        
-    let itemsKey: String = "items_list"
-
-//    @Published var items: [(userItems: ItemModel, item: ItemModel)] = []
-    @Published private(set) var items: [ItemModel] = []
-
-    init() { }
     
-//    @MainActor
-    // Criar a lista vazia e somente dentro dela, que vamos add os items criando uma collection nova dentro da lista
-//    func getItems(listId: String) {
-//
-//        Task {
-//            let userItems = try await ListsManager.shared.getItems(listId: listId)
-//            
-//            var localArray: [(userItems: ItemModel, item: ItemModel)] = []
-//            for userItem in userItems {
-//                if let item = try? await ListsManager.shared.getItem(listId: listId, itemId: userItem.id) {
-//                    localArray.append((userItem, item))
-//                }
-//            }
-//                                      
-//            self.items = localArray
-//
-//        }
-//
-//    }
+    // To Check
+    let itemsKey: String = "items_list"
+    
+    @Published private(set) var items: [ItemModel] = []
+    private var cancellabes = Set<AnyCancellable>()
     
     @MainActor
     func getItems(listId: String) {
@@ -43,16 +23,31 @@ final class GrocerShopListViewModel: ObservableObject {
         }
     }
     
+    func addListenerForListItems(listId: String) {
+        ListsManager.shared.addListenerForListItems(listId: listId)
+            .sink { completion in
+                
+            } receiveValue: { [weak self] items in
+                self?.items = items
+            }
+            .store(in: &cancellabes)
+    }
+    
     // MARK: - Methods
     
-    func deleteItem(indexSet: IndexSet) {
-        items.remove(atOffsets: indexSet)
+    func deleteItem(listId: String , indexSet: IndexSet) {
+        Task {
+            if let index = indexSet.first {
+                let itemId = items[index].id
+                try await ListsManager.shared.removeListItem(listId: listId, itemId: itemId)
+            }
+        }
     }
     
     func moveItem(from: IndexSet, to: Int) {
         items.move(fromOffsets: from, toOffset: to)
     }
-    
+}
 //    func getItemsFromUserDefaults() {
 //        guard
 //            let data = UserDefaults.standard.data(forKey: itemsKey),
@@ -78,8 +73,6 @@ final class GrocerShopListViewModel: ObservableObject {
 //            UserDefaults.standard.set(encodedData, forKey: itemsKey)
 //        }
 //    }
-    
-}
 
 struct ItemCellViewBuilder: View {
     
@@ -132,7 +125,10 @@ struct GrocerShopListView: View {
                                     }
                                 }
                         }
-                        .onDelete(perform: viewModel.deleteItem)
+                        .onDelete { indexSet in
+                                viewModel.deleteItem(listId: listId, indexSet: indexSet)
+                            }
+//                        .onDelete(perform: viewModel.deleteItem)
                         .onMove(perform: viewModel.moveItem)
                     }
                     .listStyle(PlainListStyle())
@@ -149,11 +145,8 @@ struct GrocerShopListView: View {
                         .font(.title2)
                 }
         )
-//        .task {
-//            try? await viewModel.getItems(listId: listId)
-//        }
-        .onAppear {
-            viewModel.getItems(listId: listId)
+        .onFirstAppear {
+            viewModel.addListenerForListItems(listId: listId)
         }
     }
     

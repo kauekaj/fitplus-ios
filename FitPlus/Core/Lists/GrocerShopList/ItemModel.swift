@@ -19,7 +19,7 @@ struct ItemModel: Identifiable, Codable, Hashable {
         case title
         case isCompleted = "is_completed"
         case listId = "list_id"
-        case dateCreated
+        case dateCreated = "date_created"
     }
     
     init(from decoder: Decoder) throws {

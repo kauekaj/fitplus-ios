@@ -47,7 +47,7 @@ struct ListsView: View {
                     .onTapGesture {
                         path.append(list)
                     }
-                    .navigationDestination(for: ListModel.self) { _ in
+                    .navigationDestination(for: ListModel.self) { list in
                         GrocerShopListView(listId: list.id, viewModel: GrocerShopListViewModel())
                     }
                 }
@@ -78,9 +78,9 @@ struct ListsView: View {
 
             try await ListsManager.shared.uploadList(
                 list: ListModel(
-                    id: "kaue111",
+                    id: "\(UUID())",
                     authorId: userId,
-                    name: "kaj111",
+                    name: "list3",
                     type: .toDo,
                     status: .inProgress
                 )

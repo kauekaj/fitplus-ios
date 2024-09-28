@@ -5,9 +5,9 @@
 //  Created by Kaue de Assis Jacyntho on 21/09/24.
 //
 
+import Combine
 import FirebaseFirestore
 import FirebaseFirestoreSwift
-import Foundation
 
 enum ListStatus: Codable {
     case notStarted
@@ -28,7 +28,6 @@ struct ListModel: Codable, Identifiable, Hashable, Equatable {
     let name: String
     let type: ListType
     let status: ListStatus
-//    let items: [ItemModel]
     
     init(
         id: String,
@@ -36,14 +35,12 @@ struct ListModel: Codable, Identifiable, Hashable, Equatable {
         name: String,
         type: ListType,
         status: ListStatus
-//        items: [ItemModel]
     ) {
         self.id = id
         self.authorId = authorId
         self.name = name
         self.type = type
         self.status = status
-//        self.items = items
     }
     
     enum CodingKeys: String, CodingKey {
@@ -52,7 +49,6 @@ struct ListModel: Codable, Identifiable, Hashable, Equatable {
         case name
         case type
         case status
-//        case items
     }
 }
 
@@ -86,6 +82,8 @@ final class ListsManager {
             .getDocumentsWithSnapshot(as: ListModel.self)
     }
     
+    private var listItemsListener: ListenerRegistration? = nil
+    
     func getItems(listId: String) async throws -> [ItemModel] {
         try await itemsCollection(listId: listId).getDocuments(as: ItemModel.self)
     }
@@ -95,7 +93,6 @@ final class ListsManager {
     }
     
     private func itemsCollection(listId: String) -> CollectionReference {
-//        listsCollection.document(listId).collection("items")
         listDocument(listId: listId).collection("items")
     }
     
@@ -110,11 +107,28 @@ final class ListsManager {
         let data: [String:Any] = [
             "id" : documentId,
             "list_id": listId,
-            "date" : Timestamp(),
+            "date_created" : Timestamp(),
             "title": "teste",
             "is_completed": false
         ]
         
         try await document.setData(data, merge: false)
     }
+    
+    func removeListItem(listId: String, itemId: String) async throws {
+        try await itemDocument(listId: listId, itemId: itemId).delete()
+    }
+        
+    func removeListenerForAllUserFavoriteProducts() {
+        self.listItemsListener?.remove()
+    }
+    
+    func addListenerForListItems(listId: String) -> AnyPublisher<[ItemModel], Error> {
+        let (publisher, listener): (AnyPublisher<[ItemModel], Error>, ListenerRegistration) = itemsCollection(listId: listId)
+            .addSnapshotListener(as: ItemModel.self)
+        
+        self.listItemsListener = listener
+        return publisher
+    }
+
 }

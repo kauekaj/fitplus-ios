@@ -54,7 +54,6 @@ struct AddView: View {
 //            listViewModel.addItem(title: textFieldText)
             Task {
                 try await ListsManager.shared.addItem(listId: listId)
-                print("kauekaj additem with listId:\(listId)")
             }
             presentationMode.wrappedValue.dismiss()
         }
