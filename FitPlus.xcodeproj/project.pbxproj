@@ -16,6 +16,7 @@
 		9645B02E2B880B3C00EEEB85 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9645B02D2B880B3C00EEEB85 /* LoginView.swift */; };
 		9688D3E02C9F332D003FF22F /* ListsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9688D3DF2C9F332D003FF22F /* ListsManager.swift */; };
 		9688D3E42CA46E7F003FF22F /* Query+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9688D3E32CA46E7F003FF22F /* Query+Extensions.swift */; };
+		9688D3E82CA8410B003FF22F /* OnFirstAppearViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9688D3E72CA8410B003FF22F /* OnFirstAppearViewModifier.swift */; };
 		96C751CC2C497ED1009C0DF1 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C751CB2C497ED1009C0DF1 /* HomeView.swift */; };
 		96C751CF2C4980A7009C0DF1 /* TabbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C751CE2C4980A7009C0DF1 /* TabbarView.swift */; };
 		96C751DB2C4BFB62009C0DF1 /* TextFieldModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C751DA2C4BFB62009C0DF1 /* TextFieldModifier.swift */; };
@@ -71,6 +72,7 @@
 		9688D3DF2C9F332D003FF22F /* ListsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsManager.swift; sourceTree = "<group>"; };
 		9688D3E12C9F3889003FF22F /* FitPlus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FitPlus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9688D3E32CA46E7F003FF22F /* Query+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Query+Extensions.swift"; sourceTree = "<group>"; };
+		9688D3E72CA8410B003FF22F /* OnFirstAppearViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnFirstAppearViewModifier.swift; sourceTree = "<group>"; };
 		96C751CB2C497ED1009C0DF1 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		96C751CE2C4980A7009C0DF1 /* TabbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarView.swift; sourceTree = "<group>"; };
 		96C751DA2C4BFB62009C0DF1 /* TextFieldModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldModifier.swift; sourceTree = "<group>"; };
@@ -253,6 +255,7 @@
 			children = (
 				96C751DA2C4BFB62009C0DF1 /* TextFieldModifier.swift */,
 				96C751DF2C4C052D009C0DF1 /* ButtonLabelModifier.swift */,
+				9688D3E72CA8410B003FF22F /* OnFirstAppearViewModifier.swift */,
 			);
 			path = ViewModifiers;
 			sourceTree = "<group>";
@@ -490,6 +493,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9688D3E82CA8410B003FF22F /* OnFirstAppearViewModifier.swift in Sources */,
 				9645B02E2B880B3C00EEEB85 /* LoginView.swift in Sources */,
 				96C751DB2C4BFB62009C0DF1 /* TextFieldModifier.swift in Sources */,
 				9688D3E42CA46E7F003FF22F /* Query+Extensions.swift in Sources */,
