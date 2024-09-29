@@ -53,7 +53,7 @@ struct AddView: View {
         if textIsAppropriate() {
 //            listViewModel.addItem(title: textFieldText)
             Task {
-                try await ListsManager.shared.addItem(listId: listId)
+                try await ListsManager.shared.addItem(listId: listId, name: "kaue2")
             }
             presentationMode.wrappedValue.dismiss()
         }

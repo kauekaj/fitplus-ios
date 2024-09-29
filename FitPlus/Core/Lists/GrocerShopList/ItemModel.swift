@@ -10,7 +10,7 @@ import Foundation
 struct ItemModel: Identifiable, Codable, Hashable {
     let id: String
     let title: String
-    let isCompleted: Bool
+    var isCompleted: Bool
     let listId: String
     let dateCreated: Date
     

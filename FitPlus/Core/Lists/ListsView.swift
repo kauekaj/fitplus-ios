@@ -44,6 +44,8 @@ struct ListsView: View {
                     .frame(height: 36)
                     .background(Color.accentColor)
                     .padding(.horizontal, 24)
+                    .cornerRadius(12)
+                    .shadow(color: .gray.opacity(0.4), radius: 4, x: 0, y: 2)
                     .onTapGesture {
                         path.append(list)
                     }

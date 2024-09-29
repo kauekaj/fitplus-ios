@@ -35,6 +35,17 @@ final class GrocerShopListViewModel: ObservableObject {
     
     // MARK: - Methods
     
+    @MainActor
+    func toggleItemStatus(listId: String, itemId: String, isCompleted: Bool) {
+        Task {
+            try await ListsManager.shared.updateItemStatus(listId: listId, itemId: itemId, iscompleted: isCompleted)
+
+            if let index = items.firstIndex(where: { $0.id == itemId }) {
+                items[index].isCompleted = isCompleted
+            }
+        }
+    }
+
     func deleteItem(listId: String , indexSet: IndexSet) {
         Task {
             if let index = indexSet.first {
@@ -75,20 +86,10 @@ final class GrocerShopListViewModel: ObservableObject {
 //    }
 
 struct ItemCellViewBuilder: View {
-    
-    let itemId: String
-    let listId: String
-    @State private var item: ItemModel? = nil
-    
+    let item: ItemModel
+
     var body: some View {
-        ZStack {
-            if let item {
-                ListRowView(item: item)
-            }
-        }
-        .task {
-            self.item = try? await ListsManager.shared.getItem(listId: listId, itemId: itemId)
-        }
+        ListRowView(item: item)
     }
 }
 
@@ -96,7 +97,9 @@ struct GrocerShopListView: View {
     
     @ObservedObject var viewModel: GrocerShopListViewModel
     @State var listId: String = ""
-    
+    @State private var showingTray = false
+    @State private var newItemName = ""
+
     init(listId: String, viewModel: GrocerShopListViewModel) {
         self.listId = listId
         self.viewModel = viewModel
@@ -108,33 +111,80 @@ struct GrocerShopListView: View {
                 makeEmptyView()
             } else {
                 VStack {
-                    HStack {
-                        Text("ordenar")
-                        Text("add")
-                        
-                    }
-                    .padding()
-                    
+//                    HStack {
+//                        Text("ordenar")
+//                        Button("Add") {
+//                            withAnimation {
+//                                showingTray.toggle()
+//                            }
+//                        }
+//                    }
+//                    .padding()
+
                     List {
                         ForEach(viewModel.items) { item in
-                            ItemCellViewBuilder(itemId: item.id, listId: listId)
-//                            ListRowView(item: item)
+                            ItemCellViewBuilder(item: item)
                                 .onTapGesture {
                                     withAnimation(.linear) {
-//                                        viewModel.updateItem(item: item)
+                                        viewModel.toggleItemStatus(listId: listId, itemId: item.id, isCompleted: !item.isCompleted)
                                     }
                                 }
                         }
                         .onDelete { indexSet in
-                                viewModel.deleteItem(listId: listId, indexSet: indexSet)
-                            }
-//                        .onDelete(perform: viewModel.deleteItem)
+                            viewModel.deleteItem(listId: listId, indexSet: indexSet)
+                        }
                         .onMove(perform: viewModel.moveItem)
                     }
                     .listStyle(PlainListStyle())
                 }
-                
             }
+
+            if showingTray {
+                VStack {
+                    Spacer()
+
+                    VStack(spacing: 16) {
+                        Text("Adicionar novo item")
+                            .font(.headline)
+
+                        TextField("Nome do item", text: $newItemName)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .padding(.horizontal)
+
+                        HStack {
+                            Button("Cancelar") {
+                                withAnimation {
+                                    showingTray.toggle()
+                                }
+                            }
+                            .padding(.horizontal)
+
+                            Button("Salvar") {
+                                Task {
+                                    if !newItemName.isEmpty {
+                                        try await ListsManager.shared.addItem(listId: listId, name: newItemName)
+                                        newItemName = ""
+                                        showingTray.toggle()
+                                    }
+                                }
+                            }
+                            .padding(.horizontal)
+                        }
+                    }
+                    .padding()
+                    .background(Color(.systemBackground))
+                    .cornerRadius(16)
+                    .shadow(radius: 10)
+                    .frame(maxWidth: .infinity)
+                    .transition(.move(edge: .bottom))
+                    
+                    Spacer()
+                }
+                .padding()
+                .animation(.easeInOut, value: showingTray)
+            }
+            
+            makeAddButton()
         }
         .navigationTitle("Lista de Compras 📝")
         .navigationBarTitleDisplayMode(.large)
@@ -149,30 +199,47 @@ struct GrocerShopListView: View {
             viewModel.addListenerForListItems(listId: listId)
         }
     }
-    
-    
+
     func makeEmptyView() -> some View {
         VStack {
             Text("Sua lista está vazia")
                 .font(.title2)
             Button {
-                Task {
-                    try await ListsManager.shared.addItem(listId: listId)
+                withAnimation {
+                    showingTray.toggle()
                 }
             } label: {
                 Image(systemName: "cart.fill.badge.plus")
                     .font(.largeTitle)
             }
-
-//            NavigationLink(destination: AddView(listId: listId)) {
-//                Image(systemName: "cart.fill.badge.plus")
-//                    .font(.largeTitle)
-//            }
             .padding()
         }
     }
     
+    func makeAddButton() -> some View {
+        VStack {
+            Spacer()
+            HStack {
+                Spacer()
+                Button(action: {
+                    withAnimation {
+                        showingTray.toggle()
+                    }
+                }) {
+                    Image(systemName: "plus")
+                        .foregroundColor(.white)
+                        .font(.system(size: 24))
+                        .padding()
+                        .background(Color.accentColor)
+                        .clipShape(Circle())
+                        .shadow(radius: 5)
+                }
+                .padding()
+            }
+        }
+    }
 }
+
 
 #Preview {
     NavigationStack {

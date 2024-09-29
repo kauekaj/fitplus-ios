@@ -100,19 +100,27 @@ final class ListsManager {
         itemsCollection(listId: listId).document(itemId)
     }
     
-    func addItem(listId: String) async throws {
+    func addItem(listId: String, name: String) async throws {
         let document = itemsCollection(listId: listId).document()
         let documentId = document.documentID
         
         let data: [String:Any] = [
-            "id" : documentId,
-            "list_id": listId,
-            "date_created" : Timestamp(),
-            "title": "teste",
-            "is_completed": false
+            ItemModel.CodingKeys.id.rawValue : documentId,
+            ItemModel.CodingKeys.listId.rawValue : listId,
+            ItemModel.CodingKeys.dateCreated.rawValue : Timestamp(),
+            ItemModel.CodingKeys.title.rawValue : name,
+            ItemModel.CodingKeys.isCompleted.rawValue : true
         ]
         
         try await document.setData(data, merge: false)
+    }
+    
+    func updateItemStatus(listId: String, itemId: String, iscompleted: Bool) async throws {
+        let data: [String:Any] = [
+            ItemModel.CodingKeys.isCompleted.rawValue : iscompleted
+        ]
+        
+        try await itemDocument(listId: listId, itemId: itemId).updateData(data)
     }
     
     func removeListItem(listId: String, itemId: String) async throws {
@@ -130,5 +138,4 @@ final class ListsManager {
         self.listItemsListener = listener
         return publisher
     }
-
 }
