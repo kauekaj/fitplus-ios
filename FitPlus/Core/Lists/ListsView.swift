@@ -34,19 +34,26 @@ struct ListsView: View {
                 
                 ForEach(viewModel.lists) { list in
                     HStack {
-                        Spacer()
-                        Text(list.name)
-                        Spacer()
-                        if list.status == .notStarted {
-                            Image(systemName: "checkmark")
-                        }
-                    }
-                    .frame(height: 36)
-                    .background(Color.accentColor)
-                    .padding(.horizontal, 24)
-                    .cornerRadius(12)
-                    .shadow(color: .gray.opacity(0.4), radius: 4, x: 0, y: 2)
-                    .onTapGesture {
+                           Text(list.name)
+                               .font(.headline)
+                               .foregroundColor(.primary)
+                               .frame(maxWidth: .infinity, alignment: .center)
+                           
+                           Spacer()
+                           
+                           if list.status == .notStarted {
+                               Image(systemName: "checkmark.circle.fill")
+                                   .foregroundColor(.green)
+                                   .font(.title2)
+                                   .padding(.trailing, 20)
+                           }
+                       }
+                       .frame(height: 48)
+                       .background(Color.accentColor.opacity(0.5))
+                       .cornerRadius(8)
+                       .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 4)
+                       .padding(.horizontal, 16)
+                       .onTapGesture {
                         path.append(list)
                     }
                     .navigationDestination(for: ListModel.self) { list in
