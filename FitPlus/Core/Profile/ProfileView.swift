@@ -30,10 +30,22 @@ struct ProfileView: View {
                 Text("Nome: \(viewModel.user?.fullName ?? "")")
                 Text("email: \(viewModel.user?.email ?? "")")
                 Text("ID: \(viewModel.user?.userId ?? "")")
+                
+                Button {
+                    do {
+                        try AuthenticationManager.shared.signOut()
+                    } catch {
+                        print("Failed to sign out")
+                    }
+                } label: {
+                    Image(systemName: "playstation.logo")
+                    Text("Sign out")
+                }
+                .padding()
             }
             .task {
                 try? await viewModel.loadCurrentUser()
-                print("kauekaj: \(String(describing: viewModel.user))")
+//                print("kauekaj: \(String(describing: viewModel.user))")
             }
         }
     }
