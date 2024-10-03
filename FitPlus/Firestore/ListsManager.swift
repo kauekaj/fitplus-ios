@@ -109,7 +109,7 @@ final class ListsManager {
             ItemModel.CodingKeys.listId.rawValue : listId,
             ItemModel.CodingKeys.dateCreated.rawValue : Timestamp(),
             ItemModel.CodingKeys.title.rawValue : name,
-            ItemModel.CodingKeys.isCompleted.rawValue : true
+            ItemModel.CodingKeys.isCompleted.rawValue : false
         ]
         
         try await document.setData(data, merge: false)

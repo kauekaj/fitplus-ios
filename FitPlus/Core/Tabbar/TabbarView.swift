@@ -29,9 +29,9 @@ struct TabbarView: View {
                 .tag(1)
                 .onAppear { selectedTab = 1 }
 
-            Text("Favorite View")
+            RecipeListView()
                 .tabItem {
-                    Image(systemName: "star")
+                    Image(systemName: "book.fill")
                 }
                 .tag(2)
                 .onAppear { selectedTab = 2 }
