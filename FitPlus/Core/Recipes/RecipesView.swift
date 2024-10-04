@@ -99,70 +99,70 @@ final class RecipeListViewModel: ObservableObject {
             {
               "id": "1",
               "name": "Lasanha de Abobrinha",
-              "image_url": "https://www.example.com/images/fit_lasanha_abobrinha.jpg",
+              "image_url": "https://firebasestorage.googleapis.com/v0/b/fitplus-53f36.appspot.com/o/Recipes%2Fthumbnail%2Flasanha_de_bobrinha.jpg?alt=media&token=89e34380-807d-41de-822f-a5140c4f8cec",
               "ingredients": ["Abobrinha", "Molho de Tomate", "Queijo Cottage", "Frango Desfiado"],
               "instructions": "Corte a abobrinha em fatias e monte camadas com molho de tomate, queijo cottage e frango. Asse por 30 minutos."
             },
             {
               "id": "2",
               "name": "Pizza Integral de Frango",
-              "image_url": "https://www.example.com/images/fit_pizza_integral_frango.jpg",
+              "image_url": "https://firebasestorage.googleapis.com/v0/b/fitplus-53f36.appspot.com/o/Recipes%2Fthumbnail%2Fpizza_integral_de_frango.png?alt=media&token=967fc5f9-376b-49b6-9c52-a2526990c5d4",
               "ingredients": ["Massa Integral", "Frango Desfiado", "Molho de Tomate", "Queijo Light"],
               "instructions": "Espalhe o molho na massa, adicione frango desfiado e queijo. Asse a 200°C por 15 minutos."
             },
             {
               "id": "3",
               "name": "Coxinha Fit de Batata Doce",
-              "image_url": "https://www.example.com/images/fit_coxinha_batata_doce.jpg",
+              "image_url": "https://firebasestorage.googleapis.com/v0/b/fitplus-53f36.appspot.com/o/Recipes%2Fthumbnail%2Fcoxinha_fit_de_batata_doce.jpg?alt=media&token=0428899f-764d-4d8f-85f2-b6e98802c08d",
               "ingredients": ["Batata Doce", "Frango Desfiado", "Farinha de Linhaça"],
               "instructions": "Misture batata doce cozida com farinha de linhaça. Recheie com frango desfiado e asse até dourar."
             },
             {
               "id": "4",
               "name": "Bolinho de Quinoa",
-              "image_url": "https://www.example.com/images/fit_bolinho_quinoa.jpg",
+              "image_url": "https://firebasestorage.googleapis.com/v0/b/fitplus-53f36.appspot.com/o/Recipes%2Fthumbnail%2Fbolinho_de_quinoa.jpg?alt=media&token=6d9e9af7-11f4-421c-8e64-ce046f970703",
               "ingredients": ["Quinoa", "Ovos", "Cebola", "Cenoura"],
               "instructions": "Cozinhe a quinoa e misture com ovos e vegetais. Molde bolinhos e asse a 180°C por 20 minutos."
             },
             {
               "id": "5",
               "name": "Empada de Aveia e Frango",
-              "image_url": "https://www.example.com/images/fit_empada_frango.jpg",
+              "image_url": "https://firebasestorage.googleapis.com/v0/b/fitplus-53f36.appspot.com/o/Recipes%2Fthumbnail%2Fempada_de_aveia_frango.jpg?alt=media&token=9282604c-ccee-41a9-b6b3-7c334bd2dd7c",
               "ingredients": ["Aveia", "Frango Desfiado", "Requeijão Light"],
               "instructions": "Prepare uma massa com aveia e recheie com frango e requeijão light. Asse por 25 minutos a 180°C."
             },
             {
               "id": "6",
               "name": "Pastel Assado Integral",
-              "image_url": "https://www.example.com/images/fit_pastel_integral.jpg",
+              "image_url": "https://firebasestorage.googleapis.com/v0/b/fitplus-53f36.appspot.com/o/Recipes%2Fthumbnail%2Fpastel_assado_integral.jpg?alt=media&token=1b2866f7-a549-4d5d-af51-0ed465fc1728",
               "ingredients": ["Massa Integral", "Carne Moída Magra", "Cebola"],
               "instructions": "Recheie a massa integral com carne moída. Asse a 200°C por 20 minutos."
             },
             {
               "id": "7",
               "name": "Quiche de Espinafre e Queijo Branco",
-              "image_url": "https://www.example.com/images/fit_quiche_espinafre.jpg",
+              "image_url": "https://firebasestorage.googleapis.com/v0/b/fitplus-53f36.appspot.com/o/Recipes%2Fthumbnail%2Fquiche_de_espinafre_queijo_branco.avif?alt=media&token=299cd99f-2a0f-4a37-8484-bc036abac59e",
               "ingredients": ["Farinha Integral", "Espinafre", "Queijo Branco", "Ovos"],
               "instructions": "Misture farinha com ovos e espinafre. Asse em uma forma com recheio de queijo branco."
             },
             {
               "id": "8",
               "name": "Esfiha Integral de Carne",
-              "image_url": "https://www.example.com/images/fit_esfiha_integral.jpg",
+              "image_url": "https://firebasestorage.googleapis.com/v0/b/fitplus-53f36.appspot.com/o/Recipes%2Fthumbnail%2Fesfiha_integral_de_carne.png?alt=media&token=b0461588-9f0b-4074-84c1-6953c317657e",
               "ingredients": ["Massa Integral", "Carne Moída Magra", "Cebola", "Tomate"],
               "instructions": "Recheie a massa integral com carne temperada. Asse a 180°C por 15 minutos."
             },
             {
               "id": "9",
               "name": "Torta Salgada de Legumes",
-              "image_url": "https://www.example.com/images/fit_torta_legumes.jpg",
+              "image_url": "https://firebasestorage.googleapis.com/v0/b/fitplus-53f36.appspot.com/o/Recipes%2Fthumbnail%2Ftorta_salgada_de_legumes.jpg?alt=media&token=5dc8ada4-956a-48a3-a0fe-e02941d366e6",
               "ingredients": ["Farinha Integral", "Ovos", "Cenoura", "Brócolis"],
               "instructions": "Misture farinha com ovos e vegetais picados. Asse a 180°C por 30 minutos."
             },
             {
               "id": "10",
               "name": "Feijoada Light",
-              "image_url": "https://www.example.com/images/fit_feijoada.jpg",
+              "image_url": "https://firebasestorage.googleapis.com/v0/b/fitplus-53f36.appspot.com/o/Recipes%2Fthumbnail%2Ffeijoada_light.jpg?alt=media&token=d8541d90-9bb0-4c2e-bdfa-811e0bfa10d9",
               "ingredients": ["Feijão Preto", "Peito de Frango", "Linguiça de Frango", "Couve"],
               "instructions": "Cozinhe o feijão e adicione peito de frango e linguiça de frango. Sirva com couve refogada."
             }
@@ -337,7 +337,7 @@ struct RecipeDetailView: View {
                     .bold()
                     .multilineTextAlignment(.center)
                     .frame(maxWidth: .infinity)
-                
+                                
                 VStack(alignment: .leading, spacing: 10) {
                     Text("Ingredientes:")
                         .font(.headline)

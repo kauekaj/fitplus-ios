@@ -111,16 +111,6 @@ struct GrocerShopListView: View {
                 makeEmptyView()
             } else {
                 VStack {
-//                    HStack {
-//                        Text("ordenar")
-//                        Button("Add") {
-//                            withAnimation {
-//                                showingTray.toggle()
-//                            }
-//                        }
-//                    }
-//                    .padding()
-
                     List {
                         ForEach(viewModel.items) { item in
                             ItemCellViewBuilder(item: item)
