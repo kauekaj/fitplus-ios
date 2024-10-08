@@ -74,8 +74,16 @@ extension ProfileView {
     func makeProfileImage() -> some View {
         Circle()
             .strokeBorder(Color.white, lineWidth: 2)
-            .background(Circle().foregroundColor(.gray))
+            .background(Circle()
+            .foregroundColor(.gray))
             .frame(width: 150, height: 150)
+            .overlay(
+                Image(systemName: "person.fill")
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .foregroundColor(.white)
+                    .frame(width: 80, height: 80)
+            )
             .offset(y: -(UIScreen.main.bounds.height * 0.25))
 
         
@@ -85,9 +93,9 @@ extension ProfileView {
             Image(systemName: "highlighter")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .frame(width: 18, height: 18)
-                .padding(4)
-                .background(Color.accentColor)
+                .frame(width: 16, height: 16)
+                .padding(6)
+                .background(Color.yellow)
                 .clipShape(Circle())
                 .foregroundColor(.black)
                 
