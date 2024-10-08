@@ -34,39 +34,46 @@ struct ProfileView: View {
     @StateObject private var viewModel = ProfileViewModel()
     @State var presentSheet = false
     
+    @State private var rows: [RowData] = [
+        RowData(icon: "person", text: "Minha Conta", destination: AnyView(Text("Tela Minha Conta"))),
+        RowData(icon: "gear", text: "Ajustes", destination: AnyView(Text("Tela Ajustes"))),
+        RowData(icon: "bell", text: "Notificações", destination: AnyView(Text("Tela Notificações"))),
+    ]
+    
     var body: some View {
         NavigationView {
             ZStack {
                 Color.accentColor
-
+                
                 VStack(spacing: 0) {
                     Color.accentColor
                         .frame(height: UIScreen.main.bounds.height * 0.25)
                     
-                    VStack {
+                    VStack(spacing: 0) {
+                        
+                        Text(viewModel.user?.fullName ?? "")
+                            .padding(.top, 64)
+                            .font(.title)
                         
                         Text(viewModel.user?.userName ?? "")
-                            .font(.title)
-                            .padding(.top, 64)
-                        
-                        VStack(alignment: .leading) {
-                        Text("Label 1")
-                            .font(.headline)
-                            .padding(.top, 32)
-                        
-                        Text("Nome: \(viewModel.user?.fullName ?? "")")
-                            .font(.headline)
-                        
-                        Text("email: \(viewModel.user?.email ?? "")")
-                            .font(.headline)
+                            .padding(.bottom, 8)
+                            .font(.footnote)
 
-                        Text("ID: \(viewModel.user?.userId ?? "")")
-                            .font(.headline)
+                        Divider()
+                        
+                        VStack(spacing: 0) {
+                            ForEach(rows) { rowData in
+                                NavigationLink(destination: rowData.destination) {
+                                    RowComponent(rowData: rowData)
+                                }
+                            }
+                            Spacer()
                         }
+                        .padding(.top, 32)
                         
                         VStack {
                             Spacer()
-
+                            
                             Button {
                                 do {
                                     try AuthenticationManager.shared.signOut()
@@ -74,12 +81,23 @@ struct ProfileView: View {
                                     print("Failed to sign out")
                                 }
                             } label: {
-                                Image(systemName: "playstation.logo")
-                                Text("Sign out")
+                                Text("Sair")
+                                    .font(.headline)
+                                    .fontWeight(.bold)
+                                    .foregroundColor(.white)
+                                    .frame(width: 120, height: 44)
+//                                    .background(Color.accentColor)
+//                                        LinearGradient(gradient: Gradient(colors: [Color.accentColor, Color.purple]), startPoint: .leading, endPoint: .trailing)
+//                                    )
+                                    .cornerRadius(22)
+                                    .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 4)
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 22)
+                                            .stroke(Color.white.opacity(0.2), lineWidth: 1)
+                                    )
                             }
-                            .background(.gray.opacity(0.5))
                             .padding(.bottom, 16)
-                            
+
                         }
                         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
                     }
@@ -93,7 +111,7 @@ struct ProfileView: View {
                 }
                 .edgesIgnoringSafeArea(.top)
                 
-                                
+                
                 Circle()
                     .strokeBorder(Color.white, lineWidth: 2)
                     .background(Circle().foregroundColor(.gray))
@@ -109,10 +127,11 @@ struct ProfileView: View {
                     Image(systemName: "camera")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .frame(width: 24, height: 24)
-                        .padding(2)
-                        .background(.cyan)
-                        .foregroundColor(.red)
+                        .frame(width: 18, height: 18)
+                        .padding(4)
+                        .background(.gray)
+                        .clipShape(Circle())
+                        .foregroundColor(.white)
                         .offset(
                             x: (UIScreen.main.bounds.width * 0.10),
                             y: -(UIScreen.main.bounds.height * 0.18)
@@ -123,6 +142,43 @@ struct ProfileView: View {
         }
         .task {
             try? await viewModel.loadCurrentUser()
+        }
+    }
+}
+
+
+struct RowData: Identifiable {
+    let id = UUID()
+    let icon: String
+    let text: String
+    let destination: AnyView
+}
+
+struct RowComponent: View {
+    var rowData: RowData
+    
+    var body: some View {
+        HStack(spacing: 0) {
+            Image(systemName: rowData.icon)
+                .foregroundColor(.black)
+                .frame(width: 32, height: 32)
+                .background(Color.gray.opacity(0.2))
+                .cornerRadius(12)
+            
+            Text(rowData.text)
+                .font(.headline)
+                .foregroundColor(.black)
+                .padding(.leading, 8)
+            
+            Spacer()
+            
+            Image(systemName: "chevron.right")
+                .foregroundColor(.gray)
+        }
+        .padding()
+ 
+        .onTapGesture {
+            //
         }
     }
 }
