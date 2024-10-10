@@ -20,6 +20,8 @@
 		9688D3E42CA46E7F003FF22F /* Query+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9688D3E32CA46E7F003FF22F /* Query+Extensions.swift */; };
 		9688D3E82CA8410B003FF22F /* OnFirstAppearViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9688D3E72CA8410B003FF22F /* OnFirstAppearViewModifier.swift */; };
 		9688D3EB2CAC6D94003FF22F /* RecipesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9688D3EA2CAC6D94003FF22F /* RecipesView.swift */; };
+		96A909622CB7590500798A28 /* Bundle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A909612CB7590500798A28 /* Bundle+Extensions.swift */; };
+		96C27A562CB5EBCC00CC2820 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C27A552CB5EBCC00CC2820 /* SettingsView.swift */; };
 		96C751CC2C497ED1009C0DF1 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C751CB2C497ED1009C0DF1 /* HomeView.swift */; };
 		96C751CF2C4980A7009C0DF1 /* TabbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C751CE2C4980A7009C0DF1 /* TabbarView.swift */; };
 		96C751DB2C4BFB62009C0DF1 /* TextFieldModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C751DA2C4BFB62009C0DF1 /* TextFieldModifier.swift */; };
@@ -79,6 +81,8 @@
 		9688D3E32CA46E7F003FF22F /* Query+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Query+Extensions.swift"; sourceTree = "<group>"; };
 		9688D3E72CA8410B003FF22F /* OnFirstAppearViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnFirstAppearViewModifier.swift; sourceTree = "<group>"; };
 		9688D3EA2CAC6D94003FF22F /* RecipesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesView.swift; sourceTree = "<group>"; };
+		96A909612CB7590500798A28 /* Bundle+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extensions.swift"; sourceTree = "<group>"; };
+		96C27A552CB5EBCC00CC2820 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		96C751CB2C497ED1009C0DF1 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		96C751CE2C4980A7009C0DF1 /* TabbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarView.swift; sourceTree = "<group>"; };
 		96C751DA2C4BFB62009C0DF1 /* TextFieldModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldModifier.swift; sourceTree = "<group>"; };
@@ -219,6 +223,7 @@
 			isa = PBXGroup;
 			children = (
 				9688D3E32CA46E7F003FF22F /* Query+Extensions.swift */,
+				96A909612CB7590500798A28 /* Bundle+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -229,6 +234,14 @@
 				9688D3EA2CAC6D94003FF22F /* RecipesView.swift */,
 			);
 			path = Recipes;
+			sourceTree = "<group>";
+		};
+		96C27A542CB5EBA000CC2820 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				96C27A552CB5EBCC00CC2820 /* SettingsView.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		96C751B92C482CEB009C0DF1 /* Authentication */ = {
@@ -261,6 +274,7 @@
 			children = (
 				9688D3E92CAC6D5E003FF22F /* Recipes */,
 				96C751EE2C4D7A5B009C0DF1 /* Lists */,
+				96C27A542CB5EBA000CC2820 /* Settings */,
 				96C752152C556874009C0DF1 /* Profile */,
 				96C751DC2C4BFC26009C0DF1 /* Home */,
 				96C751CD2C498094009C0DF1 /* Tabbar */,
@@ -532,6 +546,7 @@
 				96C751E72C4D5A04009C0DF1 /* ItemModel.swift in Sources */,
 				96C751E02C4C052D009C0DF1 /* ButtonLabelModifier.swift in Sources */,
 				96C751DE2C4BFC4C009C0DF1 /* RegisterView.swift in Sources */,
+				96A909622CB7590500798A28 /* Bundle+Extensions.swift in Sources */,
 				96C752142C545AFD009C0DF1 /* LoginViewModel.swift in Sources */,
 				96C751CF2C4980A7009C0DF1 /* TabbarView.swift in Sources */,
 				96C752122C545AC2009C0DF1 /* RegisterViewModel.swift in Sources */,
@@ -545,6 +560,7 @@
 				96C751EB2C4D601C009C0DF1 /* AddListItemView.swift in Sources */,
 				961FFAB62CB5E11800EFD029 /* RowComponent.swift in Sources */,
 				96C7520E2C540CDB009C0DF1 /* ContentViewModel.swift in Sources */,
+				96C27A562CB5EBCC00CC2820 /* SettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -11,13 +11,20 @@ struct TabbarView: View {
     
     @State private var selectedTab = 0
     
+    init() {
+        let tabBarAppearance = UITabBarAppearance()
+        tabBarAppearance.configureWithOpaqueBackground()
+        tabBarAppearance.backgroundColor = UIColor.white
+
+        UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
+        UITabBar.appearance().standardAppearance = tabBarAppearance
+    }
+    
     var body: some View {
         TabView(selection: $selectedTab) {
             HomeView()
                 .tabItem {
                     Image(systemName: "house.fill")
-//                    Image(systemName: selectedTab == 0 ? "house.fill" : "house")
-//                        .environment(\.symbolVariants, selectedTab == 0 ? .fill : .none)
                 }
                 .tag(0)
                 .onAppear { selectedTab = 0 }

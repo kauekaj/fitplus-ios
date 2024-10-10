@@ -25,8 +25,8 @@ struct ProfileView: View {
     @State var presentSheet = false
     
     @State private var rows: [RowData] = [
-        RowData(icon: "person", text: "Minha Conta", destination: AnyView(Text("Tela Minha Conta"))),
-        RowData(icon: "gear", text: "Ajustes", destination: AnyView(Text("Tela Ajustes"))),
+        RowData(icon: "person", text: "Informação Pessoal", destination: AnyView(Text("Tela Minha Conta"))),
+        RowData(icon: "gear", text: "Ajustes", destination: AnyView(SettingsView())),
         RowData(icon: "bell", text: "Notificações", destination: AnyView(Text("Tela Notificações"))),
     ]
     
@@ -126,7 +126,7 @@ extension ProfileView {
         VStack(spacing: 0) {
             ForEach(rows) { rowData in
                 NavigationLink(destination: rowData.destination) {
-                    RowComponent(rowData: rowData)
+                    RowComponent(icon: true, destination: true, rowData: rowData)
                 }
             }
             Spacer()
