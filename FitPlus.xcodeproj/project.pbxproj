@@ -67,8 +67,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		961FFAB02CB08BFF00EFD029 /* FitPlusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FitPlusTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		961FFAB12CB08BFF00EFD029 /* FitPlusUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FitPlusUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		961FFAB02CB08BFF00EFD029 /* FitPlusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = FitPlusTests.xctest; path = "/Users/ioskaj/Desktop/Workspace/FitPlus/build/Debug-iphoneos/FitPlusTests.xctest"; sourceTree = "<absolute>"; };
+		961FFAB12CB08BFF00EFD029 /* FitPlusUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = FitPlusUITests.xctest; path = "/Users/ioskaj/Desktop/Workspace/FitPlus/build/Debug-iphoneos/FitPlusUITests.xctest"; sourceTree = "<absolute>"; };
 		961FFAB22CB5E01800EFD029 /* RoundedCorner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCorner.swift; sourceTree = "<group>"; };
 		961FFAB52CB5E11800EFD029 /* RowComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowComponent.swift; sourceTree = "<group>"; };
 		9645B0012B88098F00EEEB85 /* FitPlusApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitPlusApp.swift; sourceTree = "<group>"; };
@@ -154,8 +154,6 @@
 				9645B01B2B88099300EEEB85 /* FitPlusUITests */,
 				96C751F82C508F6D009C0DF1 /* Frameworks */,
 				9688D3E12C9F3889003FF22F /* FitPlus.app */,
-				961FFAB02CB08BFF00EFD029 /* FitPlusTests.xctest */,
-				961FFAB12CB08BFF00EFD029 /* FitPlusUITests.xctest */,
 			);
 			sourceTree = "<group>";
 		};
