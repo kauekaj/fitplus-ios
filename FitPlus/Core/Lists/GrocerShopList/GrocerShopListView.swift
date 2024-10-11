@@ -130,48 +130,7 @@ struct GrocerShopListView: View {
             }
 
             if showingTray {
-                VStack {
-                    Spacer()
-
-                    VStack(spacing: 16) {
-                        Text("Adicionar novo item")
-                            .font(.headline)
-
-                        TextField("Nome do item", text: $newItemName)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .padding(.horizontal)
-
-                        HStack {
-                            Button("Cancelar") {
-                                withAnimation {
-                                    showingTray.toggle()
-                                }
-                            }
-                            .padding(.horizontal)
-
-                            Button("Salvar") {
-                                Task {
-                                    if !newItemName.isEmpty {
-                                        try await ListsManager.shared.addItem(listId: listId, name: newItemName)
-                                        newItemName = ""
-                                        showingTray.toggle()
-                                    }
-                                }
-                            }
-                            .padding(.horizontal)
-                        }
-                    }
-                    .padding()
-                    .background(Color(.systemBackground))
-                    .cornerRadius(16)
-                    .shadow(radius: 10)
-                    .frame(maxWidth: .infinity)
-                    .transition(.move(edge: .bottom))
-                    
-                    Spacer()
-                }
-                .padding()
-                .animation(.easeInOut, value: showingTray)
+                makeTray()
             }
             
             makeAddButton()
@@ -204,6 +163,51 @@ struct GrocerShopListView: View {
             }
             .padding()
         }
+    }
+    
+    func makeTray() -> some View {
+        VStack {
+            Spacer()
+
+            VStack(spacing: 16) {
+                Text("Adicionar novo item")
+                    .font(.headline)
+
+                TextField("Nome do item", text: $newItemName)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .padding(.horizontal)
+
+                HStack {
+                    Button("Cancelar") {
+                        withAnimation {
+                            showingTray.toggle()
+                        }
+                    }
+                    .padding(.horizontal)
+
+                    Button("Salvar") {
+                        Task {
+                            if !newItemName.isEmpty {
+                                try await ListsManager.shared.addItem(listId: listId, name: newItemName)
+                                newItemName = ""
+                                showingTray.toggle()
+                            }
+                        }
+                    }
+                    .padding(.horizontal)
+                }
+            }
+            .padding()
+            .background(Color(.systemBackground))
+            .cornerRadius(16)
+            .shadow(radius: 10)
+            .frame(maxWidth: .infinity)
+            .transition(.move(edge: .bottom))
+            
+            Spacer()
+        }
+        .padding()
+        .animation(.easeInOut, value: showingTray)
     }
     
     func makeAddButton() -> some View {
