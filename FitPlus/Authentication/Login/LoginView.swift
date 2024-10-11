@@ -11,29 +11,50 @@ struct LoginView: View {
         
     @State private var email = ""
     @State private var password = ""
-    
+    @State private var forgotPasswordInputText: String = ""
+    @State private var shouldShowTray = false
+    @State private var isResetPasswordEmailSent = false
+
     @StateObject private var viewModel = LoginViewModel()
     
+    private var screenHeight = UIScreen.main.bounds.height
+
     var body: some View {
-        NavigationStack {
-            ZStack(alignment: .bottom) {
+        
+        NavigationView {
+            ZStack {
                 Color.accentColor
                 
-                VStack {
-                    Spacer()
+                Text("Fit +")
+                    .foregroundColor(.white)
+                    .font(.system(size: 60))
+                    .fontWeight(.bold)
+                    .fontDesign(.rounded)
+                    .offset(y: -(screenHeight < 700 ? screenHeight * 0.35 : screenHeight * 0.25))
+                    .zIndex(1)
 
-                    Text("Fit +")
-                        .foregroundColor(.white)
-                        .font(.system(size: 60))
-                        .fontWeight(.bold)
-                        .fontDesign(.rounded)
+                VStack(spacing: 0) {
+                    Color.accentColor
+                        .frame(height: screenHeight < 700 ? screenHeight * 0.30 : screenHeight * 0.45)
                     
-                    Spacer()
-                    
-                    content
+                    VStack(spacing: 0) {
+                        
+                        content
+                        
+                    }
+                    .zIndex(1)
+                    .padding(8)
+                    .background(.white)
+                    .clipShape(RoundedCorner(cornerRadius: 32, corners: [.topLeft, .topRight]))
+                }
+                .edgesIgnoringSafeArea(.top)
+                
+                if shouldShowTray == true {
+                    makeTray()
+                        .offset(y: (UIScreen.main.bounds.height * 0.50))
+
                 }
             }
-            .ignoresSafeArea()
         }
     }
 }
@@ -48,7 +69,6 @@ extension LoginView {
                 .foregroundStyle(.white)
             
             VStack {
-                
                 TextField("E-mail", text: $email)
                     .textInputAutocapitalization(.never)
                     .modifier(TextFieldModifier())
@@ -56,9 +76,8 @@ extension LoginView {
                 SecureField("Password", text: $password)
                     .modifier(TextFieldModifier())
                 
-                NavigationLink {
-                    TabbarView()
-                        .navigationBarBackButtonHidden()
+                Button {
+                    shouldShowTray.toggle()
                 } label:  {
                         Text("Forgot password?")
                             .fontWeight(.semibold)
@@ -95,6 +114,8 @@ extension LoginView {
                             .foregroundStyle(Color.accentColor)
                     }
                 }
+                
+                Spacer()
             }
             .frame(maxWidth: .infinity)
             .padding()
@@ -122,8 +143,61 @@ extension LoginView {
             }
         }
     }
-}
+    
+    func makeTray() -> some View {
+        VStack {
+            VStack(spacing: 16) {
+                
+                if isResetPasswordEmailSent == true {
+                    
+                    Text("Email enviado!")
+                    Text("Confira sua caixa de entrada.")
 
-#Preview {
-    LoginView()
+                    Button("OK") {
+                        withAnimation {
+                            shouldShowTray.toggle()
+                            isResetPasswordEmailSent.toggle()
+                        }
+                    }
+                    .padding(.horizontal)
+                } else {
+                    Text("Resetar Senha")
+                        .font(.headline)
+
+                    TextField("Email cadastrado", text: $forgotPasswordInputText)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .padding(.horizontal)
+
+                    HStack {
+                        Button("Cancelar") {
+                            withAnimation {
+                                shouldShowTray.toggle()
+                            }
+                        }
+                        .padding(.horizontal)
+
+                        Button("Enviar") {
+                            Task {
+                                try await AuthenticationManager.shared.resetPassword(email: forgotPasswordInputText)
+                                isResetPasswordEmailSent.toggle()
+                            }
+                        }
+                        .padding(.horizontal)
+                    }
+                }
+            }
+            .padding()
+            .background(Color(.systemBackground))
+            .cornerRadius(16)
+            .shadow(radius: 10)
+            .frame(maxWidth: .infinity)
+            .transition(.move(edge: .top))
+            
+            Spacer()
+        }
+        .zIndex(2)
+        .padding()
+        .animation(.easeInOut, value: shouldShowTray)
+    }
+    
 }
