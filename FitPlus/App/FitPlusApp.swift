@@ -17,14 +17,16 @@ struct FitPlusApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(DependencyAssembly.shared.resolveUserRepository() as! UserRepository)
         }
     }
 }
 
 class AppDelegate: NSObject, UIApplicationDelegate {
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         FirebaseApp.configure()
-
+        setupNavBarAppearance()
         return true
     }
     
@@ -35,4 +37,25 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     func applicationWillResignActive(_ application: UIApplication) {
         
     }
+    
+    private func setupNavigation() {
+        let backIndicatorImage = UIImage(named: "appleIcon")
+        let barAppearance = UINavigationBar.appearance()
+        barAppearance.backIndicatorImage = backIndicatorImage
+        barAppearance.backIndicatorImage?.withTintColor(.black)
+        barAppearance.backIndicatorTransitionMaskImage = backIndicatorImage
+        barAppearance.backItem?.backBarButtonItem?.isHidden = true
+    }
+    
+    func setupNavBarAppearance() {
+        let navigationBarAppearance = UINavigationBarAppearance()
+        navigationBarAppearance.configureWithOpaqueBackground()
+        navigationBarAppearance.backgroundColor = UIColor.white
+        
+        let backIndicatorImage = UIImage(systemName: "chevron.left")
+        navigationBarAppearance.setBackIndicatorImage(backIndicatorImage, transitionMaskImage: backIndicatorImage)
+        
+        UINavigationBar.appearance().standardAppearance = navigationBarAppearance
+    }
+
 }

@@ -94,16 +94,18 @@ final class UserManager {
         let decoder = Firestore.Decoder()
         return decoder
     }()
-    
-//    private var userFavoriteProductsListener: ListenerRegistration? = nil
-    
+        
     func createNewUser(user: FitPlusUser) async throws {
         try userDocument(userId: user.userId).setData(from: user, merge: false)
     }
-
+    
     func getUser(userId: String) async throws -> FitPlusUser {
         try await userDocument(userId: userId).getDocument(as: FitPlusUser.self)
     }
+    
+    func updateUserInfo(userId: String, data: [String: Any]) async throws {
+        try await userDocument(userId: userId).updateData(data)
+        }
     
     func updateUserProfileImagePath(userId: String, path: String?, url: String?) async throws {
         let data: [String:Any] = [
@@ -114,4 +116,12 @@ final class UserManager {
         try await userDocument(userId: userId).updateData(data)
     }
     
+    func updateUserFullName(userId: String, fullName: String) async throws {
+        let data: [String:Any] = [
+            FitPlusUser.CodingKeys.fullName.rawValue : fullName
+        ]
+        
+        try await userDocument(userId: userId).updateData(data)
     }
+    
+}

@@ -10,12 +10,12 @@ import SwiftUI
 @MainActor
 final class ProfileViewModel: ObservableObject {
     
-    @Published private(set) var user: FitPlusUser? = nil
-    
-    func loadCurrentUser() async throws {
-        let authDataResult = try AuthenticationManager.shared.getAuthenticatedUser()
-        self.user = try await UserManager.shared.getUser(userId: authDataResult.uid)
-    }
+//    @Published private(set) var user: FitPlusUser? = nil
+//    
+//    func loadCurrentUser() async throws {
+//        let authDataResult = try AuthenticationManager.shared.getAuthenticatedUser()
+//        self.user = try await UserManager.shared.getUser(userId: authDataResult.uid)
+//    }
     
 }
 
@@ -24,8 +24,10 @@ struct ProfileView: View {
     @StateObject private var viewModel = ProfileViewModel()
     @State var presentSheet = false
     
+    @EnvironmentObject var userRepository: UserRepository
+    
     @State private var rows: [RowData] = [
-        RowData(icon: "person", text: "Informação Pessoal", destination: AnyView(Text("Tela Minha Conta"))),
+        RowData(icon: "person", text: "Informação Pessoal", destination: AnyView(PersonalInfoView())),
         RowData(icon: "gear", text: "Ajustes", destination: AnyView(SettingsView())),
         RowData(icon: "bell", text: "Notificações", destination: AnyView(Text("Tela Notificações"))),
     ]
@@ -61,9 +63,6 @@ struct ProfileView: View {
                 
                makeProfileImage()
             }
-        }
-        .task {
-            try? await viewModel.loadCurrentUser()
         }
     }
 }
@@ -110,12 +109,12 @@ extension ProfileView {
     @ViewBuilder
     func headerInfo() -> some View {
         VStack {
-            Text(viewModel.user?.fullName ?? "")
+            Text(userRepository.user?.fullName ?? "")
                 .padding(.top, 64)
                 .font(.title)
                 .fontWeight(.semibold)
             
-            Text(viewModel.user?.userName ?? "")
+            Text(userRepository.user?.userName ?? "")
                 .padding(.bottom, 8)
                 .font(.footnote)
         }

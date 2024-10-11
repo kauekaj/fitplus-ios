@@ -21,6 +21,8 @@
 		9688D3E82CA8410B003FF22F /* OnFirstAppearViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9688D3E72CA8410B003FF22F /* OnFirstAppearViewModifier.swift */; };
 		9688D3EB2CAC6D94003FF22F /* RecipesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9688D3EA2CAC6D94003FF22F /* RecipesView.swift */; };
 		96A909622CB7590500798A28 /* Bundle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A909612CB7590500798A28 /* Bundle+Extensions.swift */; };
+		96A909642CB75E8500798A28 /* PersonalInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A909632CB75E8500798A28 /* PersonalInfoView.swift */; };
+		96A909672CB87FB400798A28 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A909662CB87FB400798A28 /* UserRepository.swift */; };
 		96C27A562CB5EBCC00CC2820 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C27A552CB5EBCC00CC2820 /* SettingsView.swift */; };
 		96C751CC2C497ED1009C0DF1 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C751CB2C497ED1009C0DF1 /* HomeView.swift */; };
 		96C751CF2C4980A7009C0DF1 /* TabbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C751CE2C4980A7009C0DF1 /* TabbarView.swift */; };
@@ -82,6 +84,8 @@
 		9688D3E72CA8410B003FF22F /* OnFirstAppearViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnFirstAppearViewModifier.swift; sourceTree = "<group>"; };
 		9688D3EA2CAC6D94003FF22F /* RecipesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesView.swift; sourceTree = "<group>"; };
 		96A909612CB7590500798A28 /* Bundle+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extensions.swift"; sourceTree = "<group>"; };
+		96A909632CB75E8500798A28 /* PersonalInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoView.swift; sourceTree = "<group>"; };
+		96A909662CB87FB400798A28 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		96C27A552CB5EBCC00CC2820 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		96C751CB2C497ED1009C0DF1 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		96C751CE2C4980A7009C0DF1 /* TabbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarView.swift; sourceTree = "<group>"; };
@@ -158,6 +162,7 @@
 		9645B0002B88098F00EEEB85 /* FitPlus */ = {
 			isa = PBXGroup;
 			children = (
+				96A909652CB87FA100798A28 /* DataSource */,
 				96C751F42C50880D009C0DF1 /* FitPlus.entitlements */,
 				96C751E22C4C15DC009C0DF1 /* App */,
 				96C7520A2C540CB3009C0DF1 /* Root */,
@@ -234,6 +239,14 @@
 				9688D3EA2CAC6D94003FF22F /* RecipesView.swift */,
 			);
 			path = Recipes;
+			sourceTree = "<group>";
+		};
+		96A909652CB87FA100798A28 /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				96A909662CB87FB400798A28 /* UserRepository.swift */,
+			);
+			path = DataSource;
 			sourceTree = "<group>";
 		};
 		96C27A542CB5EBA000CC2820 /* Settings */ = {
@@ -389,6 +402,7 @@
 			isa = PBXGroup;
 			children = (
 				96C752162C556887009C0DF1 /* ProfileView.swift */,
+				96A909632CB75E8500798A28 /* PersonalInfoView.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -553,11 +567,13 @@
 				9688D3E02C9F332D003FF22F /* ListsManager.swift in Sources */,
 				96C752022C509321009C0DF1 /* AuthenticationManager.swift in Sources */,
 				96C751E92C4D5F9D009C0DF1 /* ListRowView.swift in Sources */,
+				96A909672CB87FB400798A28 /* UserRepository.swift in Sources */,
 				96C751ED2C4D7A52009C0DF1 /* ListsView.swift in Sources */,
 				96C751E52C4C17ED009C0DF1 /* GrocerShopListView.swift in Sources */,
 				9645B0022B88098F00EEEB85 /* FitPlusApp.swift in Sources */,
 				96C752172C556887009C0DF1 /* ProfileView.swift in Sources */,
 				96C751EB2C4D601C009C0DF1 /* AddListItemView.swift in Sources */,
+				96A909642CB75E8500798A28 /* PersonalInfoView.swift in Sources */,
 				961FFAB62CB5E11800EFD029 /* RowComponent.swift in Sources */,
 				96C7520E2C540CDB009C0DF1 /* ContentViewModel.swift in Sources */,
 				96C27A562CB5EBCC00CC2820 /* SettingsView.swift in Sources */,
