@@ -103,10 +103,6 @@ final class UserManager {
         try await userDocument(userId: userId).getDocument(as: FitPlusUser.self)
     }
     
-    func updateUserInfo(userId: String, data: [String: Any]) async throws {
-        try await userDocument(userId: userId).updateData(data)
-        }
-    
     func updateUserProfileImagePath(userId: String, path: String?, url: String?) async throws {
         let data: [String:Any] = [
             FitPlusUser.CodingKeys.profileImagePath.rawValue : path ?? NSNull(),
@@ -124,4 +120,21 @@ final class UserManager {
         try await userDocument(userId: userId).updateData(data)
     }
     
+    func updateUserData(userId: String, field: String, value: String) async throws {
+        var data: [String:Any] = [:]
+        
+        if field == FitPlusUser.CodingKeys.fullName.rawValue {
+            data[FitPlusUser.CodingKeys.fullName.rawValue] = value
+        }
+        
+        if field == FitPlusUser.CodingKeys.email.rawValue {
+            data[FitPlusUser.CodingKeys.email.rawValue] = value
+        }
+        
+        if field == FitPlusUser.CodingKeys.userName.rawValue {
+            data[FitPlusUser.CodingKeys.userName.rawValue] = value
+        }
+        
+        try await userDocument(userId: userId).updateData(data)
+    }
 }
