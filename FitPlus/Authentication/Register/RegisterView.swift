@@ -16,25 +16,36 @@ struct RegisterView: View {
     @StateObject private var viewModel = RegisterViewModel()
     @Environment(\.dismiss) var dismiss
     
+    private var screenHeight = UIScreen.main.bounds.height
+
     var body: some View {
         NavigationStack {
-            ZStack(alignment: .bottom) {
-                
+            ZStack{
                 Color.accentColor
                 
-                VStack {
-                    Spacer()
+                Text("Fit +")
+                    .foregroundColor(.white)
+                    .font(.system(size: 60))
+                    .fontWeight(.bold)
+                    .fontDesign(.rounded)
+                    .offset(y: -(screenHeight < 700 ? screenHeight * 0.30 : screenHeight * 0.25))
+                    .zIndex(1)
+                
+                VStack(spacing: 0) {
+                    Color.accentColor
+                        .frame(height: screenHeight < 700 ? screenHeight * 0.35 : screenHeight * 0.45)
                     
-                    Text("Fit +")
-                        .foregroundColor(.white)
-                        .font(.system(size: 60))
-                        .fontWeight(.bold)
-                        .fontDesign(.rounded)
-                    
-                    Spacer()
-                    
-                    content
+                    VStack(spacing: 0) {
+                        
+                        content
+                        
+                    }
+                    .zIndex(1)
+                    .padding(8)
+                    .background(.white)
+                    .clipShape(RoundedCorner(cornerRadius: 32, corners: [.topLeft, .topRight]))
                 }
+                .edgesIgnoringSafeArea(.top)
                 
             }
             .ignoresSafeArea()
