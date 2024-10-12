@@ -7,12 +7,17 @@
 
 import SwiftUI
 
-struct PersonalInfoView: View {
+enum trayError: String {
+    case idle = ""
+    case isEmailRegistered = "Email já registrado"
+    case emptyField = "O campo está vazio"
+}
 
+struct PersonalInfoView: View {
+    
     @State private var field: String = ""
     @State private var inputText: String = ""
-
-    @State private var isEmailRegistered = false
+    @State private var showTrayError: trayError = .idle
     @State private var shouldShowTray = false
     
     @EnvironmentObject var userRepository: UserRepository
@@ -24,7 +29,7 @@ struct PersonalInfoView: View {
                 .font(.title)
                 .fontWeight(.semibold)
                 .padding(.bottom, 8)
-
+            
             HStack {
                 Text("Nome:")
                 Text(userRepository.user?.fullName ?? "")
@@ -55,10 +60,20 @@ struct PersonalInfoView: View {
                 }
             }
             
+            HStack {
+                Text("Senha:")
+                Text("******")
+                Spacer()
+                Button("Editar") {
+                    shouldShowTray.toggle()
+                    field = "password"
+                }
+            }
+            
             Spacer()
             
             if shouldShowTray {
-              makeTray()
+                makeTray()
             }
         }
         .padding()
@@ -73,48 +88,74 @@ extension PersonalInfoView {
             VStack(spacing: 16) {
                 Text("Adicionar mudança")
                     .font(.headline)
-
-                TextField("Nome do item", text: $inputText)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .padding(.horizontal)
                 
-                if isEmailRegistered == true {
-                    Text("Email já registrado")
+                if field == "password" {
+                    SecureField("Digite aqui...", text: $inputText)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .padding(.horizontal)
+                } else {
+                    TextField("Digite aqui...", text: $inputText)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .padding(.horizontal)
+                }
+                
+                if showTrayError != .idle {
+                    Text(showTrayError.rawValue)
                         .font(.footnote)
                         .foregroundStyle(.red)
                 }
-
+                
                 HStack {
                     Button("Cancelar") {
                         withAnimation {
                             shouldShowTray.toggle()
+                            showTrayError = .idle
+                            field = ""
+                            inputText = ""
                         }
                     }
                     .padding(.horizontal)
-
+                    
                     Button("Salvar") {
                         Task {
-                            if field == FitPlusUser.CodingKeys.email.rawValue {
+                            if field == "password" && !inputText.isEmpty {
+                                do {
+                                    try await AuthenticationManager.shared.updatePassword(password: inputText)
+                                    shouldShowTray.toggle()
+                                } catch {
+                                    print("Error updating password")
+                                }
+                            } else if field == FitPlusUser.CodingKeys.email.rawValue && !inputText.isEmpty {
                                 do {
                                     try await AuthenticationManager.shared.updateEmail(email: inputText)
+                                    shouldShowTray.toggle()
+                                    field = ""
+                                    inputText = ""
                                 } catch {
                                     print("Email already registered")
-                                    isEmailRegistered.toggle()
+                                    showTrayError = .isEmailRegistered
                                 }
                             } else {
                                 if !inputText.isEmpty {
-                                    try await UserManager.shared.updateUserData(
-                                        userId: userRepository.user?.userId ?? "",
-                                        field: field,
-                                        value: inputText
-                                    )
-
-                                    let user = try await UserManager.shared.getUser(userId: userRepository.user?.userId ?? "")
-                                    userRepository.saveUser(user)
-                                    shouldShowTray.toggle()
-                                    isEmailRegistered.toggle()
-                                    field = ""
-                                    inputText = ""
+                                    do {
+                                        try await UserManager.shared.updateUserData(
+                                            userId: userRepository.user?.userId ?? "",
+                                            field: field,
+                                            value: inputText
+                                        )
+                                        
+                                        let user = try await UserManager.shared.getUser(userId: userRepository.user?.userId ?? "")
+                                        userRepository.saveUser(user)
+                                        shouldShowTray.toggle()
+                                        showTrayError = .idle
+                                        field = ""
+                                        inputText = ""
+                                        
+                                    } catch  {
+                                        print("Error updating data.")
+                                    }
+                                } else {
+                                    showTrayError = .emptyField
                                 }
                             }
                         }

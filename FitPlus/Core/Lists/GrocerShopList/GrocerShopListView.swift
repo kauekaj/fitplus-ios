@@ -97,6 +97,7 @@ struct GrocerShopListView: View {
     
     @ObservedObject var viewModel: GrocerShopListViewModel
     @State var listId: String = ""
+    @State private var showTrayError: trayError = .idle
     @State private var showingTray = false
     @State private var newItemName = ""
 
@@ -173,14 +174,21 @@ struct GrocerShopListView: View {
                 Text("Adicionar novo item")
                     .font(.headline)
 
-                TextField("Nome do item", text: $newItemName)
+                TextField("Digite o nome do item aqui...", text: $newItemName)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding(.horizontal)
-
+               
+                if showTrayError != .idle {
+                    Text(showTrayError.rawValue)
+                        .font(.footnote)
+                        .foregroundStyle(.red)
+                }
+                
                 HStack {
                     Button("Cancelar") {
                         withAnimation {
                             showingTray.toggle()
+                            showTrayError = .idle
                         }
                     }
                     .padding(.horizontal)
@@ -191,6 +199,8 @@ struct GrocerShopListView: View {
                                 try await ListsManager.shared.addItem(listId: listId, name: newItemName)
                                 newItemName = ""
                                 showingTray.toggle()
+                            } else {
+                                showTrayError = .emptyField
                             }
                         }
                     }
