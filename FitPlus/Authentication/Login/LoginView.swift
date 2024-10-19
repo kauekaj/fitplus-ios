@@ -90,8 +90,6 @@ extension LoginView {
                         }
                     }
 
-                    
-
                 } label: {
                     Text("Login")
                         .modifier(ButtonLabelModifier())
@@ -108,10 +106,10 @@ extension LoginView {
                         .navigationBarBackButtonHidden()
                 } label:  {
                     HStack {
-                        Text("Don't have an account?")
+                        Text("Ainda não tem uma conta?")
                             .foregroundStyle(.black)
                         
-                        Text("Sign Up")
+                        Text("Cadastrar")
                             .fontWeight(.semibold)
                             .foregroundStyle(Color.accentColor)
                     }

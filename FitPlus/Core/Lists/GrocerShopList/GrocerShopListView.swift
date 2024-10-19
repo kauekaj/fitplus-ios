@@ -97,7 +97,7 @@ struct GrocerShopListView: View {
     
     @ObservedObject var viewModel: GrocerShopListViewModel
     @State var list: ListModel
-    @State private var showTrayError: trayError = .idle
+    @State private var showTrayError: TrayError = .idle
     @State private var showingTray = false
     @State private var newItemName = ""
 
@@ -171,10 +171,10 @@ struct GrocerShopListView: View {
             Spacer()
 
             VStack(spacing: 16) {
-                Text("Adicionar novo item")
+                Text("Adicionar nova lista")
                     .font(.headline)
 
-                TextField("Digite o nome do item aqui...", text: $newItemName)
+                TextField("Digite o nome da lista aqui...", text: $newItemName)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding(.horizontal)
                

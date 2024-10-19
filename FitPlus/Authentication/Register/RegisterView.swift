@@ -13,7 +13,11 @@ struct RegisterView: View {
     @State private var password = ""
     @State private var confirmedPassword = ""
     @State private var fullName = ""
+    @State private var showTrayError: TrayError = .idle
+    @State private var shouldShowTray = false
+
     @StateObject private var viewModel = RegisterViewModel()
+    @EnvironmentObject var userRepository: UserRepository
     @Environment(\.dismiss) var dismiss
     
     private var screenHeight = UIScreen.main.bounds.height
@@ -65,34 +69,51 @@ extension RegisterView {
             
             VStack {
                 
-                TextField("Enter your full name ", text: $fullName)
+                TextField("Digite seu nome completo", text: $fullName)
                     .textInputAutocapitalization(.words)
                     .modifier(TextFieldModifier())
                 
-                TextField("Enter your e-mail", text: $email)
+                TextField("Digite seu e-mail", text: $email)
                     .textInputAutocapitalization(.never)
                     .modifier(TextFieldModifier())
                 
-                SecureField("Enter your password", text: $password)
+                SecureField("Digite sua senha", text: $password)
                     .modifier(TextFieldModifier())
                 
-                SecureField("Confirm yor password", text: $confirmedPassword)
+                SecureField("Confirme sua senha", text: $confirmedPassword)
                     .modifier(TextFieldModifier())
                 
                 Button {
+                    guard !email.isEmpty, !password.isEmpty, !confirmedPassword.isEmpty else {
+                        shouldShowTray.toggle()
+                        showTrayError = .fillOutEveryField
+                        return
+                    }
+                    
+                    if !viewModel.isValidEmail(email) {
+                        shouldShowTray.toggle()
+                        showTrayError = .invalidEmail
+                        return
+                    }
+                    
+                    if !viewModel.checkPassword(password: password, confirmedPassword: confirmedPassword) {
+                        shouldShowTray.toggle()
+                        showTrayError = .passwordDoesNotMatch
+                        return
+                    }
+                    
                     Task {
-                        guard !email.isEmpty, !password.isEmpty else {
-                            print("No email or password found")
-                            return
-                        }
                         try await viewModel.signUp(
+                            fullName: fullName,
                             email: email,
                             password: password,
                             confirmedPassword: confirmedPassword
                         )
+                        try await userRepository.updateUser()
+
                     }
                 } label: {
-                    Text("Sign Up")
+                    Text("Cadastrar")
                         .modifier(ButtonLabelModifier())
                 }
                 
@@ -102,10 +123,10 @@ extension RegisterView {
                     dismiss()
                 } label: {
                     HStack {
-                        Text("Alerady have an account?")
+                        Text("Já tem uma conta?")
                             .foregroundStyle(.black)
                         
-                        Text("Sign In")
+                        Text("Entrar")
                             .fontWeight(.semibold)
                             .foregroundStyle(Color.accentColor)
                     }
@@ -114,7 +135,53 @@ extension RegisterView {
             }
             .frame(maxWidth: .infinity)
             .padding()
+            
+            if shouldShowTray {
+                makeTray()
+            }
         }
+    }
+    
+    func makeTray() -> some View {
+        VStack {
+            VStack(spacing: 0) {
+                
+                HStack {
+                    if showTrayError != .idle {
+                        Text(showTrayError.rawValue)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .font(.headline)
+                            .foregroundStyle(.black)
+                    }
+                    
+                    Spacer()
+                    
+                    Button(action: {
+                        withAnimation {
+                            shouldShowTray.toggle()
+                            showTrayError = .idle
+                        }
+                    }) {
+                        Image(systemName: "xmark")
+                            .font(.system(size: 16, weight: .semibold))
+                            .foregroundColor(.black)
+                            .padding(8)
+                    }
+                    .background(Circle().fill(Color.gray.opacity(0.2)))
+                }
+
+            }
+            .padding()
+            .background(Color(red: 1.0, green: 0.8, blue: 0.8))
+            .cornerRadius(16)
+            .shadow(radius: 10)
+            .frame(maxWidth: .infinity)
+            .transition(.move(edge: .top))
+            
+            Spacer()
+        }
+        .padding()
+        .animation(.easeInOut, value: shouldShowTray)
     }
 }
 

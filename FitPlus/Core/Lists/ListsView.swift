@@ -23,7 +23,7 @@ struct ListsView: View {
     
     @StateObject var viewModel = ListsViewModel()
     @State private var path = NavigationPath()
-    @State private var showTrayError: trayError = .idle
+    @State private var showTrayError: TrayError = .idle
     @State private var showingTray = false
     @State private var newListName = ""
 

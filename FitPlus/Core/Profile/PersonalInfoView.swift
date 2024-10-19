@@ -7,17 +7,21 @@
 
 import SwiftUI
 
-enum trayError: String {
+enum TrayError: String {
     case idle = ""
+    case invalidEmail = "Email não é válido"
     case isEmailRegistered = "Email já registrado"
     case emptyField = "O campo está vazio"
+    case passwordDoesNotMatch = "As senhas estão diferentes."
+    case fillOutEveryField = "Gentileza preencher todos os campos."
+
 }
 
 struct PersonalInfoView: View {
     
     @State private var field: String = ""
     @State private var inputText: String = ""
-    @State private var showTrayError: trayError = .idle
+    @State private var showTrayError: TrayError = .idle
     @State private var shouldShowTray = false
     
     @EnvironmentObject var userRepository: UserRepository
