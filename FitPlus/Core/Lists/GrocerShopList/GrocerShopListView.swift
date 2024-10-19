@@ -96,13 +96,13 @@ struct ItemCellViewBuilder: View {
 struct GrocerShopListView: View {
     
     @ObservedObject var viewModel: GrocerShopListViewModel
-    @State var listId: String = ""
+    @State var list: ListModel
     @State private var showTrayError: trayError = .idle
     @State private var showingTray = false
     @State private var newItemName = ""
 
-    init(listId: String, viewModel: GrocerShopListViewModel) {
-        self.listId = listId
+    init(list: ListModel, viewModel: GrocerShopListViewModel) {
+        self.list = list
         self.viewModel = viewModel
     }
     
@@ -117,12 +117,12 @@ struct GrocerShopListView: View {
                             ItemCellViewBuilder(item: item)
                                 .onTapGesture {
                                     withAnimation(.linear) {
-                                        viewModel.toggleItemStatus(listId: listId, itemId: item.id, isCompleted: !item.isCompleted)
+                                        viewModel.toggleItemStatus(listId: list.id, itemId: item.id, isCompleted: !item.isCompleted)
                                     }
                                 }
                         }
                         .onDelete { indexSet in
-                            viewModel.deleteItem(listId: listId, indexSet: indexSet)
+                            viewModel.deleteItem(listId: list.id, indexSet: indexSet)
                         }
                         .onMove(perform: viewModel.moveItem)
                     }
@@ -136,17 +136,17 @@ struct GrocerShopListView: View {
             
             makeAddButton()
         }
-        .navigationTitle("Lista de Compras 📝")
+        .navigationTitle(list.name)
         .navigationBarTitleDisplayMode(.large)
         .navigationBarItems(
             trailing:
-                NavigationLink(destination: AddView(listId: listId)) {
+                NavigationLink(destination: AddView(listId: list.id)) {
                     Image(systemName: "person.fill.badge.plus")
                         .font(.title2)
                 }
         )
         .onFirstAppear {
-            viewModel.addListenerForListItems(listId: listId)
+            viewModel.addListenerForListItems(listId: list.id)
         }
     }
 
@@ -196,7 +196,7 @@ struct GrocerShopListView: View {
                     Button("Salvar") {
                         Task {
                             if !newItemName.isEmpty {
-                                try await ListsManager.shared.addItem(listId: listId, name: newItemName)
+                                try await ListsManager.shared.addItem(listId: list.id, name: newItemName)
                                 newItemName = ""
                                 showingTray.toggle()
                             } else {
@@ -241,12 +241,5 @@ struct GrocerShopListView: View {
                 .padding()
             }
         }
-    }
-}
-
-
-#Preview {
-    NavigationStack {
-        GrocerShopListView(listId: "123", viewModel: GrocerShopListViewModel())
     }
 }
