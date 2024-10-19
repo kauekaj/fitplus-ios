@@ -13,11 +13,17 @@ import SwiftUI
 struct FitPlusApp: App {
     
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
-
+    @StateObject var userRepository = UserRepository()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environmentObject(DependencyAssembly.shared.resolveUserRepository() as! UserRepository)
+                .environmentObject(userRepository)
+                .onAppear {
+                    Task {
+                        try await userRepository.loadUserFromAPI()
+                    }
+                }
         }
     }
 }
@@ -31,7 +37,10 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
-        
+        let userRepository = UserRepository()
+        Task {
+            try await userRepository.loadUserFromAPI()
+        }
     }
     
     func applicationWillResignActive(_ application: UIApplication) {
