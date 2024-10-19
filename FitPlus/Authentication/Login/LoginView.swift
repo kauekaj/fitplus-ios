@@ -15,6 +15,8 @@ struct LoginView: View {
     @State private var shouldShowTray = false
     @State private var isResetPasswordEmailSent = false
 
+    @EnvironmentObject var userRepository: UserRepository
+
     @StateObject private var viewModel = LoginViewModel()
     
     private var screenHeight = UIScreen.main.bounds.height
@@ -25,22 +27,14 @@ struct LoginView: View {
             ZStack {
                 Color.accentColor
                 
-                Text("Fit +")
-                    .foregroundColor(.white)
-                    .font(.system(size: 60))
-                    .fontWeight(.bold)
-                    .fontDesign(.rounded)
-                    .offset(y: -(screenHeight < 700 ? screenHeight * 0.35 : screenHeight * 0.25))
-                    .zIndex(1)
+                makeLogo()
 
                 VStack(spacing: 0) {
                     Color.accentColor
                         .frame(height: screenHeight < 700 ? screenHeight * 0.30 : screenHeight * 0.45)
                     
                     VStack(spacing: 0) {
-                        
                         content
-                        
                     }
                     .zIndex(1)
                     .padding(8)
@@ -52,7 +46,6 @@ struct LoginView: View {
                 if shouldShowTray == true {
                     makeTray()
                         .offset(y: (UIScreen.main.bounds.height * 0.50))
-
                 }
             }
         }
@@ -88,8 +81,17 @@ extension LoginView {
                 
                 Button {
                     Task {
-                        try await viewModel.signIn(email: email, password: password)
+                        do {
+                            try await viewModel.signIn(email: email, password: password)
+                            try await userRepository.updateUser()
+
+                        } catch {
+                            print("Erro ao efetuar login: \(error)")
+                        }
                     }
+
+                    
+
                 } label: {
                     Text("Login")
                         .modifier(ButtonLabelModifier())
@@ -142,6 +144,16 @@ extension LoginView {
                 Image("appleIcon")
             }
         }
+    }
+    
+    func makeLogo() -> some View {
+        Text("Fit +")
+            .foregroundColor(.white)
+            .font(.system(size: 60))
+            .fontWeight(.bold)
+            .fontDesign(.rounded)
+            .offset(y: -(screenHeight < 700 ? screenHeight * 0.35 : screenHeight * 0.25))
+            .zIndex(1)
     }
     
     func makeTray() -> some View {

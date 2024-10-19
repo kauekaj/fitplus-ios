@@ -16,6 +16,11 @@ final class LoginViewModel: ObservableObject {
             return
         }
         
-        try await AuthenticationManager.shared.signInUser(email: email, password: password)
+        do {
+            try await AuthenticationManager.shared.signInUser(email: email, password: password)
+        } catch  {
+            print("Falha ao logar \(error)")
+        }
     }
+
 }
