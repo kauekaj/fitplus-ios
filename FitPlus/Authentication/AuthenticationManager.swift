@@ -10,15 +10,13 @@ import Foundation
 
 struct AuthDataResultModel {
     let uid: String
-    let fullName: String?
     let email: String?
-    let userName: String?
+    let photoUrl: String?
     
     init(user: User) {
         self.uid = user.uid
-        self.fullName = user.displayName // Trocar
         self.email = user.email
-        self.userName = user.email // trocar
+        self.photoUrl = user.photoURL?.absoluteString
     }
 }
 
@@ -36,7 +34,9 @@ final class AuthenticationManager {
     @Published var userSession: FirebaseAuth.User?
 
     private init() {
-        self.userSession = Auth.auth().currentUser
+        DispatchQueue.main.async {
+            self.userSession = Auth.auth().currentUser
+        }
     }
         
     func getAuthenticatedUser() throws -> AuthDataResultModel {
@@ -120,7 +120,11 @@ extension AuthenticationManager {
             throw URLError(.badServerResponse)
         }
         
-        try await user.sendEmailVerification(beforeUpdatingEmail: email)
+        do {
+            try await user.sendEmailVerification(beforeUpdatingEmail: email)
+        } catch  {
+            print(error)
+        }
 
     }
 }
