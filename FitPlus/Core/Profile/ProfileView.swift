@@ -47,9 +47,7 @@ struct ProfileView: View {
                         Divider()
                         
                         makeProfileItemsRows()
-                        
-                        makeLogoutButton()
-                        
+                                                
                     }
                     .zIndex(1)
                     .padding(8)
@@ -131,37 +129,6 @@ extension ProfileView {
             Spacer()
         }
         .padding(.top, 32)
-    }
-    
-    @ViewBuilder
-    func makeLogoutButton() -> some View {
-        VStack {
-            Spacer()
-            
-            Button {
-                do {
-                    try AuthenticationManager.shared.signOut()
-                } catch {
-                    print("Failed to sign out")
-                }
-            } label: {
-                Text("Sair")
-                    .font(.headline)
-                    .fontWeight(.bold)
-                    .foregroundColor(.white)
-                    .frame(width: 120, height: 44)
-                    .background(Color.accentColor)
-                    .cornerRadius(22)
-                    .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 4)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 22)
-                            .stroke(Color.white.opacity(0.2), lineWidth: 1)
-                    )
-            }
-            .padding(.bottom, 16)
-
-        }
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
     }
     
 }

@@ -70,11 +70,13 @@ struct PersonalInfoView: View {
                 }
             }
             
-            Spacer()
-            
             if shouldShowTray {
                 makeTray()
             }
+            
+            Spacer()
+            
+            makeLogoutButton()
         }
         .padding()
         .frame(maxWidth: .infinity, alignment: .leading)
@@ -82,6 +84,37 @@ struct PersonalInfoView: View {
 }
 
 extension PersonalInfoView {
+    
+    @ViewBuilder
+    func makeLogoutButton() -> some View {
+        VStack {
+            Spacer()
+            
+            Button {
+                do {
+                    try AuthenticationManager.shared.signOut()
+                } catch {
+                    print("Failed to sign out")
+                }
+            } label: {
+                Text("Sair")
+                    .font(.headline)
+                    .fontWeight(.bold)
+                    .foregroundColor(.white)
+                    .frame(width: 120, height: 44)
+                    .background(Color.accentColor)
+                    .cornerRadius(22)
+                    .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 4)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 22)
+                            .stroke(Color.white.opacity(0.2), lineWidth: 1)
+                    )
+            }
+            .padding(.bottom, 16)
+
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+    }
     
     func makeTray() -> some View {
         VStack {
@@ -128,6 +161,8 @@ extension PersonalInfoView {
                             } else if field == FitPlusUser.CodingKeys.email.rawValue && !inputText.isEmpty {
                                 do {
                                     try await AuthenticationManager.shared.updateEmail(email: inputText)
+                                    let user = try await UserManager.shared.getUser(userId: userRepository.user?.userId ?? "")
+                                    userRepository.cacheUser(user)
                                     shouldShowTray.toggle()
                                     field = ""
                                     inputText = ""
@@ -145,7 +180,9 @@ extension PersonalInfoView {
                                         )
                                         
                                         let user = try await UserManager.shared.getUser(userId: userRepository.user?.userId ?? "")
-                                        userRepository.saveUser(user)
+                                        DispatchQueue.main.async {
+                                            userRepository.cacheUser(user)
+                                        }
                                         shouldShowTray.toggle()
                                         showTrayError = .idle
                                         field = ""
