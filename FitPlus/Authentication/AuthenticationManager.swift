@@ -69,12 +69,13 @@ final class AuthenticationManager {
         self.userSession = nil
     }
     
-    func delete() async throws {
+    func deleteUser() async throws {
         guard let user = Auth.auth().currentUser else {
-            throw URLError(.badURL)
+            throw NSError(domain: "UserManagerError", code: 401, userInfo: [NSLocalizedDescriptionKey : "Usuário não autenticado"])
         }
         
         try await user.delete()
+        self.userSession = nil
     }
 }
 

@@ -11,7 +11,7 @@ struct SettingsView: View {
     
     @State private var accountRows: [RowData] = [
         RowData(icon: "lock", text: "Mudar senha", destination: AnyView(Text("Mudar Senha"))),
-        RowData(icon: "trash", text: "Delete Account", destination: AnyView(Text("Delete Account View")))
+        RowData(icon: "trash", text: "Delete Account", destination: AnyView(DeleteAccountView()))
     ]
    
     @State private var aboutRows: [RowData] = [

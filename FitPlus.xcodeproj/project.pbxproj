@@ -16,6 +16,7 @@
 		9645B01D2B88099300EEEB85 /* FitPlusUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9645B01C2B88099300EEEB85 /* FitPlusUITests.swift */; };
 		9645B01F2B88099300EEEB85 /* FitPlusUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9645B01E2B88099300EEEB85 /* FitPlusUITestsLaunchTests.swift */; };
 		9645B02E2B880B3C00EEEB85 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9645B02D2B880B3C00EEEB85 /* LoginView.swift */; };
+		966838562CC4271700A39CF0 /* DeleteUserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966838552CC4271700A39CF0 /* DeleteUserProfileView.swift */; };
 		9688D3E02C9F332D003FF22F /* ListsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9688D3DF2C9F332D003FF22F /* ListsManager.swift */; };
 		9688D3E42CA46E7F003FF22F /* Query+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9688D3E32CA46E7F003FF22F /* Query+Extensions.swift */; };
 		9688D3E82CA8410B003FF22F /* OnFirstAppearViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9688D3E72CA8410B003FF22F /* OnFirstAppearViewModifier.swift */; };
@@ -67,8 +68,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		961FFAB02CB08BFF00EFD029 /* FitPlusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = FitPlusTests.xctest; path = "/Users/ioskaj/Desktop/Workspace/FitPlus/build/Debug-iphoneos/FitPlusTests.xctest"; sourceTree = "<absolute>"; };
-		961FFAB12CB08BFF00EFD029 /* FitPlusUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = FitPlusUITests.xctest; path = "/Users/ioskaj/Desktop/Workspace/FitPlus/build/Debug-iphoneos/FitPlusUITests.xctest"; sourceTree = "<absolute>"; };
 		961FFAB22CB5E01800EFD029 /* RoundedCorner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCorner.swift; sourceTree = "<group>"; };
 		961FFAB52CB5E11800EFD029 /* RowComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowComponent.swift; sourceTree = "<group>"; };
 		9645B0012B88098F00EEEB85 /* FitPlusApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitPlusApp.swift; sourceTree = "<group>"; };
@@ -78,6 +77,9 @@
 		9645B01C2B88099300EEEB85 /* FitPlusUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitPlusUITests.swift; sourceTree = "<group>"; };
 		9645B01E2B88099300EEEB85 /* FitPlusUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitPlusUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		9645B02D2B880B3C00EEEB85 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		966838532CC32CD500A39CF0 /* FitPlusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FitPlusTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		966838542CC32CD500A39CF0 /* FitPlusUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FitPlusUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		966838552CC4271700A39CF0 /* DeleteUserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteUserProfileView.swift; sourceTree = "<group>"; };
 		9688D3DF2C9F332D003FF22F /* ListsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsManager.swift; sourceTree = "<group>"; };
 		9688D3E12C9F3889003FF22F /* FitPlus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FitPlus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9688D3E32CA46E7F003FF22F /* Query+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Query+Extensions.swift"; sourceTree = "<group>"; };
@@ -154,6 +156,8 @@
 				9645B01B2B88099300EEEB85 /* FitPlusUITests */,
 				96C751F82C508F6D009C0DF1 /* Frameworks */,
 				9688D3E12C9F3889003FF22F /* FitPlus.app */,
+				966838532CC32CD500A39CF0 /* FitPlusTests.xctest */,
+				966838542CC32CD500A39CF0 /* FitPlusUITests.xctest */,
 			);
 			sourceTree = "<group>";
 		};
@@ -401,6 +405,7 @@
 			children = (
 				96C752162C556887009C0DF1 /* ProfileView.swift */,
 				96A909632CB75E8500798A28 /* PersonalInfoView.swift */,
+				966838552CC4271700A39CF0 /* DeleteUserProfileView.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -447,7 +452,7 @@
 			);
 			name = FitPlusTests;
 			productName = FitPlusTests;
-			productReference = 961FFAB02CB08BFF00EFD029 /* FitPlusTests.xctest */;
+			productReference = 966838532CC32CD500A39CF0 /* FitPlusTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		9645B0172B88099300EEEB85 /* FitPlusUITests */ = {
@@ -465,7 +470,7 @@
 			);
 			name = FitPlusUITests;
 			productName = FitPlusUITests;
-			productReference = 961FFAB12CB08BFF00EFD029 /* FitPlusUITests.xctest */;
+			productReference = 966838542CC32CD500A39CF0 /* FitPlusUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -550,6 +555,7 @@
 				9645B02E2B880B3C00EEEB85 /* LoginView.swift in Sources */,
 				9688D3EB2CAC6D94003FF22F /* RecipesView.swift in Sources */,
 				96C751DB2C4BFB62009C0DF1 /* TextFieldModifier.swift in Sources */,
+				966838562CC4271700A39CF0 /* DeleteUserProfileView.swift in Sources */,
 				961FFAB32CB5E01800EFD029 /* RoundedCorner.swift in Sources */,
 				9688D3E42CA46E7F003FF22F /* Query+Extensions.swift in Sources */,
 				96C752102C540F13009C0DF1 /* ContentView.swift in Sources */,

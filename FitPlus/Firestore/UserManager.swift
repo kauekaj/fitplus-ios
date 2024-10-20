@@ -137,4 +137,8 @@ final class UserManager {
         
         try await userDocument(userId: userId).updateData(data)
     }
+    
+    func deleteUserFirestoreData(userId: String) async throws {
+        try await userDocument(userId: userId).delete()
+    }
 }
