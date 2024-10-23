@@ -29,7 +29,7 @@ struct DeleteAccountView: View {
                 Text("Clique no botão abaixo para proceder com a exclusão definitiva da sua conta.")
                     .font(.headline)
                     .multilineTextAlignment(.center)
-                    .padding(.horizontal, 40)
+                    .padding(.horizontal, 16)
                 
                 Spacer()
                 
@@ -37,14 +37,14 @@ struct DeleteAccountView: View {
                     showAlert = true
                 }) {
                     Text("Deletar")
-                        .font(.title2)
+                        .font(.title3)
                         .fontWeight(.bold)
                         .foregroundColor(.white)
-                        .padding()
+                        .frame(height: 55)
                         .frame(maxWidth: .infinity)
                         .background(Color.red)
-                        .cornerRadius(10)
-                        .padding(.horizontal, 40)
+                        .cornerRadius(8)
+                        .padding(.horizontal, 16)
                 }
                 .alert(isPresented: $showAlert) {
                     Alert(

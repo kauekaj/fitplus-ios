@@ -91,7 +91,7 @@ extension LoginView {
                     }
 
                 } label: {
-                    Text("Login")
+                    Text("Entrar")
                         .modifier(ButtonLabelModifier())
                 }
                 .padding(.bottom)
