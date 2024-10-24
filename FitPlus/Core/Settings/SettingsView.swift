@@ -32,9 +32,9 @@ struct SettingsView: View {
                             RowComponent(verticalPadding: 1, horizontalPadding: 0, icon: true, rowData: rowData)
                         }
                     }
+                    .listRowSeparator(.automatic)
                     .padding(0)
                 }
-                .listRowSeparator(.visible)
                 .padding(0)
                 
 
@@ -44,6 +44,7 @@ struct SettingsView: View {
                             RowComponent(verticalPadding: 1, horizontalPadding: 0, icon: true, rowData: rowData)
                         }
                     }
+                    .listRowSeparator(.automatic)
                     .padding(0)
                 }
                 .listRowSeparator(.visible)

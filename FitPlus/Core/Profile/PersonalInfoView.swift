@@ -27,42 +27,30 @@ struct PersonalInfoView: View {
     @EnvironmentObject var userRepository: UserRepository
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 20) {
+        VStack(alignment: .leading, spacing: 8) {
             
             Text("Informações Pessoais")
                 .font(.title)
                 .fontWeight(.semibold)
                 .padding(.bottom, 8)
+
+            makeUserDataRow(
+                label: "Nome:",
+                value: userRepository.user?.fullName ?? "",
+                field: FitPlusUser.CodingKeys.fullName.rawValue
+            )
             
-            HStack {
-                Text("Nome:")
-                Text(userRepository.user?.fullName ?? "")
-                Spacer()
-                Button("Editar") {
-                    shouldShowTray.toggle()
-                    field = FitPlusUser.CodingKeys.fullName.rawValue
-                }
-            }
-            
-            HStack {
-                Text("Email:")
-                Text(userRepository.user?.email ?? "")
-                Spacer()
-                Button("Editar") {
-                    shouldShowTray.toggle()
-                    field = FitPlusUser.CodingKeys.email.rawValue
-                }
-            }
-            
-            HStack {
-                Text("Usuário:")
-                Text(userRepository.user?.userName ?? "")
-                Spacer()
-                Button("Editar") {
-                    shouldShowTray.toggle()
-                    field = FitPlusUser.CodingKeys.userName.rawValue
-                }
-            }
+            makeUserDataRow(
+                label: "Email:",
+                value: userRepository.user?.email ?? "",
+                field: FitPlusUser.CodingKeys.email.rawValue
+            )
+
+            makeUserDataRow(
+                label: "Usuário:",
+                value: userRepository.user?.userName ?? "",
+                field: FitPlusUser.CodingKeys.userName.rawValue
+            )
             
             if shouldShowTray {
                 makeTray()
@@ -78,6 +66,28 @@ struct PersonalInfoView: View {
 }
 
 extension PersonalInfoView {
+    
+    @ViewBuilder
+    func makeUserDataRow(label: String, value: String, field: String) -> some View {
+        HStack {
+            Text(label)
+                .fontWeight(.bold)
+            Text(value)
+            Spacer()
+            Button("Editar") {
+                shouldShowTray.toggle()
+                self.field = field
+            }
+            .fontWeight(.bold)
+        }
+        .padding()
+        .background(.clear)
+        .cornerRadius(4)
+        .overlay(
+            RoundedRectangle(cornerRadius: 4)
+                .stroke(Color.gray, lineWidth: 0.3)
+        )
+    }
     
     @ViewBuilder
     func makeLogoutButton() -> some View {
