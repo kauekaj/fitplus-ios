@@ -40,7 +40,7 @@ struct DeleteAccountView: View {
                         .font(.title3)
                         .fontWeight(.bold)
                         .foregroundColor(.white)
-                        .frame(height: 55)
+                        .frame(height: 48)
                         .frame(maxWidth: .infinity)
                         .background(Color.red)
                         .cornerRadius(8)

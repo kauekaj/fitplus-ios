@@ -22,6 +22,7 @@ final class ContentViewModel: ObservableObject {
         setupSubscribers()
     }
     
+    @MainActor
     private func setupSubscribers() {
         AuthenticationManager.shared.$userSession.sink { [weak self] userSession in
             self?.userSession = userSession

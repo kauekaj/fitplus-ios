@@ -64,16 +64,6 @@ struct PersonalInfoView: View {
                 }
             }
             
-            HStack {
-                Text("Senha:")
-                Text("******")
-                Spacer()
-                Button("Editar") {
-                    shouldShowTray.toggle()
-                    field = "password"
-                }
-            }
-            
             if shouldShowTray {
                 makeTray()
             }
@@ -105,12 +95,12 @@ extension PersonalInfoView {
                     .font(.headline)
                     .fontWeight(.bold)
                     .foregroundColor(.white)
-                    .frame(width: 120, height: 44)
+                    .frame(width: 120, height: 48)
                     .background(Color.accentColor)
-                    .cornerRadius(22)
-                    .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 4)
+                    .cornerRadius(16)
+                    .shadow(color: Color.black.opacity(0.2), radius: 8, x: 0, y: 4)
                     .overlay(
-                        RoundedRectangle(cornerRadius: 22)
+                        RoundedRectangle(cornerRadius: 16)
                             .stroke(Color.white.opacity(0.2), lineWidth: 1)
                     )
             }
@@ -126,15 +116,9 @@ extension PersonalInfoView {
                 Text("Adicionar mudança")
                     .font(.headline)
                 
-                if field == "password" {
-                    SecureField("Digite aqui...", text: $inputText)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .padding(.horizontal)
-                } else {
-                    TextField("Digite aqui...", text: $inputText)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .padding(.horizontal)
-                }
+                TextField("Digite aqui...", text: $inputText)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .padding(.horizontal)
                 
                 if showTrayError != .idle {
                     Text(showTrayError.rawValue)
@@ -207,7 +191,7 @@ extension PersonalInfoView {
             .padding()
             .background(Color(.systemBackground))
             .cornerRadius(16)
-            .shadow(radius: 10)
+            .shadow(radius: 8)
             .frame(maxWidth: .infinity)
             .transition(.move(edge: .top))
             
