@@ -81,8 +81,8 @@
 		9645B01C2B88099300EEEB85 /* FitPlusUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitPlusUITests.swift; sourceTree = "<group>"; };
 		9645B01E2B88099300EEEB85 /* FitPlusUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitPlusUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		9645B02D2B880B3C00EEEB85 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
-		966838532CC32CD500A39CF0 /* FitPlusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FitPlusTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		966838542CC32CD500A39CF0 /* FitPlusUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FitPlusUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		966838532CC32CD500A39CF0 /* FitPlusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = FitPlusTests.xctest; path = "/Users/ioskaj/Desktop/Workspace/FitPlus/build/Debug-iphoneos/FitPlusTests.xctest"; sourceTree = "<absolute>"; };
+		966838542CC32CD500A39CF0 /* FitPlusUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = FitPlusUITests.xctest; path = "/Users/ioskaj/Desktop/Workspace/FitPlus/build/Debug-iphoneos/FitPlusUITests.xctest"; sourceTree = "<absolute>"; };
 		966838552CC4271700A39CF0 /* DeleteUserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteUserProfileView.swift; sourceTree = "<group>"; };
 		966838572CC9AF3500A39CF0 /* ChangePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordView.swift; sourceTree = "<group>"; };
 		9688D3DF2C9F332D003FF22F /* ListsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsManager.swift; sourceTree = "<group>"; };
@@ -95,6 +95,7 @@
 		96A909662CB87FB400798A28 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		96BA0A162CCD26EC00B13CAD /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		96BA0A1A2CCD625400B13CAD /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
+		96BA0A1C2CCE9E2400B13CAD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		96C27A552CB5EBCC00CC2820 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		96C751CB2C497ED1009C0DF1 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		96C751CE2C4980A7009C0DF1 /* TabbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarView.swift; sourceTree = "<group>"; };
@@ -164,15 +165,13 @@
 				9645B01B2B88099300EEEB85 /* FitPlusUITests */,
 				96C751F82C508F6D009C0DF1 /* Frameworks */,
 				9688D3E12C9F3889003FF22F /* FitPlus.app */,
-				966838532CC32CD500A39CF0 /* FitPlusTests.xctest */,
-				966838542CC32CD500A39CF0 /* FitPlusUITests.xctest */,
 			);
 			sourceTree = "<group>";
 		};
 		9645B0002B88098F00EEEB85 /* FitPlus */ = {
 			isa = PBXGroup;
 			children = (
-				96BA0A152CCD26CE00B13CAD /* Storage */,
+				96BA0A1C2CCE9E2400B13CAD /* Info.plist */,
 				96A909652CB87FA100798A28 /* DataSource */,
 				96C751F42C50880D009C0DF1 /* FitPlus.entitlements */,
 				96C751E22C4C15DC009C0DF1 /* App */,
@@ -388,6 +387,7 @@
 		96C752032C51D49D009C0DF1 /* Firestore */ = {
 			isa = PBXGroup;
 			children = (
+				96BA0A152CCD26CE00B13CAD /* Storage */,
 				96C752042C51D4B3009C0DF1 /* UserManager.swift */,
 				9688D3DF2C9F332D003FF22F /* ListsManager.swift */,
 			);
@@ -772,8 +772,10 @@
 				DEVELOPMENT_TEAM = Y65UM8G3U8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FitPlus/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Fit +";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Este app precisa acessar a câmera para tirar fotos de perfil";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -810,8 +812,10 @@
 				DEVELOPMENT_TEAM = Y65UM8G3U8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FitPlus/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Fit +";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Este app precisa acessar a câmera para tirar fotos de perfil";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

@@ -51,7 +51,6 @@ struct ProfileView: View {
                         Divider()
                         
                         makeProfileItemsRows()
-                                                
                     }
                     .zIndex(1)
                     .padding(8)
@@ -73,20 +72,9 @@ struct ProfileView: View {
 }
 
 extension ProfileView {
-   
+    
     @ViewBuilder
-    func makeProfileImage() -> some View {
-        Circle()
-            .strokeBorder(Color.white, lineWidth: 2)
-            .background(Circle()
-            .foregroundColor(.gray))
-            .frame(width: 150, height: 150)
-            .overlay(
-                profileImage()
-            )
-            .offset(y: -(UIScreen.main.bounds.height * 0.25))
-
-        
+    func makeCameraButton() -> some View {
         Button(action: {
             presentSheet.toggle()
         }) {
@@ -98,17 +86,30 @@ extension ProfileView {
                 .background(.black.opacity(0.5))
                 .clipShape(Circle())
                 .foregroundColor(.white)
-                
         }
-        .offset(
-            x: (UIScreen.main.bounds.width * 0.10),
-            y: -(UIScreen.main.bounds.height * 0.16)
-        )
-        .zIndex(2)
     }
     
     @ViewBuilder
-
+    func makeProfileImage() -> some View {
+        Circle()
+            .strokeBorder(Color.white, lineWidth: 2)
+            .background(Circle()
+                .foregroundColor(.gray))
+            .frame(width: 150, height: 150)
+            .overlay(
+                profileImage()
+            )
+            .overlay(
+                makeCameraButton()
+                    .offset(
+                        x: (UIScreen.main.bounds.width * 0.10),
+                        y: (UIScreen.main.bounds.height * 0.07)
+                    )
+            )
+            .offset(y: -(UIScreen.main.bounds.height * 0.25))
+    }
+    
+    @ViewBuilder
     func profileImage() -> some View {
         if let urlString = userRepository.user?.profileImagePathUrl, let url = URL(string: urlString) {
             AnyView(AsyncImage(url: url) { image in
@@ -200,9 +201,8 @@ final class ProfileImagePickerViewModel: ObservableObject {
 }
 
 struct ProfileImagePickerView: View {
-//    let images = ["profileAvatar1", "photo2", "photo3", "photo4", "photo5", "photo6", "photo7", "photo8", "photo9", "photo10", "photo11", "photo12", "photo13", "photo14", "photo15", "photo16", "photo17", "photo18"]
-    @State private var avatarImages = ProfileAvatarManager.shared.getAvatarImages()
 
+    @State private var avatarImages = ProfileAvatarManager.shared.getAvatarImages()
     @State private var showSheet = false
     @State private var selectedImage: UIImage? = nil
     var didSelectImage: (String) -> Void
@@ -227,7 +227,7 @@ struct ProfileImagePickerView: View {
                 VStack(spacing: 8) {
                     Text("Escolha uma nova foto de perfil")
                         .font(.headline)
-                        .padding(.vertical, 16)
+                        .padding(.top, 16)
                     
                     HStack {
                         Button(action: {
@@ -235,44 +235,46 @@ struct ProfileImagePickerView: View {
                         }) {
                             HStack {
                                 Image(systemName: "camera")
-                                    .font(.title)
-                                    .padding(.trailing, 8)
+                                    .font(.title2)
+                                    .foregroundColor(.white)
+                                    .padding(8)
                                 Text("Tirar uma nova foto")
-                                    .fontWeight(.semibold)
+                                    .font(.subheadline)
+                                    .foregroundColor(.white)
                             }
-                            .padding()
+                            .padding(.horizontal)
+                            .padding(.vertical, 8)
                             .background(Color.accentColor)
-                            .foregroundColor(.white)
-                            .cornerRadius(8)
+                            .cornerRadius(24)
                         }
                         .sheet(isPresented: $showSheet) {
                             ImagePicker(selectedImage: $selectedImage, sourceType: .camera)
                         }
                         
-                        Button(action: {
-                            // Intentionally not implemented
-                        }) {
+                        PhotosPicker(
+                            selection: $selectedLibraryImage,
+                            matching: .images,
+                            photoLibrary: .shared()
+                        ) {
                             HStack {
-                                PhotosPicker(
-                                    selection: $selectedLibraryImage,
-                                    matching: .images,
-                                    photoLibrary: .shared()
-                                ) {
-                                    HStack {
-                                        Image(systemName: "photo.on.rectangle")
-                                            .font(.title)
-                                            .padding(.trailing, 8)
-                                        Text("Selecionar uma foto")
-                                    }
-                                }
+                                Image(systemName: "photo.on.rectangle")
+                                    .font(.title2)
+                                    .foregroundColor(.white)
+                                    .padding(8)
+                                Text("Selecionar uma foto")
+                                    .font(.subheadline)
+                                    .foregroundColor(.white)
                             }
-                            .padding()
+                            .padding(.horizontal)
+                            .padding(.vertical, 8)
                             .background(Color.accentColor)
-                            .foregroundColor(.white)
-                            .cornerRadius(8)
+                            .cornerRadius(24)
                         }
-                        
                     }
+                    .padding()
+                    
+                    Divider()
+                        .padding()
                     
                     ScrollView {
                         LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 3), spacing: 16) {
@@ -307,6 +309,22 @@ struct ProfileImagePickerView: View {
                         
                     }
                     .scrollIndicators(.hidden)
+                }
+                .onChange(of: selectedImage) { newValue in
+                    if let newValue, let user = userRepository.user {
+                        Task {
+                            do {
+                                let success = try await viewModel.saveProfileImage(user: user, userRepository: userRepository, image: newValue)
+                                if success {
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                                        presentationMode.wrappedValue.dismiss()
+                                    }
+                                }
+                            } catch {
+                                print("Erro ao salvar imagem: \(error)")
+                            }
+                        }
+                    }
                 }
                 .onChange(of: selectedLibraryImage) { newValue in
                     if let newValue, let user = userRepository.user {
@@ -382,7 +400,7 @@ class ProfileAvatarManager {
         var images: [String] = []
         
         for i in 1...9 {
-            var image = "profileAvatar\(i)"
+            let image = "profileAvatar\(i)"
             images.append(image)
         }
         
