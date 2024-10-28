@@ -9,12 +9,13 @@ import SwiftUI
 
 enum TrayError: String {
     case idle = ""
+    case emptyField = "O campo está vazio"
+    case tryAgainLater = "Erro ao atualizar. Tente novamente mais tarde"
     case invalidEmail = "Email não é válido"
     case isEmailRegistered = "Email já registrado"
-    case emptyField = "O campo está vazio"
+    case isUserNameRegistered = "Nome de usuário já registrado"
     case passwordDoesNotMatch = "As senhas estão diferentes."
     case fillOutEveryField = "Gentileza preencher todos os campos."
-
 }
 
 struct PersonalInfoView: View {
@@ -33,7 +34,7 @@ struct PersonalInfoView: View {
                 .font(.title)
                 .fontWeight(.semibold)
                 .padding(.bottom, 8)
-
+            
             makeUserDataRow(
                 label: "Nome:",
                 value: userRepository.user?.fullName ?? "",
@@ -45,7 +46,7 @@ struct PersonalInfoView: View {
                 value: userRepository.user?.email ?? "",
                 field: FitPlusUser.CodingKeys.email.rawValue
             )
-
+            
             makeUserDataRow(
                 label: "Usuário:",
                 value: userRepository.user?.userName ?? "",
@@ -115,7 +116,7 @@ extension PersonalInfoView {
                     )
             }
             .padding(.bottom, 16)
-
+            
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
     }
@@ -149,49 +150,19 @@ extension PersonalInfoView {
                     
                     Button("Salvar") {
                         Task {
-                            if field == "password" && !inputText.isEmpty {
-                                do {
-                                    try await AuthenticationManager.shared.updatePassword(password: inputText)
-                                    shouldShowTray.toggle()
-                                } catch {
-                                    print("Error updating password")
-                                }
-                            } else if field == FitPlusUser.CodingKeys.email.rawValue && !inputText.isEmpty {
-                                do {
-                                    try await AuthenticationManager.shared.updateEmail(email: inputText)
-                                    let user = try await UserManager.shared.getUser(userId: userRepository.user?.userId ?? "")
-                                    userRepository.cacheUser(user)
-                                    shouldShowTray.toggle()
-                                    field = ""
-                                    inputText = ""
-                                } catch {
-                                    print("Email already registered")
-                                    showTrayError = .isEmailRegistered
-                                }
-                            } else {
-                                if !inputText.isEmpty {
-                                    do {
-                                        try await UserManager.shared.updateUserData(
-                                            userId: userRepository.user?.userId ?? "",
-                                            field: field,
-                                            value: inputText
-                                        )
-                                        
-                                        let user = try await UserManager.shared.getUser(userId: userRepository.user?.userId ?? "")
-                                        DispatchQueue.main.async {
-                                            userRepository.cacheUser(user)
-                                        }
-                                        shouldShowTray.toggle()
-                                        showTrayError = .idle
-                                        field = ""
-                                        inputText = ""
-                                        
-                                    } catch  {
-                                        print("Error updating data.")
-                                    }
-                                } else {
+                            if !inputText.isEmpty {
+                                switch field {
+                                case FitPlusUser.CodingKeys.email.rawValue:
+                                    try await updateEmail()
+                                case FitPlusUser.CodingKeys.userName.rawValue:
+                                    try await updateUserName()
+                                case FitPlusUser.CodingKeys.fullName.rawValue:
+                                    try await updateFullName()
+                                default:
                                     showTrayError = .emptyField
                                 }
+                            } else {
+                                showTrayError = .emptyField
                             }
                         }
                     }
@@ -209,5 +180,67 @@ extension PersonalInfoView {
         }
         .padding()
         .animation(.easeInOut, value: shouldShowTray)
+    }
+    
+    func updateEmail() async throws  {
+        do {
+            try await AuthenticationManager.shared.updateEmail(email: inputText)
+            
+            try await cacheUser(userRepository: userRepository)
+            
+            shouldShowTray.toggle()
+            field = ""
+            inputText = ""
+        } catch {
+            print("Email already registered")
+            showTrayError = .isEmailRegistered
+        }
+    }
+    
+    func updateUserName() async throws  {
+        do {
+            try await UserNameManager.shared.updateUserName(newUserName: inputText.lowercased(), userId: userRepository.user?.userId ?? "")
+            
+            try await UserManager.shared.updateUserData(
+                userId: userRepository.user?.userId ?? "",
+                field: field,
+                value: inputText
+            )
+            
+            try await cacheUser(userRepository: userRepository)
+            
+            shouldShowTray.toggle()
+            showTrayError = .idle
+            field = ""
+            inputText = ""
+        } catch  {
+            print("Error updating userName. \(error)")
+            showTrayError = .isUserNameRegistered
+        }
+    }
+    
+    func updateFullName() async throws  {
+        do {
+            try await UserManager.shared.updateUserData(
+                userId: userRepository.user?.userId ?? "",
+                field: field,
+                value: inputText
+            )
+            
+            try await cacheUser(userRepository: userRepository)
+            
+            shouldShowTray.toggle()
+            showTrayError = .idle
+            field = ""
+            inputText = ""
+        } catch  {
+            print("Error updating userName. \(error)")
+            showTrayError = .tryAgainLater
+        }
+    }
+    
+    func cacheUser(userRepository: UserRepository) async throws{
+        let user = try await UserManager.shared.getUser(userId: userRepository.user?.userId ?? "")
+        userRepository.cacheUser(user)
     }
 }

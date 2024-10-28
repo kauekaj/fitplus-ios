@@ -28,6 +28,7 @@
 		96BA0A172CCD26EC00B13CAD /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BA0A162CCD26EC00B13CAD /* StorageManager.swift */; };
 		96BA0A192CCD271B00B13CAD /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 96BA0A182CCD271B00B13CAD /* FirebaseStorage */; };
 		96BA0A1B2CCD625400B13CAD /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BA0A1A2CCD625400B13CAD /* UIImage+Extensions.swift */; };
+		96BA0A202CCFD1A900B13CAD /* UserNameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BA0A1F2CCFD1A900B13CAD /* UserNameManager.swift */; };
 		96C27A562CB5EBCC00CC2820 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C27A552CB5EBCC00CC2820 /* SettingsView.swift */; };
 		96C751CC2C497ED1009C0DF1 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C751CB2C497ED1009C0DF1 /* HomeView.swift */; };
 		96C751CF2C4980A7009C0DF1 /* TabbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C751CE2C4980A7009C0DF1 /* TabbarView.swift */; };
@@ -81,8 +82,6 @@
 		9645B01C2B88099300EEEB85 /* FitPlusUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitPlusUITests.swift; sourceTree = "<group>"; };
 		9645B01E2B88099300EEEB85 /* FitPlusUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitPlusUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		9645B02D2B880B3C00EEEB85 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
-		966838532CC32CD500A39CF0 /* FitPlusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = FitPlusTests.xctest; path = "/Users/ioskaj/Desktop/Workspace/FitPlus/build/Debug-iphoneos/FitPlusTests.xctest"; sourceTree = "<absolute>"; };
-		966838542CC32CD500A39CF0 /* FitPlusUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = FitPlusUITests.xctest; path = "/Users/ioskaj/Desktop/Workspace/FitPlus/build/Debug-iphoneos/FitPlusUITests.xctest"; sourceTree = "<absolute>"; };
 		966838552CC4271700A39CF0 /* DeleteUserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteUserProfileView.swift; sourceTree = "<group>"; };
 		966838572CC9AF3500A39CF0 /* ChangePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordView.swift; sourceTree = "<group>"; };
 		9688D3DF2C9F332D003FF22F /* ListsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsManager.swift; sourceTree = "<group>"; };
@@ -96,6 +95,9 @@
 		96BA0A162CCD26EC00B13CAD /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		96BA0A1A2CCD625400B13CAD /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		96BA0A1C2CCE9E2400B13CAD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		96BA0A1D2CCFB4B700B13CAD /* FitPlusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FitPlusTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		96BA0A1E2CCFB4B700B13CAD /* FitPlusUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FitPlusUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		96BA0A1F2CCFD1A900B13CAD /* UserNameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNameManager.swift; sourceTree = "<group>"; };
 		96C27A552CB5EBCC00CC2820 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		96C751CB2C497ED1009C0DF1 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		96C751CE2C4980A7009C0DF1 /* TabbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarView.swift; sourceTree = "<group>"; };
@@ -165,6 +167,8 @@
 				9645B01B2B88099300EEEB85 /* FitPlusUITests */,
 				96C751F82C508F6D009C0DF1 /* Frameworks */,
 				9688D3E12C9F3889003FF22F /* FitPlus.app */,
+				96BA0A1D2CCFB4B700B13CAD /* FitPlusTests.xctest */,
+				96BA0A1E2CCFB4B700B13CAD /* FitPlusUITests.xctest */,
 			);
 			sourceTree = "<group>";
 		};
@@ -390,6 +394,7 @@
 				96BA0A152CCD26CE00B13CAD /* Storage */,
 				96C752042C51D4B3009C0DF1 /* UserManager.swift */,
 				9688D3DF2C9F332D003FF22F /* ListsManager.swift */,
+				96BA0A1F2CCFD1A900B13CAD /* UserNameManager.swift */,
 			);
 			path = Firestore;
 			sourceTree = "<group>";
@@ -472,7 +477,7 @@
 			);
 			name = FitPlusTests;
 			productName = FitPlusTests;
-			productReference = 966838532CC32CD500A39CF0 /* FitPlusTests.xctest */;
+			productReference = 96BA0A1D2CCFB4B700B13CAD /* FitPlusTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		9645B0172B88099300EEEB85 /* FitPlusUITests */ = {
@@ -490,7 +495,7 @@
 			);
 			name = FitPlusUITests;
 			productName = FitPlusUITests;
-			productReference = 966838542CC32CD500A39CF0 /* FitPlusUITests.xctest */;
+			productReference = 96BA0A1E2CCFB4B700B13CAD /* FitPlusUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -604,6 +609,7 @@
 				96C7520E2C540CDB009C0DF1 /* ContentViewModel.swift in Sources */,
 				96C27A562CB5EBCC00CC2820 /* SettingsView.swift in Sources */,
 				96BA0A172CCD26EC00B13CAD /* StorageManager.swift in Sources */,
+				96BA0A202CCFD1A900B13CAD /* UserNameManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

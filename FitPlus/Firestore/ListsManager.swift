@@ -54,7 +54,6 @@ struct ListModel: Codable, Identifiable, Hashable, Equatable {
 
 final class ListsManager {
     
-    // Remover este Singleton após o teste
     static let shared = ListsManager()
     private init() { }
     
