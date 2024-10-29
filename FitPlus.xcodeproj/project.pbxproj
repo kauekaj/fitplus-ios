@@ -29,6 +29,7 @@
 		96BA0A192CCD271B00B13CAD /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 96BA0A182CCD271B00B13CAD /* FirebaseStorage */; };
 		96BA0A1B2CCD625400B13CAD /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BA0A1A2CCD625400B13CAD /* UIImage+Extensions.swift */; };
 		96BA0A202CCFD1A900B13CAD /* UserNameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BA0A1F2CCFD1A900B13CAD /* UserNameManager.swift */; };
+		96BA0A252CD0023900B13CAD /* MythOrTruthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BA0A242CD0023900B13CAD /* MythOrTruthView.swift */; };
 		96C27A562CB5EBCC00CC2820 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C27A552CB5EBCC00CC2820 /* SettingsView.swift */; };
 		96C751CC2C497ED1009C0DF1 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C751CB2C497ED1009C0DF1 /* HomeView.swift */; };
 		96C751CF2C4980A7009C0DF1 /* TabbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C751CE2C4980A7009C0DF1 /* TabbarView.swift */; };
@@ -98,6 +99,7 @@
 		96BA0A1D2CCFB4B700B13CAD /* FitPlusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FitPlusTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		96BA0A1E2CCFB4B700B13CAD /* FitPlusUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FitPlusUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		96BA0A1F2CCFD1A900B13CAD /* UserNameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNameManager.swift; sourceTree = "<group>"; };
+		96BA0A242CD0023900B13CAD /* MythOrTruthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MythOrTruthView.swift; sourceTree = "<group>"; };
 		96C27A552CB5EBCC00CC2820 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		96C751CB2C497ED1009C0DF1 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		96C751CE2C4980A7009C0DF1 /* TabbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarView.swift; sourceTree = "<group>"; };
@@ -272,6 +274,14 @@
 			path = Storage;
 			sourceTree = "<group>";
 		};
+		96BA0A232CD0022800B13CAD /* MythOrTruth */ = {
+			isa = PBXGroup;
+			children = (
+				96BA0A242CD0023900B13CAD /* MythOrTruthView.swift */,
+			);
+			path = MythOrTruth;
+			sourceTree = "<group>";
+		};
 		96C27A542CB5EBA000CC2820 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -309,6 +319,7 @@
 		96C751D02C4981B7009C0DF1 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				96BA0A232CD0022800B13CAD /* MythOrTruth */,
 				9688D3E92CAC6D5E003FF22F /* Recipes */,
 				96C751EE2C4D7A5B009C0DF1 /* Lists */,
 				96C27A542CB5EBA000CC2820 /* Settings */,
@@ -579,6 +590,7 @@
 				9688D3E82CA8410B003FF22F /* OnFirstAppearViewModifier.swift in Sources */,
 				9645B02E2B880B3C00EEEB85 /* LoginView.swift in Sources */,
 				9688D3EB2CAC6D94003FF22F /* RecipesView.swift in Sources */,
+				96BA0A252CD0023900B13CAD /* MythOrTruthView.swift in Sources */,
 				96C751DB2C4BFB62009C0DF1 /* TextFieldModifier.swift in Sources */,
 				966838562CC4271700A39CF0 /* DeleteUserProfileView.swift in Sources */,
 				961FFAB32CB5E01800EFD029 /* RoundedCorner.swift in Sources */,
