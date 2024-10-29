@@ -1,5 +1,5 @@
 //
-//  CustomNavigationBar.swift
+//  DSMCustomNavigationBar.swift
 //  FitPlus
 //
 //  Created by Kaue de Assis Jacyntho on 29/10/24.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CustomNavigationBar<Content: View>: View {
+struct DSMCustomNavigationBar<Content: View>: View {
     var title: String
     var rightIcon: String?
     var rightAction: (() -> Void)?
