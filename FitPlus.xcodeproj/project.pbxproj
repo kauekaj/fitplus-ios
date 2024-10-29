@@ -31,6 +31,7 @@
 		96BA0A202CCFD1A900B13CAD /* UserNameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BA0A1F2CCFD1A900B13CAD /* UserNameManager.swift */; };
 		96BA0A252CD0023900B13CAD /* MythOrTruthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BA0A242CD0023900B13CAD /* MythOrTruthView.swift */; };
 		96BA0A272CD15B0C00B13CAD /* CustomNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BA0A262CD15B0C00B13CAD /* CustomNavigationBar.swift */; };
+		96BA0A292CD17A9500B13CAD /* DSMButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BA0A282CD17A9400B13CAD /* DSMButton.swift */; };
 		96C27A562CB5EBCC00CC2820 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C27A552CB5EBCC00CC2820 /* SettingsView.swift */; };
 		96C751CC2C497ED1009C0DF1 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C751CB2C497ED1009C0DF1 /* HomeView.swift */; };
 		96C751CF2C4980A7009C0DF1 /* TabbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C751CE2C4980A7009C0DF1 /* TabbarView.swift */; };
@@ -102,6 +103,7 @@
 		96BA0A1F2CCFD1A900B13CAD /* UserNameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNameManager.swift; sourceTree = "<group>"; };
 		96BA0A242CD0023900B13CAD /* MythOrTruthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MythOrTruthView.swift; sourceTree = "<group>"; };
 		96BA0A262CD15B0C00B13CAD /* CustomNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationBar.swift; sourceTree = "<group>"; };
+		96BA0A282CD17A9400B13CAD /* DSMButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSMButton.swift; sourceTree = "<group>"; };
 		96C27A552CB5EBCC00CC2820 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		96C751CB2C497ED1009C0DF1 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		96C751CE2C4980A7009C0DF1 /* TabbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarView.swift; sourceTree = "<group>"; };
@@ -307,6 +309,7 @@
 			isa = PBXGroup;
 			children = (
 				96BA0A262CD15B0C00B13CAD /* CustomNavigationBar.swift */,
+				96BA0A282CD17A9400B13CAD /* DSMButton.swift */,
 			);
 			path = DSM;
 			sourceTree = "<group>";
@@ -592,6 +595,7 @@
 			files = (
 				9688D3E82CA8410B003FF22F /* OnFirstAppearViewModifier.swift in Sources */,
 				9645B02E2B880B3C00EEEB85 /* LoginView.swift in Sources */,
+				96BA0A292CD17A9500B13CAD /* DSMButton.swift in Sources */,
 				9688D3EB2CAC6D94003FF22F /* RecipesView.swift in Sources */,
 				96BA0A252CD0023900B13CAD /* MythOrTruthView.swift in Sources */,
 				96C751DB2C4BFB62009C0DF1 /* TextFieldModifier.swift in Sources */,

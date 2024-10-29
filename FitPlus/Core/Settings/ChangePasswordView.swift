@@ -19,7 +19,7 @@ struct ChangePasswordView: View {
     @State private var forgotPasswordInputText: String = ""
     @State private var shouldShowTray = false
     @State private var isResetPasswordEmailSent = false
-    @State private var isLoading = false
+    @State private var buttonState: ButtonState = .idle
     @State private var dotCount = 0
 
     @EnvironmentObject var userRepository: UserRepository
@@ -44,37 +44,10 @@ struct ChangePasswordView: View {
                 SecureField("Confirme sua nova senha", text: $confirmNewPassword)
                     .modifier(TextFieldModifier())
                 
-                Button(action: {
-                    withAnimation {
-                        isLoading.toggle()
-                    }
+                DSMButton(title: "Alterar senha", state: $buttonState) {
                     changePassword()
-                }) {
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 8)
-                            .fill(Color.accentColor)
-                            .frame(height: 48)
-                        
-                        if isLoading {
-                            HStack(spacing:4) {
-                                ForEach(0..<3) { index in
-                                    Circle()
-                                        .frame(width: index == dotCount ? 10 : 7, height: index == dotCount ? 10 : 7)
-                                        .foregroundColor(.white)
-                                }
-                            }
-                            .onAppear {
-                                startLoadingAnimation()
-                            }
-                        } else {
-                            Text("Alterar senha")
-                                .fontWeight(.bold)
-                                .foregroundColor(.white)
-                        }
-                    }
-                    .frame(maxWidth: .infinity)
                 }
-                
+
                 Button(action: {
                     shouldShowTray = true
                 }) {
@@ -101,12 +74,12 @@ struct ChangePasswordView: View {
     func changePassword() {
         if currentPassword.isEmpty || newPassword.isEmpty {
             showError("Preencha todos os campos!")
-            isLoading = false
+            buttonState = .idle
         } else if newPassword != confirmNewPassword {
-            isLoading = false
+            buttonState = .idle
             showError("As nova senha e a confirmação estão diferentes.")
         } else if newPassword == currentPassword {
-            isLoading = false
+            buttonState = .idle
             showError("A nova senha não pode ser igual à antiga!")
         } else {
             Task {
@@ -114,13 +87,13 @@ struct ChangePasswordView: View {
                     try await AuthenticationManager.shared.signInUser(email: userRepository.user?.email ?? "", password: currentPassword)
                     
                     try await AuthenticationManager.shared.updatePassword(password: newPassword)
-                    isLoading = false
+                    buttonState = .idle
                     currentPassword = ""
                     newPassword = ""
                     confirmNewPassword = ""
                     showSuccess("Senha alterada com sucesso!")
                 } catch {
-                    isLoading.toggle()
+                    buttonState = .idle
                     showErrorFirebase(error: error.localizedDescription)
                     print("Error updating password \(error.localizedDescription)")
                 }
@@ -161,16 +134,6 @@ struct ChangePasswordView: View {
         DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
             withAnimation {
                 showToast = false
-            }
-        }
-    }
-
-    func startLoadingAnimation() {
-        Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { timer in
-            if !isLoading {
-                timer.invalidate()
-            } else {
-                dotCount = (dotCount + 1) % 3
             }
         }
     }
