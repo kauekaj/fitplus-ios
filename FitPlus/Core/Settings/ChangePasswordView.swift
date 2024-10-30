@@ -117,11 +117,6 @@ struct ChangePasswordView: View {
         }
     }
     
-    enum FirebaseError: String {
-        case credentialError = "The supplied auth credential is malformed or has expired."
-        case passwordError = "The password must be 6 characters long or more."
-    }
-    
     func configToast(type: ToastType, message: String) {
         toastType = type
         toastMessage = message

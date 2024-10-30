@@ -97,7 +97,7 @@ struct GrocerShopListView: View {
     
     @ObservedObject var viewModel: GrocerShopListViewModel
     @State var list: ListModel
-    @State private var showTrayError: TrayError = .idle
+    @State private var showTrayError: ToastError = .idle
     @State private var showingTray = false
     @State private var newItemName = ""
 

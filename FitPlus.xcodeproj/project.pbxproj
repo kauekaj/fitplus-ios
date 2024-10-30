@@ -33,6 +33,7 @@
 		96BA0A272CD15B0C00B13CAD /* DSMCustomNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BA0A262CD15B0C00B13CAD /* DSMCustomNavigationBar.swift */; };
 		96BA0A292CD17A9500B13CAD /* DSMButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BA0A282CD17A9400B13CAD /* DSMButton.swift */; };
 		96BA0A2B2CD1B02700B13CAD /* DSMToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BA0A2A2CD1B02700B13CAD /* DSMToast.swift */; };
+		96BA0A2D2CD2695500B13CAD /* FirebaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BA0A2C2CD2695500B13CAD /* FirebaseError.swift */; };
 		96C27A562CB5EBCC00CC2820 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C27A552CB5EBCC00CC2820 /* SettingsView.swift */; };
 		96C751CC2C497ED1009C0DF1 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C751CB2C497ED1009C0DF1 /* HomeView.swift */; };
 		96C751CF2C4980A7009C0DF1 /* TabbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C751CE2C4980A7009C0DF1 /* TabbarView.swift */; };
@@ -106,6 +107,7 @@
 		96BA0A262CD15B0C00B13CAD /* DSMCustomNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSMCustomNavigationBar.swift; sourceTree = "<group>"; };
 		96BA0A282CD17A9400B13CAD /* DSMButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSMButton.swift; sourceTree = "<group>"; };
 		96BA0A2A2CD1B02700B13CAD /* DSMToast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSMToast.swift; sourceTree = "<group>"; };
+		96BA0A2C2CD2695500B13CAD /* FirebaseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseError.swift; sourceTree = "<group>"; };
 		96C27A552CB5EBCC00CC2820 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		96C751CB2C497ED1009C0DF1 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		96C751CE2C4980A7009C0DF1 /* TabbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarView.swift; sourceTree = "<group>"; };
@@ -303,6 +305,7 @@
 				9645B02B2B880B1500EEEB85 /* Login */,
 				9645B02C2B880B2200EEEB85 /* Register */,
 				96C752012C509321009C0DF1 /* AuthenticationManager.swift */,
+				96BA0A2C2CD2695500B13CAD /* FirebaseError.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -596,6 +599,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96BA0A2D2CD2695500B13CAD /* FirebaseError.swift in Sources */,
 				9688D3E82CA8410B003FF22F /* OnFirstAppearViewModifier.swift in Sources */,
 				9645B02E2B880B3C00EEEB85 /* LoginView.swift in Sources */,
 				96BA0A292CD17A9500B13CAD /* DSMButton.swift in Sources */,
