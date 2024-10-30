@@ -29,17 +29,11 @@ struct RegisterView: View {
             ZStack {
                 Color.accentColor
                 
-                Text("Fit +")
-                    .foregroundColor(.white)
-                    .font(.system(size: 60))
-                    .fontWeight(.bold)
-                    .fontDesign(.rounded)
-                    .offset(y: -(screenHeight < 700 ? screenHeight * 0.25 : screenHeight * 0.20))
-                    .zIndex(1)
+                makeLogo()
                 
                 VStack(spacing: 0) {
                     Color.accentColor
-                        .frame(height: screenHeight < 700 ? screenHeight * 0.45 : screenHeight * 0.50)
+                        .frame(height: screenHeight < 700 ? screenHeight * 0.45 : screenHeight * 0.55)
                     
                     VStack(spacing: 0) {
                         Spacer()
@@ -95,6 +89,16 @@ extension RegisterView {
             }
             .frame(maxWidth: .infinity)
             .padding()
+    }
+    
+    func makeLogo() -> some View {
+        Text("Fit +")
+            .foregroundColor(.white)
+            .font(.system(size: screenHeight < 700 ? 60 : 70))
+            .fontWeight(.bold)
+            .fontDesign(.rounded)
+            .offset(y: -(screenHeight < 700 ? screenHeight * 0.25 : screenHeight * 0.20))
+            .zIndex(1)
     }
     
     func makeRegisterButton() -> some View {

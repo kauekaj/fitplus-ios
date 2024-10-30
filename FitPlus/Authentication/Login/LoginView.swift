@@ -32,9 +32,11 @@ struct LoginView: View {
 
                 VStack(spacing: 0) {
                     Color.accentColor
-                        .frame(height: screenHeight < 700 ? screenHeight * 0.30 : screenHeight * 0.45)
+                        .frame(height: screenHeight < 700 ? screenHeight * 0.35 : screenHeight * 0.50)
                     
                     VStack(spacing: 0) {
+                        Spacer()
+
                         content
                     }
                     .zIndex(1)
@@ -52,7 +54,7 @@ struct LoginView: View {
                     ) {
                         viewModel.showToast = false
                     }
-                    .padding(.top, UIScreen.main.bounds.height * 0.05)
+                    .padding(.top, UIScreen.main.bounds.height * 0.06)
                     .zIndex(2)
                 }
                 
@@ -68,12 +70,6 @@ struct LoginView: View {
 extension LoginView {
     
     private var content: some View {
-                
-        ZStack {
-            RoundedRectangle(cornerRadius: 30)
-                .frame(height: UIScreen.main.bounds.height * 0.55)
-                .foregroundStyle(.white)
-            
             VStack {
                 TextField("E-mail", text: $emailInputText)
                     .textInputAutocapitalization(.never)
@@ -85,39 +81,25 @@ extension LoginView {
                 Button {
                     shouldShowTray.toggle()
                 } label:  {
-                        Text("Forgot password?")
-                            .fontWeight(.semibold)
-                            .foregroundStyle(Color.accentColor)
-                            .frame(maxWidth: .infinity, alignment: .trailing)
-                            .padding(.vertical,4)
+                    Text("Forgot password?")
+                        .fontWeight(.semibold)
+                        .foregroundStyle(Color.accentColor)
+                        .frame(maxWidth: .infinity, alignment: .trailing)
+                        .padding(.vertical,4)
                 }
                 
-                makeButton()
+                makeLoginButton()
                 
                 Divider()
                 
                 alternativeLoginIcons
-                    .padding(.vertical, 30)
+                    .padding(.vertical, 16)
                 
-                NavigationLink {
-                    RegisterView()
-                        .navigationBarBackButtonHidden()
-                } label:  {
-                    HStack {
-                        Text("Ainda não tem uma conta?")
-                            .foregroundStyle(.black)
-                        
-                        Text("Cadastrar")
-                            .fontWeight(.semibold)
-                            .foregroundStyle(Color.accentColor)
-                    }
-                }
+                goToRegister()
                 
-                Spacer()
             }
             .frame(maxWidth: .infinity)
             .padding()
-        }
     }
 
     private var alternativeLoginIcons: some View {
@@ -145,14 +127,14 @@ extension LoginView {
     func makeLogo() -> some View {
         Text("Fit +")
             .foregroundColor(.white)
-            .font(.system(size: 60))
+            .font(.system(size: screenHeight < 700 ? 60 : 70))
             .fontWeight(.bold)
             .fontDesign(.rounded)
-            .offset(y: -(screenHeight < 700 ? screenHeight * 0.35 : screenHeight * 0.25))
+            .offset(y: -(screenHeight < 700 ? screenHeight * 0.30 : screenHeight * 0.25))
             .zIndex(1)
     }
     
-    func makeButton() -> some View {
+    func makeLoginButton() -> some View {
         DSMButton(title: "Entrar", state: $buttonState) {
             if viewModel.validateFields(email: emailInputText, password: passwordInputText) {
                 buttonState = .loading
@@ -164,7 +146,6 @@ extension LoginView {
                         try await viewModel.signIn(email: emailInputText, password: passwordInputText)
                         try await userRepository.updateUser()
                     } catch {
-                        buttonState = .idle
                         print("Erro ao efetuar login: \(error)")
                     }
                 }
@@ -172,6 +153,23 @@ extension LoginView {
         }
         .padding(.bottom)
     }
+    
+    func goToRegister() -> some View {
+        NavigationLink {
+            RegisterView()
+                .navigationBarBackButtonHidden()
+        } label:  {
+            HStack {
+                Text("Ainda não tem uma conta?")
+                    .foregroundStyle(.black)
+                
+                Text("Cadastrar")
+                    .fontWeight(.semibold)
+                    .foregroundStyle(Color.accentColor)
+            }
+        }
+    }
+    
     func makeTray() -> some View {
         VStack {
             VStack(spacing: 16) {
