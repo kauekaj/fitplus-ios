@@ -12,15 +12,7 @@ import SwiftUI
 @MainActor
 final class ProfileViewModel: ObservableObject {
     
-//    @Published private(set) var user: FitPlusUser? = nil
-//
-//    func loadCurrentUser() async throws {
-//        let authDataResult = try AuthenticationManager.shared.getAuthenticatedUser()
-//        self.user = try await UserManager.shared.getUser(userId: authDataResult.uid)
-//    }
-    
 }
-
 
 
 struct ProfileView: View {
@@ -30,7 +22,7 @@ struct ProfileView: View {
     
     @EnvironmentObject var userRepository: UserRepository
     
-    @State private var rows: [RowData] = [
+    @State private var infoRows: [RowData] = [
         RowData(icon: "person", text: "Informação Pessoal", destination: AnyView(PersonalInfoView())),
         RowData(icon: "gear", text: "Ajustes", destination: AnyView(SettingsView())),
         RowData(icon: "bell", text: "Notificações", destination: AnyView(Text("Tela Notificações"))),
@@ -149,7 +141,7 @@ extension ProfileView {
     @ViewBuilder
     func makeProfileItemsRows() -> some View {
         VStack(spacing: 0) {
-            ForEach(rows) { rowData in
+            ForEach(infoRows) { rowData in
                 NavigationLink(destination: rowData.destination) {
                     RowComponent(icon: true, destination: true, rowData: rowData)
                 }
