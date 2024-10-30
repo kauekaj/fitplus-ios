@@ -10,8 +10,8 @@ import SwiftUI
 struct SettingsView: View {
     
     @State private var accountRows: [RowData] = [
-        RowData(icon: "lock", text: "Mudar senha", destination: AnyView(ChangePasswordView())),
-        RowData(icon: "trash", text: "Delete Account", destination: AnyView(DeleteAccountView()))
+        RowData(icon: "lock", text: "Mudar senha", destination: AnyView(ChangePasswordView().navigationBarHidden(true))),
+        RowData(icon: "trash", text: "Delete Account", destination: AnyView(DeleteAccountView().navigationBarHidden(true)))
     ]
    
     @State private var aboutRows: [RowData] = [
@@ -24,7 +24,7 @@ struct SettingsView: View {
     ]
     
     var body: some View {
-        VStack {
+        DSMCustomNavigationBar(title: "Informações Pessoais") {
             List {
                 Section("Conta") {
                     ForEach(accountRows) { rowData in
@@ -37,7 +37,7 @@ struct SettingsView: View {
                 }
                 .padding(0)
                 
-
+                
                 Section("Sobre") {
                     ForEach(aboutRows) { rowData in
                         NavigationLink(destination: rowData.destination) {
@@ -57,7 +57,6 @@ struct SettingsView: View {
                 }
                 .padding(0)
             }
-            .navigationTitle("Ajustes")
         }
     }
 }

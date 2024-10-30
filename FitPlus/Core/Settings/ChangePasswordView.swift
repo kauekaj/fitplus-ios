@@ -24,39 +24,45 @@ struct ChangePasswordView: View {
 
     var body: some View {
         ZStack {
-            VStack(spacing: 16) {
-                Image(systemName: "lock.circle")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 100, height: 100)
-                    .foregroundColor(.accentColor)
-                    .padding(.bottom, 20)
-                
-                SecureField("Digite sua senha antiga", text: $currentPassword)
-                    .modifier(TextFieldModifier())
-
-
-                SecureField("Digite sua nova senha", text: $newPassword)
-                    .modifier(TextFieldModifier())
-                
-                SecureField("Confirme sua nova senha", text: $confirmNewPassword)
-                    .modifier(TextFieldModifier())
-                
-                DSMButton(title: "Alterar senha", state: $buttonState) {
-                    changePassword()
+            DSMCustomNavigationBar(title: "Alterar Senha") {
+                ZStack {
+                    VStack(spacing: 16) {
+                        Image(systemName: "lock.circle")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 100, height: 100)
+                            .foregroundColor(.accentColor)
+                            .padding(.vertical, 20)
+                        
+                        SecureField("Digite sua senha antiga", text: $currentPassword)
+                            .modifier(TextFieldModifier())
+                        
+                        SecureField("Digite sua nova senha", text: $newPassword)
+                            .modifier(TextFieldModifier())
+                        
+                        SecureField("Confirme sua nova senha", text: $confirmNewPassword)
+                            .modifier(TextFieldModifier())
+                        
+                        DSMButton(title: "Alterar senha", state: $buttonState) {
+                            changePassword()
+                        }
+                        
+                        Button(action: {
+                            shouldShowTray = true
+                        }) {
+                            Text("Esqueci minha senha")
+                                .font(.footnote)
+                                .foregroundColor(.accentColor)
+                        }
+                    }
+                    .padding()
+                    
+                    if shouldShowTray == true {
+                        makeTray()
+                            .offset(y: (UIScreen.main.bounds.height * 0.30))
+                    }
                 }
-
-                Button(action: {
-                    shouldShowTray = true
-                }) {
-                    Text("Esqueci minha senha")
-                        .font(.footnote)
-                        .foregroundColor(.accentColor)
-                }
-              
             }
-            .padding()
-            
             if showToast {
                 DSMToast(
                     message: toastMessage,
@@ -65,11 +71,10 @@ struct ChangePasswordView: View {
                 ) {
                     showToast = false
                 }
-            }
-            
-            if shouldShowTray == true {
-                makeTray()
-                    .offset(y: (UIScreen.main.bounds.height * 0.30))
+                .padding(.top, 16)
+                .zIndex(2)
+                
+                Spacer()
             }
         }
     }

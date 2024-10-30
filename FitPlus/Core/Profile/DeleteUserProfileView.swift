@@ -16,54 +16,56 @@ struct DeleteAccountView: View {
     @EnvironmentObject var userRepository: UserRepository
 
     var body: some View {
-        ZStack {
-            VStack(spacing: 20) {
-                Spacer()
-                
-                Image(systemName: "person.crop.circle.fill.badge.xmark")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 150, height: 150)
-                    .foregroundStyle(Color.red, Color.black)
-                
-                Text("Clique no botão abaixo para proceder com a exclusão definitiva da sua conta.")
-                    .font(.headline)
-                    .multilineTextAlignment(.center)
-                    .padding(.horizontal, 16)
-                
-                Spacer()
-                
-                Button(action: {
-                    showAlert = true
-                }) {
-                    Text("Deletar")
-                        .font(.title3)
-                        .fontWeight(.bold)
-                        .foregroundColor(.white)
-                        .frame(height: 48)
-                        .frame(maxWidth: .infinity)
-                        .background(Color.red)
-                        .cornerRadius(8)
+        DSMCustomNavigationBar(title: "Deletar Conta") {
+            ZStack {
+                VStack(spacing: 20) {
+                    Spacer()
+                    
+                    Image(systemName: "person.crop.circle.fill.badge.xmark")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 150, height: 150)
+                        .foregroundStyle(Color.red, Color.black)
+                    
+                    Text("Clique no botão abaixo para proceder com a exclusão definitiva da sua conta.")
+                        .font(.headline)
+                        .multilineTextAlignment(.center)
                         .padding(.horizontal, 16)
-                }
-                .alert(isPresented: $showAlert) {
-                    Alert(
-                        title: Text("Excluir Conta"),
-                        message: Text("Você realmente deseja excluir sua conta? Esta ação não pode ser desfeita."),
-                        primaryButton: .destructive(Text("Excluir")) {
-                            Task {
-                                try await deleteUserAccount(userId: userRepository.user?.userId ?? "")
-                            }
-                        },
-                        secondaryButton: .cancel(Text("Cancelar"))
-                    )
+                    
+                    Spacer()
+                    
+                    Button(action: {
+                        showAlert = true
+                    }) {
+                        Text("Deletar")
+                            .font(.title3)
+                            .fontWeight(.bold)
+                            .foregroundColor(.white)
+                            .frame(height: 48)
+                            .frame(maxWidth: .infinity)
+                            .background(Color.red)
+                            .cornerRadius(8)
+                            .padding(.horizontal, 16)
+                    }
+                    .alert(isPresented: $showAlert) {
+                        Alert(
+                            title: Text("Excluir Conta"),
+                            message: Text("Você realmente deseja excluir sua conta? Esta ação não pode ser desfeita."),
+                            primaryButton: .destructive(Text("Excluir")) {
+                                Task {
+                                    try await deleteUserAccount(userId: userRepository.user?.userId ?? "")
+                                }
+                            },
+                            secondaryButton: .cancel(Text("Cancelar"))
+                        )
+                    }
+                    
+                    Spacer()
                 }
                 
-                Spacer()
-            }
-            
-            if shouldShowSuccessfulTray {
-                makeTray()
+                if shouldShowSuccessfulTray {
+                    makeTray()
+                }
             }
         }
     }

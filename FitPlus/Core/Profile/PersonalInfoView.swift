@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-enum TrayError: String {
+enum ToastError: String {
     case idle = ""
     case emptyField = "O campo está vazio"
     case tryAgainLater = "Erro ao atualizar. Tente novamente mais tarde"
@@ -22,47 +22,45 @@ struct PersonalInfoView: View {
     
     @State private var field: String = ""
     @State private var inputText: String = ""
-    @State private var showTrayError: TrayError = .idle
+    // Mudar essa nomenclatura e utilizar o DSMComponent
+    @State private var showTrayError: ToastError = .idle
     @State private var shouldShowTray = false
     
     @EnvironmentObject var userRepository: UserRepository
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            
-            Text("Informações Pessoais")
-                .font(.title)
-                .fontWeight(.semibold)
-                .padding(.bottom, 8)
-            
-            makeUserDataRow(
-                label: "Nome:",
-                value: userRepository.user?.fullName ?? "",
-                field: FitPlusUser.CodingKeys.fullName.rawValue
-            )
-            
-            makeUserDataRow(
-                label: "Email:",
-                value: userRepository.user?.email ?? "",
-                field: FitPlusUser.CodingKeys.email.rawValue
-            )
-            
-            makeUserDataRow(
-                label: "Usuário:",
-                value: userRepository.user?.userName ?? "",
-                field: FitPlusUser.CodingKeys.userName.rawValue
-            )
-            
-            if shouldShowTray {
-                makeTray()
+        DSMCustomNavigationBar(title: "Informações Pessoais") {
+            VStack(alignment: .leading, spacing: 8) {
+                
+                makeUserDataRow(
+                    label: "Nome:",
+                    value: userRepository.user?.fullName ?? "",
+                    field: FitPlusUser.CodingKeys.fullName.rawValue
+                )
+                
+                makeUserDataRow(
+                    label: "Email:",
+                    value: userRepository.user?.email ?? "",
+                    field: FitPlusUser.CodingKeys.email.rawValue
+                )
+                
+                makeUserDataRow(
+                    label: "Usuário:",
+                    value: userRepository.user?.userName ?? "",
+                    field: FitPlusUser.CodingKeys.userName.rawValue
+                )
+                
+                if shouldShowTray {
+                    makeTray()
+                }
+                
+                Spacer()
+                
+                makeLogoutButton()
             }
-            
-            Spacer()
-            
-            makeLogoutButton()
+            .padding()
+            .frame(maxWidth: .infinity, alignment: .leading)
         }
-        .padding()
-        .frame(maxWidth: .infinity, alignment: .leading)
     }
 }
 

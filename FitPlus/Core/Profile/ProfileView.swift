@@ -23,8 +23,8 @@ struct ProfileView: View {
     @EnvironmentObject var userRepository: UserRepository
     
     @State private var infoRows: [RowData] = [
-        RowData(icon: "person", text: "Informação Pessoal", destination: AnyView(PersonalInfoView())),
-        RowData(icon: "gear", text: "Ajustes", destination: AnyView(SettingsView())),
+        RowData(icon: "person", text: "Informação Pessoal", destination: AnyView(PersonalInfoView().navigationBarHidden(true))),
+        RowData(icon: "gear", text: "Ajustes", destination: AnyView(SettingsView().navigationBarHidden(true))),
         RowData(icon: "bell", text: "Notificações", destination: AnyView(Text("Tela Notificações"))),
     ]
     
