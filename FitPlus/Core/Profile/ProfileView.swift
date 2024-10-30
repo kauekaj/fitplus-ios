@@ -112,22 +112,23 @@ extension ProfileView {
     @ViewBuilder
     func profileImage() -> some View {
         if let urlString = userRepository.user?.profileImagePathUrl, let url = URL(string: urlString) {
-            AnyView(AsyncImage(url: url) { image in
+            AsyncImage(url: url) { image in
                 image
                     .resizable()
                     .scaledToFill()
                     .frame(width: 146, height: 146)
                     .clipShape(Circle())
- 
+                
             } placeholder: {
-                ProgressView()
-                    .foregroundStyle(.white)
-                    .frame(width: 146, height: 146)
-            })
+                makeProfileSkelletonView()
+            }
         } else {
-            AnyView(Image(systemName: "person.fill")
+            Image(systemName: "person.fill")
                 .resizable()
-                .aspectRatio(contentMode: .fit))
+                .scaledToFit()
+                .frame(width: 100, height: 100)
+                .foregroundStyle(.white)
+                .clipShape(Circle())
         }
     }
 
@@ -158,260 +159,19 @@ extension ProfileView {
         .padding(.top, 32)
     }
     
-}
-
-@MainActor
-final class ProfileImagePickerViewModel: ObservableObject {
-    
-    @Published var isLoading: Bool = false
-    
-    func saveProfileImage(user: FitPlusUser, userRepository: UserRepository, item: PhotosPickerItem) async throws -> Bool {
-        isLoading = true
-        defer { isLoading = false }
-
-        guard let data = try await item.loadTransferable(type: Data.self) else { return false }
+    @ViewBuilder
+    func makeProfileSkelletonView() -> some View {
+        VStack {
+        ShimmerEffectBox()
+            .cornerRadius(25)
+            .frame(width: 50, height: 50)
         
-        if let oldImagePath = user.profileImagePath {
-            try await StorageManager.shared.deleteImage(path: oldImagePath)
+        ShimmerEffectBox()
+            .cornerRadius(45)
+            .frame(width: 90, height: 90)
+            .clipShape(TopHalfCircle())
+
         }
-
-        let (newImagePath, _) = try await StorageManager.shared.saveImage(data: data, userId: user.userId)
-        let url = try await StorageManager.shared.getUrlForImage(path: newImagePath)
-        try await UserManager.shared.updateUserProfileImagePath(userId: user.userId, path: newImagePath, url: url.absoluteString)
-        
-        let updatedUser = try await UserManager.shared.getUser(userId: user.userId)
-        userRepository.cacheUser(updatedUser)
-        
-        return true
-    }
-
-    func saveProfileImage(user: FitPlusUser, userRepository: UserRepository, image: UIImage) async throws -> Bool  {
-        isLoading = true
-        defer { isLoading = false }
-        
-        if let oldImagePath = user.profileImagePath {
-            try await StorageManager.shared.deleteImage(path: oldImagePath)
-        }
-        
-        if let data = image.jpegData(compressionQuality: 0.8) {
-            let (path, _) = try await StorageManager.shared.saveImage(data: data, userId: user.userId)
-            let url = try await StorageManager.shared.getUrlForImage(path: path)
-            try await UserManager.shared.updateUserProfileImagePath(userId: user.userId, path: path, url: url.absoluteString)
-            
-            let user = try await UserManager.shared.getUser(userId: user.userId)
-            userRepository.cacheUser(user)
-            
-            return true
-        }
-        
-        return false
-    }
-}
-
-struct ProfileImagePickerView: View {
-
-    @State private var avatarImages = ProfileAvatarManager.shared.getAvatarImages()
-    @State private var showSheet = false
-    @State private var selectedImage: UIImage? = nil
-    var didSelectImage: (String) -> Void
-    @State private var selectedLibraryImage: PhotosPickerItem? = nil
-    
-    @EnvironmentObject var userRepository: UserRepository
-    @Environment(\.presentationMode) var presentationMode
-
-    @StateObject private var viewModel = ProfileImagePickerViewModel()
-    
-    var body: some View {
-        
-        VStack(spacing: 8) {
-            if viewModel.isLoading {
-                ProgressView("Carregando...")
-                    .progressViewStyle(CircularProgressViewStyle())
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .background(Color.white)
-                    .edgesIgnoringSafeArea(.all)
-            } else {
-                
-                VStack(spacing: 8) {
-                    Text("Escolha uma nova foto de perfil")
-                        .font(.headline)
-                        .padding(.top, 16)
-                    
-                    HStack {
-                        Button(action: {
-                            showSheet.toggle()
-                        }) {
-                            HStack {
-                                Image(systemName: "camera")
-                                    .font(.title2)
-                                    .foregroundColor(.white)
-                                    .padding(8)
-                                Text("Tirar uma nova foto")
-                                    .font(.subheadline)
-                                    .foregroundColor(.white)
-                            }
-                            .padding(.horizontal)
-                            .padding(.vertical, 8)
-                            .background(Color.accentColor)
-                            .cornerRadius(24)
-                        }
-                        .sheet(isPresented: $showSheet) {
-                            ImagePicker(selectedImage: $selectedImage, sourceType: .camera)
-                        }
-                        
-                        PhotosPicker(
-                            selection: $selectedLibraryImage,
-                            matching: .images,
-                            photoLibrary: .shared()
-                        ) {
-                            HStack {
-                                Image(systemName: "photo.on.rectangle")
-                                    .font(.title2)
-                                    .foregroundColor(.white)
-                                    .padding(8)
-                                Text("Selecionar uma foto")
-                                    .font(.subheadline)
-                                    .foregroundColor(.white)
-                            }
-                            .padding(.horizontal)
-                            .padding(.vertical, 8)
-                            .background(Color.accentColor)
-                            .cornerRadius(24)
-                        }
-                    }
-                    .padding()
-                    
-                    Divider()
-                        .padding()
-                    
-                    ScrollView {
-                        LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 3), spacing: 16) {
-                            ForEach(avatarImages, id: \.self) { image in
-                                Button(action: {
-                                    if let user = userRepository.user,
-                                       let image = UIImage.fromAsset(named: image) {
-                                        Task {
-                                            do {
-                                                let success = try await viewModel.saveProfileImage(user: user, userRepository: userRepository, image: (image))
-                                                if success {
-                                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                                                        presentationMode.wrappedValue.dismiss()
-                                                    }
-                                                }
-                                            } catch {
-                                                print("Erro ao salvar imagem: \(error)")
-                                            }
-                                        }
-                                    }
-                                }) {
-                                    Image(image)
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fill)
-                                        .frame(width: 80, height: 80)
-                                        .clipShape(Circle())
-                                        .overlay(Circle().stroke(Color.gray, lineWidth: 1))
-                                }
-                            }
-                        }
-                        .padding()
-                        
-                    }
-                    .scrollIndicators(.hidden)
-                }
-                .onChange(of: selectedImage) { newValue in
-                    if let newValue, let user = userRepository.user {
-                        Task {
-                            do {
-                                let success = try await viewModel.saveProfileImage(user: user, userRepository: userRepository, image: newValue)
-                                if success {
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                                        presentationMode.wrappedValue.dismiss()
-                                    }
-                                }
-                            } catch {
-                                print("Erro ao salvar imagem: \(error)")
-                            }
-                        }
-                    }
-                }
-                .onChange(of: selectedLibraryImage) { newValue in
-                    if let newValue, let user = userRepository.user {
-                        Task {
-                            do {
-                                let success = try await viewModel.saveProfileImage(user: user, userRepository: userRepository, item: newValue)
-                                if success {
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                                        presentationMode.wrappedValue.dismiss()
-                                    }
-                                }
-                            } catch {
-                                print("Erro ao salvar imagem: \(error)")
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-    
-}
-
-
-import SwiftUI
-import UIKit
-
-struct ImagePicker: UIViewControllerRepresentable {
-    class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-        let parent: ImagePicker
-        
-        init(_ parent: ImagePicker) {
-            self.parent = parent
-        }
-        
-        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-            if let image = info[.originalImage] as? UIImage {
-                parent.selectedImage = image
-            }
-            parent.presentationMode.wrappedValue.dismiss()
-        }
-        
-        func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-            parent.presentationMode.wrappedValue.dismiss()
-        }
-    }
-    
-    @Environment(\.presentationMode) var presentationMode
-    @Binding var selectedImage: UIImage?
-    var sourceType: UIImagePickerController.SourceType
-    
-    func makeCoordinator() -> Coordinator {
-        Coordinator(self)
-    }
-    
-    func makeUIViewController(context: Context) -> UIImagePickerController {
-        let picker = UIImagePickerController()
-        picker.delegate = context.coordinator
-        picker.sourceType = sourceType
-        return picker
-    }
-    
-    func updateUIViewController(_ uiViewController: UIImagePickerController, context: Context) {}
-}
-
-
-class ProfileAvatarManager {
-    static let shared = ProfileAvatarManager()
-    
-    private init() {}
-    
-    func getAvatarImages() -> [String] {
-        var images: [String] = []
-        
-        for i in 1...9 {
-            let image = "profileAvatar\(i)"
-            images.append(image)
-        }
-        
-        return images
+        .padding(.top, 32)
     }
 }

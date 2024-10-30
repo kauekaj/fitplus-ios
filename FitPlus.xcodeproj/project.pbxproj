@@ -22,6 +22,11 @@
 		9688D3E42CA46E7F003FF22F /* Query+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9688D3E32CA46E7F003FF22F /* Query+Extensions.swift */; };
 		9688D3E82CA8410B003FF22F /* OnFirstAppearViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9688D3E72CA8410B003FF22F /* OnFirstAppearViewModifier.swift */; };
 		9688D3EB2CAC6D94003FF22F /* RecipesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9688D3EA2CAC6D94003FF22F /* RecipesView.swift */; };
+		968F3FFB2CD2AD8D00E4B89B /* ProfileImagePickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968F3FFA2CD2AD8D00E4B89B /* ProfileImagePickerViewModel.swift */; };
+		968F3FFD2CD2ADD200E4B89B /* ProfileImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968F3FFC2CD2ADD200E4B89B /* ProfileImagePickerView.swift */; };
+		968F3FFF2CD2AE1700E4B89B /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968F3FFE2CD2AE1700E4B89B /* ImagePicker.swift */; };
+		968F40012CD2BBA800E4B89B /* DSMShimmerEffectBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968F40002CD2BBA800E4B89B /* DSMShimmerEffectBox.swift */; };
+		968F40032CD2D06D00E4B89B /* TopHalfCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968F40022CD2D06D00E4B89B /* TopHalfCircle.swift */; };
 		96A909622CB7590500798A28 /* Bundle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A909612CB7590500798A28 /* Bundle+Extensions.swift */; };
 		96A909642CB75E8500798A28 /* PersonalInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A909632CB75E8500798A28 /* PersonalInfoView.swift */; };
 		96A909672CB87FB400798A28 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A909662CB87FB400798A28 /* UserRepository.swift */; };
@@ -94,6 +99,11 @@
 		9688D3E32CA46E7F003FF22F /* Query+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Query+Extensions.swift"; sourceTree = "<group>"; };
 		9688D3E72CA8410B003FF22F /* OnFirstAppearViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnFirstAppearViewModifier.swift; sourceTree = "<group>"; };
 		9688D3EA2CAC6D94003FF22F /* RecipesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesView.swift; sourceTree = "<group>"; };
+		968F3FFA2CD2AD8D00E4B89B /* ProfileImagePickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImagePickerViewModel.swift; sourceTree = "<group>"; };
+		968F3FFC2CD2ADD200E4B89B /* ProfileImagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImagePickerView.swift; sourceTree = "<group>"; };
+		968F3FFE2CD2AE1700E4B89B /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		968F40002CD2BBA800E4B89B /* DSMShimmerEffectBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSMShimmerEffectBox.swift; sourceTree = "<group>"; };
+		968F40022CD2D06D00E4B89B /* TopHalfCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopHalfCircle.swift; sourceTree = "<group>"; };
 		96A909612CB7590500798A28 /* Bundle+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extensions.swift"; sourceTree = "<group>"; };
 		96A909632CB75E8500798A28 /* PersonalInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfoView.swift; sourceTree = "<group>"; };
 		96A909662CB87FB400798A28 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
@@ -266,6 +276,16 @@
 			path = Recipes;
 			sourceTree = "<group>";
 		};
+		968F3FF92CD2AD7800E4B89B /* ImagePicker */ = {
+			isa = PBXGroup;
+			children = (
+				968F3FFA2CD2AD8D00E4B89B /* ProfileImagePickerViewModel.swift */,
+				968F3FFC2CD2ADD200E4B89B /* ProfileImagePickerView.swift */,
+				968F3FFE2CD2AE1700E4B89B /* ImagePicker.swift */,
+			);
+			path = ImagePicker;
+			sourceTree = "<group>";
+		};
 		96A909652CB87FA100798A28 /* DataSource */ = {
 			isa = PBXGroup;
 			children = (
@@ -316,6 +336,7 @@
 				96BA0A262CD15B0C00B13CAD /* DSMCustomNavigationBar.swift */,
 				96BA0A282CD17A9400B13CAD /* DSMButton.swift */,
 				96BA0A2A2CD1B02700B13CAD /* DSMToast.swift */,
+				968F40002CD2BBA800E4B89B /* DSMShimmerEffectBox.swift */,
 			);
 			path = DSM;
 			sourceTree = "<group>";
@@ -372,6 +393,7 @@
 			isa = PBXGroup;
 			children = (
 				961FFAB22CB5E01800EFD029 /* RoundedCorner.swift */,
+				968F40022CD2D06D00E4B89B /* TopHalfCircle.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -450,6 +472,7 @@
 		96C752152C556874009C0DF1 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				968F3FF92CD2AD7800E4B89B /* ImagePicker */,
 				96C752162C556887009C0DF1 /* ProfileView.swift */,
 				96A909632CB75E8500798A28 /* PersonalInfoView.swift */,
 				966838552CC4271700A39CF0 /* DeleteUserProfileView.swift */,
@@ -599,8 +622,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				968F3FFD2CD2ADD200E4B89B /* ProfileImagePickerView.swift in Sources */,
 				96BA0A2D2CD2695500B13CAD /* FirebaseError.swift in Sources */,
 				9688D3E82CA8410B003FF22F /* OnFirstAppearViewModifier.swift in Sources */,
+				968F3FFF2CD2AE1700E4B89B /* ImagePicker.swift in Sources */,
 				9645B02E2B880B3C00EEEB85 /* LoginView.swift in Sources */,
 				96BA0A292CD17A9500B13CAD /* DSMButton.swift in Sources */,
 				9688D3EB2CAC6D94003FF22F /* RecipesView.swift in Sources */,
@@ -614,6 +639,7 @@
 				96C751CC2C497ED1009C0DF1 /* HomeView.swift in Sources */,
 				96C751E72C4D5A04009C0DF1 /* ItemModel.swift in Sources */,
 				96BA0A272CD15B0C00B13CAD /* DSMCustomNavigationBar.swift in Sources */,
+				968F40012CD2BBA800E4B89B /* DSMShimmerEffectBox.swift in Sources */,
 				96C751E02C4C052D009C0DF1 /* ButtonLabelModifier.swift in Sources */,
 				96C751DE2C4BFC4C009C0DF1 /* RegisterView.swift in Sources */,
 				96A909622CB7590500798A28 /* Bundle+Extensions.swift in Sources */,
@@ -622,6 +648,7 @@
 				96C751CF2C4980A7009C0DF1 /* TabbarView.swift in Sources */,
 				96C752122C545AC2009C0DF1 /* RegisterViewModel.swift in Sources */,
 				9688D3E02C9F332D003FF22F /* ListsManager.swift in Sources */,
+				968F40032CD2D06D00E4B89B /* TopHalfCircle.swift in Sources */,
 				96C752022C509321009C0DF1 /* AuthenticationManager.swift in Sources */,
 				96C751E92C4D5F9D009C0DF1 /* ListRowView.swift in Sources */,
 				96A909672CB87FB400798A28 /* UserRepository.swift in Sources */,
@@ -637,6 +664,7 @@
 				96C27A562CB5EBCC00CC2820 /* SettingsView.swift in Sources */,
 				96BA0A172CCD26EC00B13CAD /* StorageManager.swift in Sources */,
 				96BA0A2B2CD1B02700B13CAD /* DSMToast.swift in Sources */,
+				968F3FFB2CD2AD8D00E4B89B /* ProfileImagePickerViewModel.swift in Sources */,
 				96BA0A202CCFD1A900B13CAD /* UserNameManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
