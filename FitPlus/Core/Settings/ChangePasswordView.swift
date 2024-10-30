@@ -13,14 +13,12 @@ struct ChangePasswordView: View {
     @State private var confirmNewPassword: String = ""
     @State private var showToast: Bool = false
     @State private var toastMessage: String = ""
-    @State private var toastColor: Color = .clear
+    @State private var toastType: ToastType = .success
     @State private var showForgotPassword = false
-    
     @State private var forgotPasswordInputText: String = ""
     @State private var shouldShowTray = false
     @State private var isResetPasswordEmailSent = false
     @State private var buttonState: ButtonState = .idle
-    @State private var dotCount = 0
 
     @EnvironmentObject var userRepository: UserRepository
 
@@ -60,8 +58,13 @@ struct ChangePasswordView: View {
             .padding()
             
             if showToast {
-                makeToast()
-                    .transition(.opacity)
+                DSMToast(
+                    message: toastMessage,
+                    type: toastType,
+                    autoDismiss: true
+                ) {
+                    showToast = false
+                }
             }
             
             if shouldShowTray == true {
@@ -73,15 +76,17 @@ struct ChangePasswordView: View {
 
     func changePassword() {
         if currentPassword.isEmpty || newPassword.isEmpty {
-            showError("Preencha todos os campos!")
+            configToast(type: .warning, message: "Preencha todos os campos!")
             buttonState = .idle
         } else if newPassword != confirmNewPassword {
             buttonState = .idle
-            showError("As nova senha e a confirmação estão diferentes.")
+            configToast(type: .error, message: "As nova senha e a confirmação estão diferentes.")
         } else if newPassword == currentPassword {
             buttonState = .idle
-            showError("A nova senha não pode ser igual à antiga!")
+            configToast(type: .error, message: "A nova senha não pode ser igual à antiga!")
+
         } else {
+            buttonState = .loading
             Task {
                 do {
                     try await AuthenticationManager.shared.signInUser(email: userRepository.user?.email ?? "", password: currentPassword)
@@ -91,7 +96,7 @@ struct ChangePasswordView: View {
                     currentPassword = ""
                     newPassword = ""
                     confirmNewPassword = ""
-                    showSuccess("Senha alterada com sucesso!")
+                    configToast(type: .success, message: "Senha alterada com sucesso!")
                 } catch {
                     buttonState = .idle
                     showErrorFirebase(error: error.localizedDescription)
@@ -104,70 +109,25 @@ struct ChangePasswordView: View {
     func showErrorFirebase(error: String) {
         switch error {
         case FirebaseError.credentialError.rawValue:
-            showError("A senha atual está incorreta.")
+            configToast(type: .error, message: "A senha atual está incorreta.")
         case FirebaseError.passwordError.rawValue:
-            showError("A senha deve conter no mímimo 6 caracteres.")
+            configToast(type: .error, message: "A senha deve conter no mímimo 6 caracteres.")
         default:
-            showError("Erro ao tentar atualiza a senha. Gentileza tentar mais tarde.")
+            configToast(type: .error, message: "Erro ao tentar atualiza a senha. Gentileza tentar mais tarde.")
         }
     }
+    
     enum FirebaseError: String {
         case credentialError = "The supplied auth credential is malformed or has expired."
         case passwordError = "The password must be 6 characters long or more."
     }
-
-    func showSuccess(_ message: String) {
+    
+    func configToast(type: ToastType, message: String) {
+        toastType = type
         toastMessage = message
-        toastColor = Color(red: 0.8, green: 1.0, blue: 0.8)
         showToast = true
-        hideToastAfterDelay()
     }
 
-    func showError(_ message: String) {
-        toastMessage = message
-        toastColor = Color(red: 1.0, green: 0.8, blue: 0.8)
-        showToast = true
-        hideToastAfterDelay()
-    }
-
-    func hideToastAfterDelay() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-            withAnimation {
-                showToast = false
-            }
-        }
-    }
-
-    @ViewBuilder
-    func makeToast() -> some View {
-        VStack {
-            HStack {
-                Text(toastMessage)
-                Spacer()
-                
-                Button(action: {
-                    withAnimation {
-                        showToast.toggle()
-                    }
-                }) {
-                    Image(systemName: "xmark")
-                        .font(.system(size: 12, weight: .semibold))
-                        .foregroundColor(.black)
-                        .padding(8)
-                }
-                .background(Circle().fill(Color.gray.opacity(0.4)))
-            }
-            .foregroundColor(.black)
-            .padding(8)
-            .background(toastColor)
-            .frame(maxWidth: .infinity)
-            .cornerRadius(8)
-            
-            Spacer()
-        }
-        .padding(.horizontal, 4)
-        
-    }
     
     func makeTray() -> some View {
         VStack {
@@ -225,4 +185,3 @@ struct ChangePasswordView: View {
         .animation(.easeInOut, value: shouldShowTray)
     }
 }
-
