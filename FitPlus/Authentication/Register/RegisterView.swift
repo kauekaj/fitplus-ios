@@ -9,13 +9,15 @@ import SwiftUI
 
 struct RegisterView: View {
     
-    @State private var email = ""
-    @State private var password = ""
-    @State private var confirmedPassword = ""
+    @State private var emailInputText = ""
+    @State private var passwordInputText = ""
+    @State private var confirmedPasswordInputText = ""
     @State private var fullName = ""
-    @State private var showTrayError: TrayError = .idle
-    @State private var shouldShowTray = false
 
+    @State private var showTrayError: ToastError = .idle
+
+    @State private var buttonState: ButtonState = .idle
+    
     @StateObject private var viewModel = RegisterViewModel()
     @EnvironmentObject var userRepository: UserRepository
     @Environment(\.dismiss) var dismiss
@@ -24,7 +26,7 @@ struct RegisterView: View {
 
     var body: some View {
         NavigationStack {
-            ZStack{
+            ZStack {
                 Color.accentColor
                 
                 Text("Fit +")
@@ -32,17 +34,17 @@ struct RegisterView: View {
                     .font(.system(size: 60))
                     .fontWeight(.bold)
                     .fontDesign(.rounded)
-                    .offset(y: -(screenHeight < 700 ? screenHeight * 0.30 : screenHeight * 0.25))
+                    .offset(y: -(screenHeight < 700 ? screenHeight * 0.25 : screenHeight * 0.20))
                     .zIndex(1)
                 
                 VStack(spacing: 0) {
                     Color.accentColor
-                        .frame(height: screenHeight < 700 ? screenHeight * 0.35 : screenHeight * 0.45)
+                        .frame(height: screenHeight < 700 ? screenHeight * 0.45 : screenHeight * 0.50)
                     
                     VStack(spacing: 0) {
+                        Spacer()
                         
                         content
-                        
                     }
                     .zIndex(1)
                     .padding(8)
@@ -51,6 +53,17 @@ struct RegisterView: View {
                 }
                 .edgesIgnoringSafeArea(.top)
                 
+                if viewModel.showToast {
+                    DSMToast(
+                        message: viewModel.toastMessage,
+                        type: viewModel.toastType,
+                        autoDismiss: true
+                    ) {
+                        viewModel.showToast = false
+                    }
+                    .padding(.top, UIScreen.main.bounds.height * 0.06)
+                    .zIndex(2)
+                }
             }
             .ignoresSafeArea()
         }
@@ -59,132 +72,70 @@ struct RegisterView: View {
 }
 
 extension RegisterView {
-        
+    
     private var content: some View {
         
-        ZStack {
-            RoundedRectangle(cornerRadius: 30)
-                .frame(height: UIScreen.main.bounds.height * 0.55)
-                .foregroundStyle(.white)
-            
             VStack {
-                
-                TextField("Digite seu nome completo", text: $fullName)
-                    .textInputAutocapitalization(.words)
-                    .modifier(TextFieldModifier())
-                
-                TextField("Digite seu e-mail", text: $email)
+                TextField("Digite seu e-mail", text: $emailInputText)
                     .textInputAutocapitalization(.never)
                     .modifier(TextFieldModifier())
+                    .padding(.top, 8)
                 
-                SecureField("Digite sua senha", text: $password)
+                SecureField("Digite sua senha", text: $passwordInputText)
                     .modifier(TextFieldModifier())
                 
-                SecureField("Confirme sua senha", text: $confirmedPassword)
+                SecureField("Confirme sua senha", text: $confirmedPasswordInputText)
                     .modifier(TextFieldModifier())
                 
-                Button {
-                    guard !email.isEmpty, !password.isEmpty, !confirmedPassword.isEmpty else {
-                        shouldShowTray.toggle()
-                        showTrayError = .fillOutEveryField
-                        return
-                    }
-                    
-                    if !viewModel.isValidEmail(email) {
-                        shouldShowTray.toggle()
-                        showTrayError = .invalidEmail
-                        return
-                    }
-                    
-                    if !viewModel.checkPassword(password: password, confirmedPassword: confirmedPassword) {
-                        shouldShowTray.toggle()
-                        showTrayError = .passwordDoesNotMatch
-                        return
-                    }
-                    
-                    Task {
-                        try await viewModel.signUp(
-                            fullName: fullName,
-                            email: email,
-                            password: password,
-                            confirmedPassword: confirmedPassword
-                        )
-                        try await userRepository.updateUser()
-
-                    }
-                } label: {
-                    Text("Cadastrar")
-                        .modifier(ButtonLabelModifier())
-                }
+                makeRegisterButton()
                 
                 Divider()
-                
-                Button {
-                    dismiss()
-                } label: {
-                    HStack {
-                        Text("Já tem uma conta?")
-                            .foregroundStyle(.black)
-                        
-                        Text("Entrar")
-                            .fontWeight(.semibold)
-                            .foregroundStyle(Color.accentColor)
-                    }
-                }
-                .padding(.vertical)
+                                
+                goToLogin()
             }
             .frame(maxWidth: .infinity)
             .padding()
-            
-            if shouldShowTray {
-                makeTray()
-            }
-        }
     }
     
-    func makeTray() -> some View {
-        VStack {
-            VStack(spacing: 0) {
-                
-                HStack {
-                    if showTrayError != .idle {
-                        Text(showTrayError.rawValue)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .font(.headline)
-                            .foregroundStyle(.black)
+    func makeRegisterButton() -> some View {
+        DSMButton(title: "Cadastrar", state: $buttonState) {
+            if viewModel.validateFields(email: emailInputText, password: passwordInputText, confirmedPassword: confirmedPasswordInputText) {
+                buttonState = .loading
+                Task {
+                    defer {
+                        buttonState = .idle
                     }
+                    try await viewModel.signUp(
+                        email: emailInputText,
+                        password: passwordInputText,
+                        confirmedPassword: confirmedPasswordInputText
+                    )
                     
-                    Spacer()
+                    try await userRepository.updateUser()
                     
-                    Button(action: {
-                        withAnimation {
-                            shouldShowTray.toggle()
-                            showTrayError = .idle
-                        }
-                    }) {
-                        Image(systemName: "xmark")
-                            .font(.system(size: 16, weight: .semibold))
-                            .foregroundColor(.black)
-                            .padding(8)
-                    }
-                    .background(Circle().fill(Color.gray.opacity(0.2)))
                 }
-
             }
-            .padding()
-            .background(Color(red: 1.0, green: 0.8, blue: 0.8))
-            .cornerRadius(16)
-            .shadow(radius: 10)
-            .frame(maxWidth: .infinity)
-            .transition(.move(edge: .top))
-            
-            Spacer()
         }
-        .padding()
-        .animation(.easeInOut, value: shouldShowTray)
-    }
-}
+        .padding(.top, 8)
+        .padding(.bottom, 16)
 
-#Preview {
-    RegisterView()
+    }
+    
+    func goToLogin() -> some View {
+        Button {
+            dismiss()
+            print(screenHeight)
+        } label: {
+            HStack {
+                Text("Já tem uma conta?")
+                    .foregroundStyle(.black)
+                
+                Text("Entrar")
+                    .fontWeight(.semibold)
+                    .foregroundStyle(Color.accentColor)
+            }
+        }
+        .padding(.top, 16)
+        .padding(.bottom, 8)
+    }
 }
