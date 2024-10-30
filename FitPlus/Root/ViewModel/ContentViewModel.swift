@@ -15,17 +15,20 @@ import Foundation
 final class ContentViewModel: ObservableObject {
     
     @Published var userSession: FirebaseAuth.User?
-    
+    @Published var isLoading: Bool = true
+
     private var cancellabes = Set<AnyCancellable>()
     
     init() {
         setupSubscribers()
     }
     
-    @MainActor
     private func setupSubscribers() {
         AuthenticationManager.shared.$userSession.sink { [weak self] userSession in
-            self?.userSession = userSession
+            Task { @MainActor in
+                self?.userSession = userSession
+                self?.isLoading = false
+            }
         }.store(in: &cancellabes)
     }
     

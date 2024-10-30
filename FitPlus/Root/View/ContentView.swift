@@ -10,12 +10,17 @@ import SwiftUI
 struct ContentView: View {
     
     @StateObject var viewModel = ContentViewModel()
+    
     var body: some View {
         Group {
-            if viewModel.userSession != nil {
-                TabbarView()
+            if viewModel.isLoading {
+                ProgressView()
             } else {
-                LoginView()
+                if viewModel.userSession != nil {
+                    TabbarView()
+                } else {
+                    LoginView()
+                }
             }
         }
     }
