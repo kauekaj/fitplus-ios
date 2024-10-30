@@ -9,11 +9,12 @@ import SwiftUI
 
 struct LoginView: View {
         
-    @State private var email = ""
-    @State private var password = ""
+    @State private var emailInputText = ""
+    @State private var passwordInputText = ""
     @State private var forgotPasswordInputText: String = ""
     @State private var shouldShowTray = false
     @State private var isResetPasswordEmailSent = false
+    @State private var buttonState: ButtonState = .idle
 
     @EnvironmentObject var userRepository: UserRepository
 
@@ -43,6 +44,18 @@ struct LoginView: View {
                 }
                 .edgesIgnoringSafeArea(.top)
                 
+                if viewModel.showToast {
+                    DSMToast(
+                        message: viewModel.toastMessage,
+                        type: viewModel.toastType,
+                        autoDismiss: true
+                    ) {
+                        viewModel.showToast = false
+                    }
+                    .padding(.top, UIScreen.main.bounds.height * 0.05)
+                    .zIndex(2)
+                }
+                
                 if shouldShowTray == true {
                     makeTray()
                         .offset(y: (UIScreen.main.bounds.height * 0.50))
@@ -62,11 +75,11 @@ extension LoginView {
                 .foregroundStyle(.white)
             
             VStack {
-                TextField("E-mail", text: $email)
+                TextField("E-mail", text: $emailInputText)
                     .textInputAutocapitalization(.never)
                     .modifier(TextFieldModifier())
                 
-                SecureField("Password", text: $password)
+                SecureField("Password", text: $passwordInputText)
                     .modifier(TextFieldModifier())
                 
                 Button {
@@ -79,22 +92,7 @@ extension LoginView {
                             .padding(.vertical,4)
                 }
                 
-                Button {
-                    Task {
-                        do {
-                            try await viewModel.signIn(email: email, password: password)
-                            try await userRepository.updateUser()
-
-                        } catch {
-                            print("Erro ao efetuar login: \(error)")
-                        }
-                    }
-
-                } label: {
-                    Text("Entrar")
-                        .modifier(ButtonLabelModifier())
-                }
-                .padding(.bottom)
+                makeButton()
                 
                 Divider()
                 
@@ -154,6 +152,26 @@ extension LoginView {
             .zIndex(1)
     }
     
+    func makeButton() -> some View {
+        DSMButton(title: "Entrar", state: $buttonState) {
+            if viewModel.validateFields(email: emailInputText, password: passwordInputText) {
+                buttonState = .loading
+                Task {
+                    defer {
+                        buttonState = .idle
+                    }
+                    do {
+                        try await viewModel.signIn(email: emailInputText, password: passwordInputText)
+                        try await userRepository.updateUser()
+                    } catch {
+                        buttonState = .idle
+                        print("Erro ao efetuar login: \(error)")
+                    }
+                }
+            }
+        }
+        .padding(.bottom)
+    }
     func makeTray() -> some View {
         VStack {
             VStack(spacing: 16) {
@@ -209,5 +227,4 @@ extension LoginView {
         .padding()
         .animation(.easeInOut, value: shouldShowTray)
     }
-    
 }

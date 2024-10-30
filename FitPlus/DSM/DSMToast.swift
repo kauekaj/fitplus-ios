@@ -15,11 +15,11 @@ enum ToastType {
     var toastColor: Color {
         switch self {
         case .success:
-            return Color.green.opacity(0.3)
+            return Color(red: 0.8, green: 1.0, blue: 0.8)
         case .error:
-            return Color.red.opacity(0.3)
+            return Color(red: 1.0, green: 0.8, blue: 0.8)
         case .warning:
-            return Color.orange.opacity(0.3)
+            return Color(red: 1.0, green: 0.9, blue: 0.7)
         }
     }
     

@@ -128,7 +128,6 @@ struct ChangePasswordView: View {
         showToast = true
     }
 
-    
     func makeTray() -> some View {
         VStack {
             VStack(spacing: 16) {

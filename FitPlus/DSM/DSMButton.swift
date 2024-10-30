@@ -23,7 +23,6 @@ struct DSMButton: View {
     var body: some View {
         Button(action: {
             if state == .idle {
-                state = .loading
                 action()
                 startLoadingAnimation()
             }
