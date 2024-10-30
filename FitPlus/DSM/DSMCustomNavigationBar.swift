@@ -20,9 +20,9 @@ struct DSMCustomNavigationBar<Content: View>: View {
                 Button(action: {
                     presentationMode.wrappedValue.dismiss()
                 }) {
-                    Image(systemName: "arrow.backward")
+                    Image(systemName: "chevron.left")
                         .foregroundColor(.black)
-                        .font(.title2)
+                        .font(.title3)
                         .fontWeight(.bold)
                 }
                 

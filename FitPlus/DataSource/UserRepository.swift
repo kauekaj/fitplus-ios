@@ -21,13 +21,13 @@ protocol UserRepositoryProtocol: ObservableObject {
 final class UserRepository: UserRepositoryProtocol {
     @Published var user: FitPlusUser?
     
+    @MainActor
     func loadUserFromAPI() async throws{
         do {
             let authDataResult = try AuthenticationManager.shared.getAuthenticatedUser()
             
             self.user = try await UserManager.shared.getUser(userId: authDataResult.uid)
             if let user = user {
-                
                 cacheUser(user)
             }
         } catch {
@@ -35,6 +35,7 @@ final class UserRepository: UserRepositoryProtocol {
         }
     }
     
+    @MainActor
     func cacheUser(_ user: FitPlusUser) {
         self.user = user
         if let encodedUser = try? JSONEncoder().encode(user) {
@@ -46,16 +47,13 @@ final class UserRepository: UserRepositoryProtocol {
         try await loadUserFromAPI()
     }
     
+    @MainActor
     func loadCachedUser() {
         if let savedUserData = UserDefaults.standard.data(forKey: "savedUser"),
            let decodedUser = try? JSONDecoder().decode(FitPlusUser.self, from: savedUserData) {
-            DispatchQueue.main.async {
-                self.user = decodedUser
-            }
+            self.user = user
         } else {
-            DispatchQueue.main.async {
-                self.user = nil
-            }
+            self.user = nil
         }
     }
     
@@ -63,13 +61,17 @@ final class UserRepository: UserRepositoryProtocol {
         if let currentUser = user {
             return currentUser
         } else {
-            loadCachedUser()
+            Task { @MainActor in
+                loadCachedUser()
+            }
             return user
         }
     }
     
     func clearUser() {
-        self.user = nil
+        Task { @MainActor in
+            self.user = nil
+        }
         UserDefaults.standard.removeObject(forKey: "savedUser")
     }
 }
