@@ -9,10 +9,10 @@ import Foundation
 
 struct ItemModel: Identifiable, Codable, Hashable {
     let id: String
-    let title: String
-    var isCompleted: Bool
-    let listId: String
-    let dateCreated: Date
+    let title: String?
+    var isCompleted: Bool?
+    let listId: String?
+    let dateCreated: Date?
     
     enum CodingKeys: String, CodingKey {
         case id

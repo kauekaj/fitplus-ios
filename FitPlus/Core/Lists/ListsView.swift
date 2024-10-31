@@ -60,8 +60,26 @@ struct ListsView: View {
             try? await viewModel.getUserLists()
         }
     }
+}
+
+extension ListsView {
     
-    func makeButton() -> some View {
+    private func makeLists() -> some View {
+        ForEach(viewModel.lists) { list in
+            ListCardView(list: list) {
+                listToDelete = list
+                showDeleteConfirmation.toggle()
+            } onTap: {
+                path.append(list)
+            }
+            .navigationDestination(for: ListModel.self) { list in
+                GrocerListView(list: list, viewModel: GrocerListViewModel())
+                    .navigationBarHidden(true)
+            }
+        }
+    }
+    
+    private func makeButton() -> some View {
         Button(action: {
             withAnimation {
                 showingTray = true
@@ -78,26 +96,8 @@ struct ListsView: View {
         .padding(.horizontal, 16)
         .padding(.top, 16)
     }
-}
-
-extension ListsView {
     
-    func makeLists() -> some View {
-        ForEach(viewModel.lists) { list in
-            ListCardView(list: list) {
-                listToDelete = list
-                showDeleteConfirmation.toggle()
-            } onTap: {
-                path.append(list)
-            }
-            .navigationDestination(for: ListModel.self) { list in
-                GrocerShopListView(list: list, viewModel: GrocerShopListViewModel())
-                    .navigationBarHidden(true)
-            }
-        }
-    }
-    
-    func makeTray() -> some View {
+    private func makeTray() -> some View {
         VStack {
             Spacer()
 
