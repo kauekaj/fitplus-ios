@@ -18,29 +18,32 @@ enum ListStatus: Codable {
 }
 
 enum ListType: Codable {
-    case grocerShop
-    case toDo
+    case grocerList
+    case toDoList
 }
 
 struct ListModel: Codable, Identifiable, Hashable, Equatable {
     let id: String
-    let authorId: String
-    let name: String
-    let type: ListType
-    let status: ListStatus
+    let authorId: String?
+    let name: String?
+    let type: ListType?
+    let status: ListStatus?
+    let isShared: Bool?
     
     init(
         id: String,
         authorId: String,
         name: String,
         type: ListType,
-        status: ListStatus
+        status: ListStatus,
+        isShared: Bool
     ) {
         self.id = id
         self.authorId = authorId
         self.name = name
         self.type = type
         self.status = status
+        self.isShared = isShared
     }
     
     enum CodingKeys: String, CodingKey {
@@ -49,6 +52,7 @@ struct ListModel: Codable, Identifiable, Hashable, Equatable {
         case name
         case type
         case status
+        case isShared = "is_shared"
     }
 }
 
@@ -65,10 +69,15 @@ final class ListsManager {
     
     func uploadList(list: ListModel) async throws {
         try listDocument(listId: list.id).setData(from: list, merge: false)
+        
     }
     
     func getList(listId: String) async throws -> ListModel {
         try await listDocument(listId: listId).getDocument(as: ListModel.self)
+    }
+    
+    func deleteList(listId: String) async throws {
+        try await listDocument(listId: listId).delete()
     }
     
     func getAllUserLists() async throws -> [ListModel] {

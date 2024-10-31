@@ -7,25 +7,15 @@
 
 import SwiftUI
 
-final class ListsViewModel: ObservableObject {
-    
-    @Published private(set) var lists: [ListModel] = []
-    
-    @MainActor
-    func getUserLists() async throws {
-        let userId = try AuthenticationManager.shared.getAuthenticatedUser().uid
-        lists = try await ListsManager.shared.getUserLists(userId: userId).lists
-    }
-    
-}
-
 struct ListsView: View {
     
     @StateObject var viewModel = ListsViewModel()
     @State private var path = NavigationPath()
-    @State private var showTrayError: TrayError = .idle
+    @State private var showTrayError: ToastError = .idle
     @State private var showingTray = false
     @State private var newListName = ""
+    @State private var showDeleteConfirmation = false
+    @State private var listToDelete: ListModel?
 
     var body: some View {
         NavigationStack(path: $path) {
@@ -33,37 +23,11 @@ struct ListsView: View {
                 ScrollView {
                     Text("Minhas listas")
                         .font(.largeTitle)
-                        .padding(.vertical, 38)
+                        .bold()
+                        .padding(.top, 20)
+                        .padding(.bottom, 10)
                     
-                    
-                    ForEach(viewModel.lists) { list in
-                        HStack {
-                            Text(list.name)
-                                .font(.headline)
-                                .foregroundColor(.primary)
-                                .frame(maxWidth: .infinity, alignment: .center)
-                            
-                            Spacer()
-                            
-                            if list.status == .notStarted {
-                                Image(systemName: "checkmark.circle.fill")
-                                    .foregroundColor(.green)
-                                    .font(.title2)
-                                    .padding(.trailing, 20)
-                            }
-                        }
-                        .frame(height: 48)
-                        .background(Color.accentColor.opacity(0.5))
-                        .cornerRadius(8)
-                        .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 4)
-                        .padding(.horizontal, 16)
-                        .onTapGesture {
-                            path.append(list)
-                        }
-                        .navigationDestination(for: ListModel.self) { list in
-                            GrocerShopListView(list: list, viewModel: GrocerShopListViewModel())
-                        }
-                    }
+                    makeLists()
                     
                     makeButton()
                 }
@@ -72,6 +36,25 @@ struct ListsView: View {
                     makeTray()
                 }
             }
+            .alert(isPresented: $showDeleteConfirmation) {
+                Alert(
+                    title: Text("Excluir Lista"),
+                    message: Text("Tem certeza de que deseja excluir esta lista?"),
+                    primaryButton: .destructive(Text("Excluir")) {
+                        if let list = listToDelete {
+                            Task {
+                                do {
+                                    try await viewModel.deleteList(list)
+                                    listToDelete = nil
+                                } catch {
+                                    print("Erro ao excluir a lista")
+                                }
+                            }
+                        }
+                    },
+                    secondaryButton: .cancel(Text("Cancelar"))
+                )
+            }
         }
         .task {
             try? await viewModel.getUserLists()
@@ -79,29 +62,58 @@ struct ListsView: View {
     }
     
     func makeButton() -> some View {
-        Button {
-            showingTray.toggle()
-        } label: {
+        Button(action: {
+            withAnimation {
+                showingTray = true
+            }
+        }) {
             Text("Criar Lista")
+                .font(.headline)
+                .foregroundColor(.white)
+                .padding()
+                .frame(maxWidth: .infinity)
+                .background(Color.accentColor)
+                .cornerRadius(12)
         }
-        .padding(.vertical, 16)
+        .padding(.horizontal, 16)
+        .padding(.top, 16)
     }
-    
 }
 
 extension ListsView {
+    
+    func makeLists() -> some View {
+        ForEach(viewModel.lists) { list in
+            ListCardView(list: list) {
+                listToDelete = list
+                showDeleteConfirmation.toggle()
+            } onTap: {
+                path.append(list)
+            }
+            .navigationDestination(for: ListModel.self) { list in
+                GrocerShopListView(list: list, viewModel: GrocerShopListViewModel())
+                    .navigationBarHidden(true)
+            }
+        }
+    }
     
     func makeTray() -> some View {
         VStack {
             Spacer()
 
             VStack(spacing: 16) {
-                Text("Adicionar novo item")
+                Text("Adicionar nova lista")
                     .font(.headline)
 
-                TextField("Digite o nome do item aqui...", text: $newListName)
+                TextField("Nome da lista...", text: $newListName)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding(.horizontal)
+                
+                if showTrayError != .idle {
+                    Text(showTrayError.rawValue)
+                        .font(.footnote)
+                        .foregroundStyle(.red)
+                }
                 
                 HStack {
                     Button("Cancelar") {
@@ -124,14 +136,18 @@ extension ListsView {
                                             id: "\(UUID())",
                                             authorId: userId,
                                             name: newListName,
-                                            type: .toDo,
-                                            status: .inProgress
+                                            type: .grocerList,
+                                            status: .notStarted,
+                                            isShared: false
                                         )
                                     )
+                                    
+                                    try await viewModel.getUserLists()
+                                    
                                     newListName = ""
                                     showingTray.toggle()
                                 } catch {
-                                    print("Erro saving List")
+                                    print("Erro ao salvar lista")
                                 }
                                 
                             } else {

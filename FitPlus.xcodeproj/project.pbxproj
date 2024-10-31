@@ -18,6 +18,8 @@
 		9645B02E2B880B3C00EEEB85 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9645B02D2B880B3C00EEEB85 /* LoginView.swift */; };
 		966838562CC4271700A39CF0 /* DeleteUserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966838552CC4271700A39CF0 /* DeleteUserProfileView.swift */; };
 		966838582CC9AF3500A39CF0 /* ChangePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966838572CC9AF3500A39CF0 /* ChangePasswordView.swift */; };
+		96786C742CD432FF00E31921 /* ListCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96786C732CD432FF00E31921 /* ListCardView.swift */; };
+		96786C762CD434BF00E31921 /* ListsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96786C752CD434BF00E31921 /* ListsViewModel.swift */; };
 		9688D3E02C9F332D003FF22F /* ListsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9688D3DF2C9F332D003FF22F /* ListsManager.swift */; };
 		9688D3E42CA46E7F003FF22F /* Query+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9688D3E32CA46E7F003FF22F /* Query+Extensions.swift */; };
 		9688D3E82CA8410B003FF22F /* OnFirstAppearViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9688D3E72CA8410B003FF22F /* OnFirstAppearViewModifier.swift */; };
@@ -49,7 +51,6 @@
 		96C751E52C4C17ED009C0DF1 /* GrocerShopListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C751E42C4C17ED009C0DF1 /* GrocerShopListView.swift */; };
 		96C751E72C4D5A04009C0DF1 /* ItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C751E62C4D5A04009C0DF1 /* ItemModel.swift */; };
 		96C751E92C4D5F9D009C0DF1 /* ListRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C751E82C4D5F9D009C0DF1 /* ListRowView.swift */; };
-		96C751EB2C4D601C009C0DF1 /* AddListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C751EA2C4D601C009C0DF1 /* AddListItemView.swift */; };
 		96C751ED2C4D7A52009C0DF1 /* ListsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C751EC2C4D7A52009C0DF1 /* ListsView.swift */; };
 		96C751F62C5088E0009C0DF1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 96C751F52C5088E0009C0DF1 /* GoogleService-Info.plist */; };
 		96C751FA2C508F6D009C0DF1 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 96C751F92C508F6D009C0DF1 /* FirebaseAnalytics */; };
@@ -95,6 +96,8 @@
 		9645B02D2B880B3C00EEEB85 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		966838552CC4271700A39CF0 /* DeleteUserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteUserProfileView.swift; sourceTree = "<group>"; };
 		966838572CC9AF3500A39CF0 /* ChangePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordView.swift; sourceTree = "<group>"; };
+		96786C732CD432FF00E31921 /* ListCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCardView.swift; sourceTree = "<group>"; };
+		96786C752CD434BF00E31921 /* ListsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsViewModel.swift; sourceTree = "<group>"; };
 		9688D3DF2C9F332D003FF22F /* ListsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsManager.swift; sourceTree = "<group>"; };
 		9688D3E12C9F3889003FF22F /* FitPlus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FitPlus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9688D3E32CA46E7F003FF22F /* Query+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Query+Extensions.swift"; sourceTree = "<group>"; };
@@ -129,7 +132,6 @@
 		96C751E42C4C17ED009C0DF1 /* GrocerShopListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrocerShopListView.swift; sourceTree = "<group>"; };
 		96C751E62C4D5A04009C0DF1 /* ItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemModel.swift; sourceTree = "<group>"; };
 		96C751E82C4D5F9D009C0DF1 /* ListRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListRowView.swift; sourceTree = "<group>"; };
-		96C751EA2C4D601C009C0DF1 /* AddListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddListItemView.swift; sourceTree = "<group>"; };
 		96C751EC2C4D7A52009C0DF1 /* ListsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsView.swift; sourceTree = "<group>"; };
 		96C751F42C50880D009C0DF1 /* FitPlus.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FitPlus.entitlements; sourceTree = "<group>"; };
 		96C751F52C5088E0009C0DF1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -415,7 +417,6 @@
 				96C751E42C4C17ED009C0DF1 /* GrocerShopListView.swift */,
 				96C751E62C4D5A04009C0DF1 /* ItemModel.swift */,
 				96C751E82C4D5F9D009C0DF1 /* ListRowView.swift */,
-				96C751EA2C4D601C009C0DF1 /* AddListItemView.swift */,
 			);
 			path = GrocerShopList;
 			sourceTree = "<group>";
@@ -424,6 +425,8 @@
 			isa = PBXGroup;
 			children = (
 				96C751EC2C4D7A52009C0DF1 /* ListsView.swift */,
+				96786C752CD434BF00E31921 /* ListsViewModel.swift */,
+				96786C732CD432FF00E31921 /* ListCardView.swift */,
 				96C751E32C4C17D2009C0DF1 /* GrocerShopList */,
 			);
 			path = Lists;
@@ -647,6 +650,7 @@
 				96C751DE2C4BFC4C009C0DF1 /* RegisterView.swift in Sources */,
 				96A909622CB7590500798A28 /* Bundle+Extensions.swift in Sources */,
 				96C752142C545AFD009C0DF1 /* LoginViewModel.swift in Sources */,
+				96786C762CD434BF00E31921 /* ListsViewModel.swift in Sources */,
 				96BA0A1B2CCD625400B13CAD /* UIImage+Extensions.swift in Sources */,
 				96C751CF2C4980A7009C0DF1 /* TabbarView.swift in Sources */,
 				96C752122C545AC2009C0DF1 /* RegisterViewModel.swift in Sources */,
@@ -660,12 +664,12 @@
 				96C751E52C4C17ED009C0DF1 /* GrocerShopListView.swift in Sources */,
 				9645B0022B88098F00EEEB85 /* FitPlusApp.swift in Sources */,
 				96C752172C556887009C0DF1 /* ProfileView.swift in Sources */,
-				96C751EB2C4D601C009C0DF1 /* AddListItemView.swift in Sources */,
 				96A909642CB75E8500798A28 /* PersonalInfoView.swift in Sources */,
 				961FFAB62CB5E11800EFD029 /* RowComponent.swift in Sources */,
 				96C7520E2C540CDB009C0DF1 /* ContentViewModel.swift in Sources */,
 				96C27A562CB5EBCC00CC2820 /* SettingsView.swift in Sources */,
 				96BA0A172CCD26EC00B13CAD /* StorageManager.swift in Sources */,
+				96786C742CD432FF00E31921 /* ListCardView.swift in Sources */,
 				96BA0A2B2CD1B02700B13CAD /* DSMToast.swift in Sources */,
 				968F40052CD2D68400E4B89B /* MythOrTruthViewModel.swift in Sources */,
 				968F3FFB2CD2AD8D00E4B89B /* ProfileImagePickerViewModel.swift in Sources */,
