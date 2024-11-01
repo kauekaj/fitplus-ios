@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ShimmerEffectBox: View {
+struct DSMShimmerEffectBox: View {
     private var gradientColors = [
         Color(uiColor: UIColor.systemGray5),
         Color(uiColor: UIColor.systemGray6),

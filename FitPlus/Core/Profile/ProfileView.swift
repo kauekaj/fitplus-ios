@@ -154,15 +154,15 @@ extension ProfileView {
     @ViewBuilder
     func makeProfileSkelletonView() -> some View {
         VStack {
-        ShimmerEffectBox()
-            .cornerRadius(25)
-            .frame(width: 50, height: 50)
-        
-        ShimmerEffectBox()
-            .cornerRadius(45)
-            .frame(width: 90, height: 90)
-            .clipShape(TopHalfCircle())
-
+            DSMShimmerEffectBox()
+                .cornerRadius(25)
+                .frame(width: 50, height: 50)
+            
+            DSMShimmerEffectBox()
+                .cornerRadius(45)
+                .frame(width: 90, height: 90)
+                .clipShape(TopHalfCircle())
+            
         }
         .padding(.top, 32)
     }

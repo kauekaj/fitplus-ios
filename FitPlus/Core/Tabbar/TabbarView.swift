@@ -38,7 +38,7 @@ struct TabbarView: View {
 
             RecipeListView()
                 .tabItem {
-                    Image(systemName: "book.fill")
+                    Image(systemName: "text.book.closed.fill")
                 }
                 .tag(2)
                 .onAppear { selectedTab = 2 }
@@ -52,8 +52,4 @@ struct TabbarView: View {
         }
         .tint(.accentColor)
     }
-}
-
-#Preview {
-    TabbarView()
 }
